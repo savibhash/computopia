@@ -1,0 +1,13 @@
+# Node modules (Never push this)
+node_modules/
+server/node_modules/
+
+# Environment variables & secrets
+.env
+.DS_Store
+
+# Local hybrid disk storage files
+server/data/*.json
+
+# VS Code editor settings
+.vscode/

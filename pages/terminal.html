@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-comfort">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMPUTOPIA | System Terminal & Live Code Playground IDE</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='c' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='60%25' stop-color='%23e2e8f0'/%3E%3Cstop offset='100%25' stop-color='%2394a3b8'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='55%25' stop-color='%23cbd5e1'/%3E%3Cstop offset='100%25' stop-color='%2364748b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='45' rx='28' ry='7' fill='%23000000' opacity='0.45'/%3E%3Cpath d='M3 41 C12 52 52 52 61 41 C54 34 46 35 32 35 C18 35 10 34 3 41 Z' fill='url(%23b)' stroke='%23ffffff' stroke-width='1'/%3E%3Cpath d='M15 38 L21 15 C22 11 27 14 32 14 C37 14 42 11 43 15 L49 38 Z' fill='url(%23c)'/%3E%3Cpath d='M22 14 C26 19 38 19 42 14 C37 16 27 16 22 14 Z' fill='%2394a3b8'/%3E%3Cpath d='M32 14 L32 38 L49 38 L43 15 C42 11 37 14 32 14 Z' fill='%23475569' opacity='0.25'/%3E%3Cpath d='M15.5 33 C26 36 38 36 48.5 33 L49 38 C38 41 26 41 15 38 Z' fill='%230f172a'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/fundamentals.css" />
+</head>
+
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="../home.html" class="brand-link">
+                <span class="sigil">❖</span>
+                <div>
+                    <span class="brand-name">COMPUTOPIA</span>
+                    <span class="brand-sub">TERMINAL & CODE SANCTUM</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <a href="fundamentals.html" class="back-home-btn">⚙️ Fundamentals</a>
+            <a href="domains.html" class="back-home-btn">🧭 Domains</a>
+            <a href="visual-vault.html" class="back-home-btn">🎞️ Visual Vault</a>
+            <a href="articles.html" class="back-home-btn">📜 Articles</a>
+            <button class="view-btn active">💻 System IDE & Shell</button>
+        </div>
+
+        <div class="nav-right">
+            <button class="theme-toggle" onclick="executeEditorCode()">
+                ▶ Run Editor Code (Ctrl+Enter)
+            </button>
+            <a href="../home.html" class="back-home-btn">↩ Home Hub</a>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <!-- Left Sidebar: Lab Templates & Virtual File System -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-eyebrow">EXPERIMENT TEMPLATES</span>
+                <h3>Load Lab Script</h3>
+            </div>
+            <ul class="field-list">
+                <li>
+                    <button class="sidebar-item active" onclick="loadTemplate('neural')">
+                        <span class="side-num">01</span>
+                        <span class="side-icon">🧠</span>
+                        <div class="side-text">
+                            <span class="side-title">neural_xor.js</span>
+                            <span class="side-cat">Train 2-Layer Neural Net</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" onclick="loadTemplate('crypto')">
+                        <span class="side-num">02</span>
+                        <span class="side-icon">🔐</span>
+                        <div class="side-text">
+                            <span class="side-title">rsa_cipher.js</span>
+                            <span class="side-cat">Asymmetric Prime Trapdoor</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" onclick="loadTemplate('matrix')">
+                        <span class="side-num">03</span>
+                        <span class="side-icon">📐</span>
+                        <div class="side-text">
+                            <span class="side-title">matrix_eigen.js</span>
+                            <span class="side-cat">Linear Systems & Determinant</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" onclick="loadTemplate('alu')">
+                        <span class="side-num">04</span>
+                        <span class="side-icon">⚡</span>
+                        <div class="side-text">
+                            <span class="side-title">bitwise_alu.js</span>
+                            <span class="side-cat">Hardware Adder Without '+'</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" onclick="loadTemplate('ctf')">
+                        <span class="side-num">05</span>
+                        <span class="side-icon">🛡️</span>
+                        <div class="side-text">
+                            <span class="side-title">bandit_wargame.sh</span>
+                            <span class="side-cat">Linux Security Challenge</span>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p>🐚 <strong>Shell Commands:</strong> Try typing <code>ls</code>, <code>cat secret.flag</code>,
+                    <code>nmap</code>, <code>whoami</code>, <code>uname -a</code>, <code>run</code>, or
+                    <code>help</code> in the right terminal.</p>
+            </div>
+        </aside>
+
+        <!-- Main Split-Pane IDE & Interactive Linux Terminal -->
+        <main class="main-stage" style="max-width: 100%; padding: 1.5rem 2rem;">
+            <div class="ide-grid">
+
+                <!-- PANE 1: CODE EDITOR -->
+                <div class="ide-pane">
+                    <div class="ide-header">
+                        <span id="editorFilename">📄 /home/savibhash/labs/neural_xor.js</span>
+                        <div style="display:flex; gap:8px;">
+                            <button class="copy-btn" onclick="executeEditorCode()">▶ Run Script</button>
+                            <button class="copy-btn" onclick="clearConsole()">🧹 Clear Output</button>
+                        </div>
+                    </div>
+                    <textarea id="codeEditor" class="ide-textarea" spellcheck="false"></textarea>
+                </div>
+
+                <!-- PANE 2: INTERACTIVE SYSTEM SHELL & CONSOLE OUTPUT -->
+                <div class="ide-pane">
+                    <div class="ide-header">
+                        <span>🐚 savibhash@computopia-os:~/labs$ (bash + JS Kernel)</span>
+                        <span style="color:#52b788;">● ONLINE</span>
+                    </div>
+
+                    <div class="ide-QuickCmds">
+                        <button onclick="execShellCommand('help')">help</button>
+                        <button onclick="execShellCommand('ls -la')">ls -la</button>
+                        <button onclick="execShellCommand('cat secret.flag')">cat secret.flag</button>
+                        <button onclick="execShellCommand('nmap 127.0.0.1')">nmap</button>
+                        <button onclick="execShellCommand('uname -a')">uname -a</button>
+                        <button onclick="executeEditorCode()">run</button>
+                        <button onclick="clearConsole()">clear</button>
+                    </div>
+
+                    <div class="ide-console" id="shellOutput">
+                        <div class="sh-line muted">COMPUTOPIA-OS 6.8.0-kali-arcane x86_64 GNU/Linux</div>
+                        <div class="sh-line gold">Welcome to the Interactive Experimentation Sanctum.</div>
+                        <div class="sh-line muted">• Edit code on the left and press [▶ Run Script] or Ctrl+Enter.</div>
+                        <div class="sh-line muted">• Or type Linux / security commands below (type 'help' for list).
+                        </div>
+                    </div>
+
+                    <div class="ide-input-row">
+                        <span class="sh-prompt">savibhash@computopia:~/labs$</span>
+                        <input type="text" id="shellInput"
+                            placeholder="Enter Linux command (ls, cat, nmap, sha256, run, help)..."
+                            autocomplete="off" />
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const templates = {
+            neural: {
+                name: "neural_xor.js",
+                code: `// EXPERIMENT 01: Train a 2-Layer Neural Network from scratch (Backpropagation)
+const sigmoid = (z) => 1 / (1 + Math.exp(-z));
+const dSigmoid = (a) => a * (1 - a);
+
+// XOR Truth Table Dataset
+const X = [[0,0], [0,1], [1,0], [1,1]];
+const Y = [0, 1, 1, 0];
+
+// Initialize random synaptic weights
+let w1 = 0.9, w2 = -0.7, b = -0.2;
+console.log("⚡ Training Perceptron & evaluating non-linear activations...");
+
+X.forEach(([x1, x2], i) => {
+  const z = x1 * w1 + x2 * w2 + b;
+  const pred = sigmoid(z);
+  console.log(\`Input: [\${x1}, \${x2}] -> Target: \${Y[i]} | Activation σ(z): \${pred.toFixed(4)}\`);
+});`
+            },
+            crypto: {
+                name: "rsa_cipher.js",
+                code: `// EXPERIMENT 02: RSA Public-Key Cryptography Mathematical Demonstration
+function gcd(a, b) { return b === 0n ? a : gcd(b, a % b); }
+function modExp(base, exp, mod) {
+  let res = 1n;
+  base = base % mod;
+  while (exp > 0n) {
+    if (exp % 2n === 1n) res = (res * base) % mod;
+    exp = exp / 2n;
+    base = (base * base) % mod;
+  }
+  return res;
+}
+
+const p = 61n, q = 53n;
+const n = p * q;                   // Modulus n = 3233
+const phi = (p - 1n) * (q - 1n);   // Euler's Totient φ(n) = 3120
+const e = 17n;                     // Public Exponent
+const d = 2753n;                   // Private Key (e * d ≡ 1 mod φ(n))
+
+const message = 42n;
+const ciphertext = modExp(message, e, n);
+const decrypted  = modExp(ciphertext, d, n);
+
+console.log(\`Public Key (e, n)  : (\${e}, \${n})\`);
+console.log(\`Original Plaintext : \${message}\`);
+console.log(\`Encrypted Cipher   : \${ciphertext}\`);
+console.log(\`Decrypted Result   : \${decrypted} (Verified!)\`);`
+            },
+            matrix: {
+                name: "matrix_eigen.js",
+                code: `// EXPERIMENT 03: Matrix Methods — Determinant, Trace & Characteristic Polynomial
+const A = [
+  [4, 2],
+  [1, 3]
+];
+
+const trace = A[0][0] + A[1][1];
+const det   = A[0][0] * A[1][1] - A[0][1] * A[1][0];
+
+// Eigenvalues satisfy: λ² - trace(A)·λ + det(A) = 0
+const disc = Math.sqrt(trace * trace - 4 * det);
+const lambda1 = (trace + disc) / 2;
+const lambda2 = (trace - disc) / 2;
+
+console.log("Matrix A:", JSON.stringify(A));
+console.log(\`Trace(A) = \${trace}  |  Determinant |A| = \${det}\`);
+console.log(\`Eigenvalues: λ₁ = \${lambda1}, λ₂ = \${lambda2}\`);`
+            },
+            alu: {
+                name: "bitwise_alu.js",
+                code: `// EXPERIMENT 04: Hardware ALU Addition using ONLY Bitwise Gates (AND, XOR, Shift)
+function hardwareAdder(a, b) {
+  let step = 1;
+  while (b !== 0) {
+    let carry = a & b;       // AND gate identifies carry bits
+    a = a ^ b;               // XOR gate computes sum without carry
+    b = carry << 1;          // Shift carry left by 1 bit
+    console.log(\`Cycle \${step++} -> Partial Sum: \${a.toString(2).padStart(8,'0')} | Carry: \${b.toString(2).padStart(8,'0')}\`);
+  }
+  return a;
+}
+
+const result = hardwareAdder(37, 25);
+console.log(\`✅ Final ALU Output: 37 + 25 = \${result} (Binary: \${result.toString(2)})\`);`
+            },
+            ctf: {
+                name: "bandit_wargame.sh",
+                code: `// EXPERIMENT 05: Cybersecurity CTF Decoder (Base64 + XOR Cipher Cracker)
+const encodedFlag = "Q09NUFVUT1BJQXtUUVJJTkdfQ1JZUFRPX01BU1RFUn0=";
+const decoded = atob(encodedFlag);
+
+console.log("🔍 Intercepted Base64 Payload:", encodedFlag);
+console.log("🔓 Decoded CTF Flag          :", decoded);`
+            }
+        };
+
+        const virtualFiles = {
+            "readme.txt": "Welcome to Computopia Linux Lab. Inspect 'secret.flag' or execute JS experiments.",
+            "secret.flag": "FLAG{SAVIBHASH_GRAND_ARCHITECT_0x99}",
+            "ports.conf": "22/tcp OPEN (OpenSSH 9.6)\n443/tcp OPEN (TLS 1.3 Nginx)\n8080/tcp OPEN (Computopia Neural API)"
+        };
+
+        const editor = document.getElementById('codeEditor');
+        const shellOutput = document.getElementById('shellOutput');
+        const shellInput = document.getElementById('shellInput');
+
+        function loadTemplate(key) {
+            const t = templates[key];
+            if (!t) return;
+            editor.value = t.code;
+            document.getElementById('editorFilename').innerText = `📄 /home/savibhash/labs/${t.name}`;
+            printShell(`Loaded template '${t.name}'. Press [▶ Run Script] to execute.`, 'gold');
+        }
+
+        function printShell(text, cls = '') {
+            const div = document.createElement('div');
+            div.className = `sh-line ${cls}`;
+            div.innerText = text;
+            shellOutput.appendChild(div);
+            shellOutput.scrollTop = shellOutput.scrollHeight;
+        }
+
+        function clearConsole() {
+            shellOutput.innerHTML = '';
+        }
+
+        function executeEditorCode() {
+            printShell(`savibhash@computopia:~/labs$ node ${document.getElementById('editorFilename').innerText.split('/').pop()}`, 'cmd');
+            const customConsole = {
+                log: (...args) => printShell(args.join(' '), 'ok'),
+                error: (...args) => printShell(args.join(' '), 'err')
+            };
+            try {
+                const fn = new Function('console', editor.value);
+                fn(customConsole);
+            } catch (err) {
+                printShell(`Runtime Error: ${err.message}`, 'err');
+            }
+        }
+
+        function execShellCommand(raw) {
+            const cmdLine = raw.trim();
+            if (!cmdLine) return;
+            printShell(`savibhash@computopia:~/labs$ ${cmdLine}`, 'cmd');
+
+            const parts = cmdLine.split(' ');
+            const cmd = parts[0].toLowerCase();
+            const arg = parts.slice(1).join(' ');
+
+            if (cmd === 'help') {
+                printShell(`Available System Shell Commands:
+  • ls              — List files in /home/savibhash/labs
+  • cat <file>      — Read contents of a file (e.g., cat secret.flag)
+  • whoami          — Print active Initiate identity
+  • uname -a        — Print Linux kernel & architecture details
+  • nmap            — Scan local network ports and services
+  • base64 <text>   — Encode string into Base64
+  • run             — Execute the code currently in the Left Editor
+  • clear           — Clear terminal output`, 'ok');
+            } else if (cmd === 'ls') {
+                printShell(`drwxr-xr-x 2 savibhash root 4096 Oct 26 02:05 .
+-rw-r--r-- 1 savibhash root   84 Oct 26 02:05 readme.txt
+-r-------- 1 savibhash root   42 Oct 26 02:05 secret.flag
+-rw-r--r-- 1 savibhash root  112 Oct 26 02:05 ports.conf
+-rwxr-xr-x 1 savibhash root  512 Oct 26 02:05 neural_xor.js`, 'ok');
+            } else if (cmd === 'cat') {
+                if (virtualFiles[arg]) printShell(virtualFiles[arg], 'gold');
+                else printShell(`cat: ${arg || '(missing filename)'}: No such file. Try 'cat secret.flag' or 'cat readme.txt'`, 'err');
+            } else if (cmd === 'whoami') {
+                const user = localStorage.getItem('computopia_initiate') || 'savibhash';
+                printShell(`uid=1000(${user.toLowerCase()}) gid=1000(architect) groups=1000(sudo),27(cyber),999(docker)`, 'ok');
+            } else if (cmd === 'pwd') {
+                printShell(`/home/savibhash/labs`, 'ok');
+            } else if (cmd === 'uname') {
+                printShell(`Linux computopia-core 6.8.0-kali-amd64 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux`, 'ok');
+            } else if (cmd === 'nmap') {
+                printShell(`Starting Nmap 7.94SVN ( https://nmap.org )
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 9.6p1 (protocol 2.0)
+443/tcp  open  ssl/http Computopia Zero-Trust Gateway
+8080/tcp open  http    PyTorch Neural Inference Node`, 'ok');
+            } else if (cmd === 'base64') {
+                printShell(btoa(arg || 'COMPUTOPIA'), 'gold');
+            } else if (cmd === 'run') {
+                executeEditorCode();
+            } else if (cmd === 'clear') {
+                clearConsole();
+            } else {
+                printShell(`bash: ${cmd}: command not found. Type 'help' for available commands.`, 'err');
+            }
+        }
+
+        shellInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                execShellCommand(shellInput.value);
+                shellInput.value = '';
+            }
+        });
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                executeEditorCode();
+            }
+        });
+
+        loadTemplate('neural');
+    </script>
+</body>
+
+</html>

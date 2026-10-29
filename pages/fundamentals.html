@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-comfort">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COMPUTOPIA | CS Fundamentals & Field Encyclopedia</title>
+  <!-- 3D White Hacker Hat Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='c' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='60%25' stop-color='%23e2e8f0'/%3E%3Cstop offset='100%25' stop-color='%2394a3b8'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='55%25' stop-color='%23cbd5e1'/%3E%3Cstop offset='100%25' stop-color='%2364748b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='45' rx='28' ry='7' fill='%23000000' opacity='0.45'/%3E%3Cpath d='M3 41 C12 52 52 52 61 41 C54 34 46 35 32 35 C18 35 10 34 3 41 Z' fill='url(%23b)' stroke='%23ffffff' stroke-width='1'/%3E%3Cpath d='M15 38 L21 15 C22 11 27 14 32 14 C37 14 42 11 43 15 L49 38 Z' fill='url(%23c)'/%3E%3Cpath d='M22 14 C26 19 38 19 42 14 C37 16 27 16 22 14 Z' fill='%2394a3b8'/%3E%3Cpath d='M32 14 L32 38 L49 38 L43 15 C42 11 37 14 32 14 Z' fill='%23475569' opacity='0.25'/%3E%3Cpath d='M15.5 33 C26 36 38 36 48.5 33 L49 38 C38 41 26 41 15 38 Z' fill='%230f172a'/%3E%3C/svg%3E" />
+  
+  <!-- Eye-Friendly Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/fundamentals.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Top Navigation & Eye-Comfort Controls -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="../home.html" class="brand-link">
+        <span class="sigil">❖</span>
+        <div>
+          <span class="brand-name">COMPUTOPIA</span>
+          <span class="brand-sub">FUNDAMENTALS CODEX</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-center">
+      <button class="view-btn active" id="btnDirectoryView" onclick="showDirectory()">
+        📚 All CS Fields Index (10)
+      </button>
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="fieldSearch" placeholder="Filter fields, math, or topics..." oninput="filterFields(this.value)" />
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleEyeComfort()" title="Switch between Soft Slate Dark & Warm Sepia Paper">
+        👁️ <span id="themeLabel">Sepia Paper Mode</span>
+      </button>
+      <a href="../home.html" class="back-home-btn">↩ Home Hub</a>
+    </div>
+  </header>
+
+  <!-- Main Workspace Layout -->
+  <div class="workspace">
+
+    <!-- Persistent Left Sidebar: Listed CS Fields -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-eyebrow">SELECT A DISCIPLINE</span>
+        <h3>CS Knowledge Tree</h3>
+      </div>
+      <ul class="field-list" id="sidebarList">
+        <!-- Dynamically populated by JS -->
+      </ul>
+      <div class="sidebar-footer">
+        <p>💡 <strong>Tip:</strong> Click any discipline above to open its complete textbook treatise, mathematical proofs, diagrams, and video lectures.</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-stage" id="mainStage">
+
+      <!-- VIEW 1: ALL FIELDS DIRECTORY VIEW -->
+      <section id="directoryView" class="directory-section">
+        <div class="hero-banner">
+          <span class="eyebrow">THE ENCYCLOPEDIA OF COMPUTATION</span>
+          <h1>Computer Science Fundamentals</h1>
+          <p>
+            Select any branch of Computer Science below to open a comprehensive, distraction-free technical treatise covering first principles, system architecture diagrams, mathematical foundations, algorithms, and curated video masterclasses.
+          </p>
+        </div>
+
+        <div class="directory-grid" id="directoryGrid">
+          <!-- Dynamically populated cards -->
+        </div>
+      </section>
+
+      <!-- VIEW 2: FULL-PAGE ARTICLE READER VIEW -->
+      <article id="articleView" class="article-section hidden">
+        <div class="article-topbar">
+          <button class="btn-back-index" onclick="showDirectory()">
+            ← Back to All Fields Index
+          </button>
+          <div class="article-QuickNav">
+            <a href="#sec-overview">1. Overview</a>
+            <a href="#sec-diagram">2. Visual Fig</a>
+            <a href="#sec-math">3. Mathematics</a>
+            <a href="#sec-concepts">4. Deep Dive</a>
+            <a href="#sec-code">5. Code & Stack</a>
+            <a href="#sec-videos">6. Video Lectures</a>
+          </div>
+        </div>
+
+        <!-- Dynamic Article Container -->
+        <div id="articleContent"></div>
+
+        <!-- Bottom Prev / Next Field Navigation -->
+        <div class="article-pagination" id="articlePagination"></div>
+      </article>
+
+    </main>
+  </div>
+
+  <!-- Comprehensive Database of All 10 CS Fields -->
+  <script>
+    const csFields = [
+      {
+        id: "architecture",
+        num: "01",
+        icon: "⚡",
+        title: "Core CS, Binary Logic & Computer Architecture",
+        category: "Hardware & Foundations",
+        readTime: "14 min read",
+        difficulty: "Foundational",
+        summary: "From semiconductor physics and CMOS transistors to Boolean algebra, logic gates, binary arithmetic, and the Von Neumann CPU instruction pipeline.",
+        tagline: "How raw voltage inside doped silicon transforms into universal mathematical logic.",
+        overview: [
+          "At its physical core, a computer knows nothing of images, websites, or artificial intelligence. It only understands two electrical voltage states across microscopic silicon switches (MOSFET transistors): Low Voltage (~0V representing 0) and High Voltage (~1.2V–5V representing 1). George Boole's 1854 treatise on Boolean Algebra proved that all human deductive reasoning could be expressed using binary variables and logical operators.",
+          "In 1937, Claude Shannon demonstrated in his master's thesis that electrical switches wired in series and parallel directly implement Boolean algebra—giving birth to digital circuit design. By combining billions of NAND and NOR logic gates onto a single silicon die, modern processors build Arithmetic Logic Units (ALUs), memory registers, and control units.",
+          "In 1945, John von Neumann formalized the stored-program computer architecture: a unified memory space holding both executable instructions and data, fetched sequentially by a Central Processing Unit (CPU) synchronized to a quartz crystal clock oscillator pulsing billions of times per second (Gigahertz)."
+        ],
+        diagramTitle: "Fig 1.1 — Von Neumann Architecture & 5-Stage RISC Instruction Pipeline",
+        svgDiagram: `
+          <svg viewBox="0 0 800 310" class="fig-svg">
+            <rect x="10" y="10" width="780" height="290" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.2"/>
+            <!-- CPU Box -->
+            <rect x="40" y="35" width="430" height="175" rx="8" fill="rgba(82,183,136,0.08)" stroke="#52b788" stroke-width="2"/>
+            <text x="60" y="62" fill="#52b788" font-weight="bold" font-size="14">CENTRAL PROCESSING UNIT (CPU)</text>
+            <!-- Control Unit -->
+            <rect x="60" y="80" width="180" height="105" rx="6" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="1.5"/>
+            <text x="85" y="108" fill="currentColor" font-weight="bold" font-size="13">Control Unit (CU)</text>
+            <text x="75" y="130" fill="currentColor" opacity="0.8" font-size="11">• Program Counter (PC)</text>
+            <text x="75" y="150" fill="currentColor" opacity="0.8" font-size="11">• Instruction Decoder</text>
+            <text x="75" y="170" fill="currentColor" opacity="0.8" font-size="11">• Clock Sync (GHz)</text>
+            <!-- ALU -->
+            <rect x="265" y="80" width="185" height="105" rx="6" fill="rgba(82,183,136,0.12)" stroke="#52b788" stroke-width="1.5"/>
+            <text x="285" y="108" fill="currentColor" font-weight="bold" font-size="13">ALU & Registers</text>
+            <text x="280" y="130" fill="currentColor" opacity="0.8" font-size="11">• ADD / SUB / MUL</text>
+            <text x="280" y="150" fill="currentColor" opacity="0.8" font-size="11">• AND / OR / XOR / NOT</text>
+            <text x="280" y="170" fill="currentColor" opacity="0.8" font-size="11">• R0–R15 Fast Registers</text>
+            <!-- Main Memory -->
+            <rect x="550" y="35" width="210" height="175" rx="8" fill="rgba(201,169,89,0.08)" stroke="#c9a959" stroke-width="2"/>
+            <text x="575" y="65" fill="#c9a959" font-weight="bold" font-size="14">MAIN MEMORY (RAM)</text>
+            <text x="575" y="95" fill="currentColor" font-size="12">0x0000: [OS Kernel]</text>
+            <text x="575" y="120" fill="currentColor" font-size="12">0x04F0: [Text / Code]</text>
+            <text x="575" y="145" fill="currentColor" font-size="12">0x08A0: [Heap Data]</text>
+            <text x="575" y="170" fill="currentColor" font-size="12">0xFFFF: [Call Stack]</text>
+            <!-- System Bus Arrows -->
+            <line x1="470" y1="95" x2="550" y2="95" stroke="#c9a959" stroke-width="2" stroke-dasharray="4"/>
+            <text x="480" y="88" fill="#c9a959" font-size="10">Address Bus</text>
+            <line x1="470" y1="145" x2="550" y2="145" stroke="#52b788" stroke-width="2.5"/>
+            <text x="485" y="138" fill="#52b788" font-size="10">Data Bus</text>
+            <!-- 5-Stage Pipeline -->
+            <g transform="translate(40, 232)">
+              <rect x="0" y="0" width="135" height="48" rx="5" fill="#1b3a2f" stroke="#52b788"/>
+              <text x="22" y="29" fill="#fff" font-size="12" font-weight="bold">1. IF (Fetch)</text>
+              <rect x="148" y="0" width="135" height="48" rx="5" fill="#1b3a2f" stroke="#52b788"/>
+              <text x="165" y="29" fill="#fff" font-size="12" font-weight="bold">2. ID (Decode)</text>
+              <rect x="296" y="0" width="135" height="48" rx="5" fill="#1b3a2f" stroke="#52b788"/>
+              <text x="312" y="29" fill="#fff" font-size="12" font-weight="bold">3. EX (Execute)</text>
+              <rect x="444" y="0" width="135" height="48" rx="5" fill="#1b3a2f" stroke="#52b788"/>
+              <text x="458" y="29" fill="#fff" font-size="12" font-weight="bold">4. MEM (Access)</text>
+              <rect x="592" y="0" width="128" height="48" rx="5" fill="#1b3a2f" stroke="#c9a959"/>
+              <text x="605" y="29" fill="#c9a959" font-size="12" font-weight="bold">5. WB (Write)</text>
+            </g>
+          </svg>
+        `,
+        mathTitle: "Boolean Laws, Two's Complement & CPU Performance Equations",
+        mathBlocks: [
+          {
+            name: "1. De Morgan's Laws (Universal Gate Equivalence)",
+            formula: "¬(A ∧ B) ≡ (¬A) ∨ (¬B)     and     ¬(A ∨ B) ≡ (¬A) ∧ (¬B)",
+            explanation: "Proves that any Boolean function can be constructed strictly using NAND or NOR gates alone. This is why flash memory (NAND Flash) and CMOS processors are manufactured from uniform repeating transistor structures."
+          },
+          {
+            name: "2. Full Adder Sum & Carry-Out Logic",
+            formula: "Sum (S) = A ⊕ B ⊕ C_in     |     C_out = (A · B) + (C_in · (A ⊕ B))",
+            explanation: "The fundamental circuit inside the ALU that adds binary bits. Chaining 64 Full Adders together creates a 64-bit hardware adder."
+          },
+          {
+            name: "3. The Iron Law of Processor Performance",
+            formula: "CPU Time = Instruction Count (IC) × Cycles Per Instruction (CPI) × Clock Cycle Time (T_clk)",
+            explanation: "Reducing execution time requires either compiler optimization (reducing IC), microarchitectural pipelining (reducing CPI), or smaller transistor nodes (reducing T_clk)."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Transistors to Logic Gates (CMOS Technology)",
+            body: "Modern CPUs use Complementary Metal-Oxide-Semiconductor (CMOS) technology, pairing n-type and p-type MOSFETs so current only flows during switching transitions. Dynamic power dissipation follows P = C × V² × f, where C is capacitance, V is voltage, and f is clock frequency—explaining why overclocking exponentially increases heat."
+          },
+          {
+            heading: "The Memory Hierarchy & Locality of Reference",
+            body: "Because Main RAM takes ~60–100 nanoseconds to respond while a 4 GHz CPU completes a cycle in 0.25 nanoseconds, CPUs rely on SRAM caches: L1 Cache (~1 ns, 64 KB), L2 Cache (~4 ns, 512 KB), and L3 Cache (~12 ns, 32+ MB). Programs exploit Temporal Locality (reusing recently accessed addresses) and Spatial Locality (accessing contiguous array elements)."
+          },
+          {
+            heading: "Two's Complement & IEEE-754 Floating Point",
+            body: "Negative integers are stored in Two's Complement (invert all bits and add 1), allowing the ALU to perform subtraction using standard addition circuitry without separate subtraction hardware. Real numbers follow IEEE-754: (-1)^S × (1.Mantissa) × 2^(Exponent - Bias)."
+          }
+        ],
+        codeLang: "C (Bitwise Hardware ALU Simulation)",
+        codeSnippet: `// Simulating a 1-Bit Full Adder & 8-Bit Ripple Carry Adder using pure bitwise logic
+#include <stdio.h>
+#include <stdint.h>
+
+uint8_t bitwise_add(uint8_t a, uint8_t b) {
+    while (b != 0) {
+        uint8_t carry = a & b;   // AND gate finds carry positions
+        a = a ^ b;               // XOR gate computes sum without carry
+        b = carry << 1;          // Shift carry left by 1 bit position
+    }
+    return a;
+}
+
+int main() {
+    uint8_t x = 42, y = 29;
+    printf("ALU Binary Result: %u + %u = %u\\n", x, y, bitwise_add(x, y));
+    return 0;
+}`,
+        videos: [
+          {
+            title: "Build an 8-Bit Computer from Scratch on Breadboards",
+            channel: "Ben Eater",
+            duration: "Playlist Series",
+            desc: "The gold-standard visual walkthrough showing how clock modules, registers, ALU logic gates, and RAM work wire-by-wire.",
+            url: "https://www.youtube.com/watch?v=HyznrdDSSGM"
+          },
+          {
+            title: "How Do Computers Remember? (Flip-Flops, Registers & RAM)",
+            channel: "Branch Education",
+            duration: "22:15",
+            desc: "3D animated breakdown of nanoscale transistors, logic gates, and memory cells inside modern chips.",
+            url: "https://www.youtube.com/watch?v=I0-izyq6q5s"
+          },
+          {
+            title: "How a CPU Works in 100 Seconds & Beyond",
+            channel: "Computerphile",
+            duration: "16:40",
+            desc: "Explains the Fetch-Decode-Execute cycle, pipelining, and branch prediction inside modern architectures.",
+            url: "https://www.youtube.com/watch?v=cNN_tTXABUA"
+          }
+        ]
+      },
+
+      {
+        id: "dsa",
+        num: "02",
+        icon: "📐",
+        title: "Data Structures & Algorithms (DSA)",
+        category: "Core Computation",
+        readTime: "16 min read",
+        difficulty: "Core CS",
+        summary: "Asymptotic complexity (Big-O), memory layout of trees, graphs, hash tables, heaps, dynamic programming, and divide-and-conquer paradigms.",
+        tagline: "Organizing information in memory to conquer combinatorial explosion.",
+        overview: [
+          "If hardware provides the raw muscle of computation, Data Structures and Algorithms (DSA) provide the intelligence. An algorithm is an unambiguous, finite sequence of mathematical steps that transforms an input into a desired output. A data structure is the physical or logical layout of data in memory designed to make specific operations (search, insertion, deletion) fast.",
+          "As datasets grow fromN = 100 items to N = 1,000,000,000 items, an inefficient O(N²) algorithm can take weeks on a supercomputer, whereas an O(N log N) or O(log N) algorithm completes in milliseconds on a smartphone.",
+          "Mastering DSA means understanding the trade-off between Time Complexity (CPU cycles) and Space Complexity (RAM footprint), alongside contiguous vs. pointer-linked memory representations."
+        ],
+        diagramTitle: "Fig 2.1 — Asymptotic Time Complexity Growth & Binary Tree Traversal",
+        svgDiagram: `
+          <svg viewBox="0 0 800 300" class="fig-svg">
+            <!-- Left Side: Big-O Graph -->
+            <line x1="60" y1="250" x2="380" y2="250" stroke="currentColor" stroke-width="2"/>
+            <line x1="60" y1="250" x2="60" y2="30" stroke="currentColor" stroke-width="2"/>
+            <text x="170" y="280" fill="currentColor" font-size="12">Input Size (n) →</text>
+            <text x="15" y="140" fill="currentColor" font-size="12" transform="rotate(-90 25,140)">Operations T(n) →</text>
+            <!-- O(2^n) Curve -->
+            <path d="M60 250 Q 130 240 165 40" fill="none" stroke="#e07a5f" stroke-width="2.5"/>
+            <text x="170" y="50" fill="#e07a5f" font-size="12" font-weight="bold">O(2ⁿ) Exponential</text>
+            <!-- O(n^2) Curve -->
+            <path d="M60 250 Q 190 235 260 55" fill="none" stroke="#c9a959" stroke-width="2.5"/>
+            <text x="265" y="65" fill="#c9a959" font-size="12" font-weight="bold">O(n²) Quadratic</text>
+            <!-- O(n log n) -->
+            <path d="M60 250 Q 230 200 350 115" fill="none" stroke="#64b5f6" stroke-width="2.5"/>
+            <text x="290" y="108" fill="#64b5f6" font-size="12" font-weight="bold">O(n log n)</text>
+            <!-- O(log n) -->
+            <path d="M60 250 Q 140 215 370 210" fill="none" stroke="#52b788" stroke-width="2.5"/>
+            <text x="305" y="202" fill="#52b788" font-size="12" font-weight="bold">O(log n)</text>
+            <!-- Right Side: Balanced BST -->
+            <text x="480" y="45" fill="#c9a959" font-weight="bold" font-size="14">Binary Search Tree O(log n)</text>
+            <line x1="590" y1="85" x2="520" y2="155" stroke="#52b788" stroke-width="2"/>
+            <line x1="590" y1="85" x2="660" y2="155" stroke="#52b788" stroke-width="2"/>
+            <line x1="520" y1="155" x2="480" y2="225" stroke="#52b788" stroke-width="2"/>
+            <line x1="520" y1="155" x2="560" y2="225" stroke="#52b788" stroke-width="2"/>
+            <line x1="660" y1="155" x2="625" y2="225" stroke="#52b788" stroke-width="2"/>
+            <line x1="660" y1="155" x2="700" y2="225" stroke="#52b788" stroke-width="2"/>
+            <circle cx="590" cy="85" r="22" fill="#18231f" stroke="#c9a959" stroke-width="2"/>
+            <text x="582" y="90" fill="currentColor" font-size="13" font-weight="bold">50</text>
+            <circle cx="520" cy="155" r="20" fill="#18231f" stroke="#52b788" stroke-width="2"/>
+            <text x="512" y="160" fill="currentColor" font-size="12">25</text>
+            <circle cx="660" cy="155" r="20" fill="#18231f" stroke="#52b788" stroke-width="2"/>
+            <text x="652" y="160" fill="currentColor" font-size="12">75</text>
+            <circle cx="480" cy="225" r="18" fill="#18231f" stroke="#52b788"/>
+            <text x="472" y="230" fill="currentColor" font-size="11">12</text>
+            <circle cx="560" cy="225" r="18" fill="#18231f" stroke="#52b788"/>
+            <text x="552" y="230" fill="currentColor" font-size="11">37</text>
+            <circle cx="625" cy="225" r="18" fill="#18231f" stroke="#52b788"/>
+            <text x="617" y="230" fill="currentColor" font-size="11">60</text>
+            <circle cx="700" cy="225" r="18" fill="#18231f" stroke="#52b788"/>
+            <text x="692" y="230" fill="currentColor" font-size="11">90</text>
+          </svg>
+        `,
+        mathTitle: "Asymptotic Analysis & The Master Theorem",
+        mathBlocks: [
+          {
+            name: "1. Formal Definition of Big-O Notation",
+            formula: "f(n) = O(g(n))  ⟺  ∃ c > 0, n₀ > 0  such that  0 ≤ f(n) ≤ c · g(n)  ∀ n ≥ n₀",
+            explanation: "Provides an asymptotic upper bound on the growth rate of an algorithm's running time as input size n approaches infinity."
+          },
+          {
+            name: "2. The Master Theorem for Divide-and-Conquer Recurrences",
+            formula: "T(n) = a · T(n / b) + f(n)   where a ≥ 1, b > 1",
+            explanation: "For Merge Sort, a = 2 subproblems of size n/2 with f(n) = O(n) merge work: log_b(a) = log₂(2) = 1, giving T(n) = Θ(n log₂ n)."
+          },
+          {
+            name: "3. Hash Table Load Factor & Collision Probability",
+            formula: "α = n / m   (where n = keys stored, m = bucket array size)",
+            explanation: "Keeping load factor α < 0.75 with a uniform hash function guarantees O(1) expected time for lookup, insertion, and deletion."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Contiguous Arrays vs. Pointer-Based Linked Structures",
+            body: "Arrays allocate a single contiguous block of RAM, allowing O(1) random access via Base_Address + (Index × Element_Size) and superior CPU L1/L2 cache prefetching. Linked Lists, Trees, and Graphs allocate nodes dynamically on the Heap connected via memory pointers—enabling O(1) splices but incurring pointer-chasing cache misses."
+          },
+          {
+            heading: "Graphs: BFS, DFS, Dijkstra & A* Search",
+            body: "A Graph G = (V, E) models networks of vertices V and edges E. Breadth-First Search (BFS) uses a Queue (FIFO) to find shortest paths in unweighted graphs; Depth-First Search (DFS) uses a Stack (LIFO/Recursion) for cycle detection and topological sorting; Dijkstra's algorithm uses a Min-Priority Queue (Binary Heap) to relax weighted edges in O((V + E) log V)."
+          },
+          {
+            heading: "Dynamic Programming (Optimal Substructure + Memoization)",
+            body: "Dynamic Programming solves complex problems by breaking them into overlapping subproblems and caching intermediate results in a table (Tabulation or Top-Down Memoization), turning exponential O(2ⁿ) recursion into polynomial O(n) or O(n²) execution."
+          }
+        ],
+        codeLang: "Python (Dijkstra's Shortest Path with Min-Heap)",
+        codeSnippet: `import heapq
+
+def dijkstra_shortest_path(graph, start_node):
+    distances = {node: float('inf') for node in graph}
+    distances[start_node] = 0
+    pq = [(0, start_node)]  # Min-Heap priority queue: (cost, vertex)
+
+    while pq:
+        current_dist, u = heapq.heappop(pq)
+        if current_dist > distances[u]:
+            continue
+        for neighbor, weight in graph[u].items():
+            new_dist = current_dist + weight
+            if new_dist < distances[neighbor]:
+                distances[neighbor] = new_dist
+                heapq.heappush(pq, (new_dist, neighbor))
+    return distances`,
+        videos: [
+          {
+            title: "MIT 6.006 Introduction to Algorithms (Full Lecture Series)",
+            channel: "MIT OpenCourseWare (Erik Demaine)",
+            duration: "Full Course",
+            desc: "Rigorous, crystal-clear university lectures covering asymptotic complexity, trees, hashing, graphs, and dynamic programming.",
+            url: "https://www.youtube.com/watch?v=HtSuA80QTyo"
+          },
+          {
+            title: "Algorithms & Time Complexity Visually Explained",
+            channel: "Abdul Bari",
+            duration: "Playlist",
+            desc: "Step-by-step whiteboard derivations of Recurrence Relations, Master Theorem, Quicksort, Knapsack, and Graph traversals.",
+            url: "https://www.youtube.com/watch?v=0IAPZzGSbME"
+          }
+        ]
+      },
+
+      {
+        id: "ai-dl",
+        num: "03",
+        icon: "🧠",
+        title: "Artificial Intelligence & Deep Neural Networks",
+        category: "Cognitive Computing",
+        readTime: "18 min read",
+        difficulty: "Intermediate–Advanced",
+        summary: "Artificial neurons, multilayer perceptrons, activation functions, forward pass matrix math, backpropagation via the chain rule, and CNN architectures.",
+        tagline: "Sculpting high-dimensional linear algebra and calculus into synthetic perception.",
+        overview: [
+          "Artificial Intelligence (AI) is the broad discipline of creating systems capable of rational perception, reasoning, and action. While early Symbolic AI ('Good Old-Fashioned AI') relied on hand-crafted logical rules and search trees (like Minimax and Alpha-Beta Pruning in chess), modern AI is driven by Connectionism—Deep Neural Networks inspired by biological synapses.",
+          "According to the Universal Approximation Theorem, a feedforward neural network with non-linear activation functions can approximate any continuous mathematical function to arbitrary precision given sufficient hidden neurons.",
+          "Deep Learning stacks dozens or hundreds of layers of artificial neurons. Early layers automatically learn low-level features (edges, frequencies), middle layers compose motifs (shapes, phonemes), and deep layers recognize complex abstractions (faces, semantic intent)."
+        ],
+        diagramTitle: "Fig 3.1 — Deep Multilayer Perceptron (MLP) & Synaptic Forward/Backward Flow",
+        svgDiagram: `
+          <svg viewBox="0 0 800 290" class="fig-svg">
+            <text x="55" y="35" fill="#52b788" font-size="13" font-weight="bold">Input Layer (X)</text>
+            <text x="275" y="35" fill="#c9a959" font-size="13" font-weight="bold">Hidden Layer 1 (W¹)</text>
+            <text x="485" y="35" fill="#c9a959" font-size="13" font-weight="bold">Hidden Layer 2 (W²)</text>
+            <text x="675" y="35" fill="#52b788" font-size="13" font-weight="bold">Output (Ŷ)</text>
+            <!-- Synaptic Connections -->
+            <g stroke="currentColor" stroke-opacity="0.22" stroke-width="1.2">
+              <line x1="100" y1="80" x2="330" y2="65"/><line x1="100" y1="80" x2="330" y2="125"/><line x1="100" y1="80" x2="330" y2="185"/><line x1="100" y1="80" x2="330" y2="245"/>
+              <line x1="100" y1="155" x2="330" y2="65"/><line x1="100" y1="155" x2="330" y2="125"/><line x1="100" y1="155" x2="330" y2="185"/><line x1="100" y1="155" x2="330" y2="245"/>
+              <line x1="100" y1="230" x2="330" y2="65"/><line x1="100" y1="230" x2="330" y2="125"/><line x1="100" y1="230" x2="330" y2="185"/><line x1="100" y1="230" y2="245"/>
+              <line x1="330" y1="65" x2="540" y2="90"/><line x1="330" y1="125" x2="540" y2="155"/><line x1="330" y1="185" x2="540" y2="220"/><line x1="330" y1="245" x2="540" y2="155"/>
+              <line x1="330" y1="65" x2="540" y2="155"/><line x1="330" y1="125" x2="540" y2="220"/><line x1="330" y1="185" x2="540" y2="90"/>
+              <line x1="540" y1="90" x2="710" y2="120"/><line x1="540" y1="155" x2="710" y2="120"/><line x1="540" y1="220" x2="710" y2="195"/><line x1="540" y1="155" x2="710" y2="195"/>
+            </g>
+            <!-- Nodes -->
+            <circle cx="100" cy="80" r="18" fill="#18231f" stroke="#52b788" stroke-width="2"/><text x="93" y="84" fill="currentColor" font-size="11">x₁</text>
+            <circle cx="100" cy="155" r="18" fill="#18231f" stroke="#52b788" stroke-width="2"/><text x="93" y="159" fill="currentColor" font-size="11">x₂</text>
+            <circle cx="100" cy="230" r="18" fill="#18231f" stroke="#52b788" stroke-width="2"/><text x="93" y="234" fill="currentColor" font-size="11">x₃</text>
+
+            <circle cx="330" cy="65" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/><text x="319" y="69" fill="currentColor" font-size="10">ReLU</text>
+            <circle cx="330" cy="125" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/><text x="319" y="129" fill="currentColor" font-size="10">ReLU</text>
+            <circle cx="330" cy="185" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/><text x="319" y="189" fill="currentColor" font-size="10">ReLU</text>
+            <circle cx="330" cy="245" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/><text x="319" y="249" fill="currentColor" font-size="10">ReLU</text>
+
+            <circle cx="540" cy="90" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/><text x="532" y="94" fill="currentColor" font-size="10">a₁</text>
+            <circle cx="540" cy="155" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/><text x="532" y="159" fill="currentColor" font-size="10">a₂</text>
+            <circle cx="540" cy="220" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/><text x="532" y="224" fill="currentColor" font-size="10">a₃</text>
+
+            <circle cx="710" cy="120" r="20" fill="#18231f" stroke="#52b788" stroke-width="2.5"/><text x="703" y="124" fill="currentColor" font-size="12">ŷ₁</text>
+            <circle cx="710" cy="195" r="20" fill="#18231f" stroke="#52b788" stroke-width="2.5"/><text x="703" y="199" fill="currentColor" font-size="12">ŷ₂</text>
+            <text x="290" y="280" fill="#e07a5f" font-size="12" font-weight="bold">← Backpropagation of Gradients (∂L / ∂W) via Chain Rule</text>
+          </svg>
+        `,
+        mathTitle: "Forward Propagation, Non-Linear Activations & Backpropagation Calculus",
+        mathBlocks: [
+          {
+            name: "1. Linear Pre-Activation & Non-Linear Activation Matrix Equation",
+            formula: "Z^[l] = W^[l] · A^[l-1] + b^[l]     ,     A^[l] = σ(Z^[l])",
+            explanation: "Each layer multiplies the incoming activation vector A^[l-1] by weight matrix W^[l], adds bias vector b^[l], and applies a non-linear function such as ReLU(z) = max(0, z) or Sigmoid σ(z) = 1 / (1 + e^-z)."
+          },
+          {
+            name: "2. Backpropagation (Multivariable Chain Rule of Calculus)",
+            formula: "∂L / ∂W^[l] = (∂L / ∂A^[l]) · (∂A^[l] / ∂Z^[l]) · (∂Z^[l] / ∂W^[l])",
+            explanation: "Computes the exact sensitivity of the total loss L with respect to every individual synaptic weight in the network, enabling iterative weight updates: W := W - η · (∂L / ∂W)."
+          },
+          {
+            name: "3. Softmax Probability Distribution (Multi-Class Output)",
+            formula: "P(y = i | z) = exp(z_i) / Σ_j exp(z_j)",
+            explanation: "Exponentiates and normalizes raw output logits into a valid probability distribution summing to 1.0."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Why Non-Linearity is Mathematically Mandatory",
+            body: "Without non-linear activation functions (ReLU, GELU, Tanh), stacking 100 linear matrix layers W₂(W₁x) simply collapses into a single matrix W_combined = W₂ · W₁. Non-linearity allows neural networks to bend and fold coordinate spaces to separate complex manifolds."
+          },
+          {
+            heading: "Convolutional Neural Networks (CNNs) for Spatial Vision",
+            body: "Instead of connecting every pixel to every neuron, CNNs slide learnable 2D filter kernels (e.g., 3×3 matrices) across images using mathematical cross-correlation. This provides translation invariance and drastically reduces parameter count."
+          },
+          {
+            heading: "Vanishing Gradients & Residual Skip Connections (ResNet)",
+            body: "In very deep networks, multiplying small derivatives (< 1) repeatedly via the chain rule causes gradients to vanish toward zero. ResNet solved this by introducing identity skip connections: y = F(x) + x, creating an unimpeded gradient highway."
+          }
+        ],
+        codeLang: "Python (NumPy 2-Layer Neural Network with Backpropagation)",
+        codeSnippet: `import numpy as np
+
+# Input dataset (XOR problem)
+X = np.array([[0,0], [0,1], [1,0], [1,1]])
+Y = np.array([[0], [1], [1], [0]])
+
+W1 = np.random.randn(2, 4)
+W2 = np.random.randn(4, 1)
+lr = 0.1
+
+for epoch in range(2000):
+    # Forward pass
+    Z1 = X @ W1
+    A1 = np.tanh(Z1)
+    Z2 = A1 @ W2
+    Y_hat = 1 / (1 + np.exp(-Z2))
+    
+    # Backpropagation (Chain Rule)
+    dZ2 = Y_hat - Y
+    dW2 = A1.T @ dZ2
+    dZ1 = (dZ2 @ W2.T) * (1 - np.power(A1, 2))
+    dW1 = X.T @ dZ1
+    
+    W1 -= lr * dW1
+    W2 -= lr * dW2`,
+        videos: [
+          {
+            title: "But What is a Neural Network? (Deep Learning Chapter 1)",
+            channel: "3Blue1Brown (Grant Sanderson)",
+            duration: "19:13",
+            desc: "Unmatched visual intuition of neurons, activations, weight matrices, and gradient descent.",
+            url: "https://www.youtube.com/watch?v=aircAruvnKk"
+          },
+          {
+            title: "The Spelled-Out Intro to Neural Networks and Backpropagation (micrograd)",
+            channel: "Andrej Karpathy",
+            duration: "2:25:00",
+            desc: "Builds an automatic differentiation engine and neural network from scratch in pure Python.",
+            url: "https://www.youtube.com/watch?v=VMj-3S1tku0"
+          }
+        ]
+      },
+
+      {
+        id: "ml",
+        num: "04",
+        icon: "📈",
+        title: "Machine Learning & Statistical Learning Theory",
+        category: "Predictive Modeling",
+        readTime: "15 min read",
+        difficulty: "Intermediate",
+        summary: "Supervised, unsupervised, and reinforcement learning, gradient descent optimization, regularization, decision trees, SVMs, and the bias-variance trade-off.",
+        tagline: "Extracting mathematical laws from empirical observations without explicit programming.",
+        overview: [
+          "Arthur Samuel defined Machine Learning in 1959 as giving computers the ability to learn without being explicitly programmed. Formally, Tom Mitchell defined it: 'A computer program is said to learn from experience E with respect to task T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.'",
+          "Classical Machine Learning divides into three pillars: Supervised Learning (learning a mapping f(X) → Y from labeled pairs, including Regression and Classification), Unsupervised Learning (discovering hidden structure in unlabeled data via Clustering and Dimensionality Reduction), and Reinforcement Learning (an agent learning an optimal policy π(s) by maximizing cumulative reward in an environment).",
+          "At the heart of every ML algorithm lies an Objective (Loss) Function and an Optimization Algorithm that navigates parameter space to minimize prediction error while generalizing to unseen test data."
+        ],
+        diagramTitle: "Fig 4.1 — Gradient Descent Convex Optimization & Bias-Variance Trade-off",
+        svgDiagram: `
+          <svg viewBox="0 0 800 280" class="fig-svg">
+            <!-- Left: Gradient Descent Bowl -->
+            <text x="65" y="35" fill="#c9a959" font-size="13" font-weight="bold">Gradient Descent: θ := θ − η∇J(θ)</text>
+            <path d="M 60 65 Q 200 380 340 65" fill="none" stroke="#52b788" stroke-width="2.5"/>
+            <circle cx="85" cy="115" r="7" fill="#e07a5f"/>
+            <circle cx="120" cy="175" r="7" fill="#e07a5f"/>
+            <circle cx="160" cy="212" r="7" fill="#c9a959"/>
+            <circle cx="200" cy="224" r="8" fill="#52b788"/>
+            <path d="M 85 115 L 120 175 L 160 212 L 200 224" fill="none" stroke="#e07a5f" stroke-width="2" stroke-dasharray="4"/>
+            <text x="145" y="255" fill="#52b788" font-size="12" font-weight="bold">Global Minimum (∇J = 0)</text>
+
+            <!-- Right: Bias Variance Curve -->
+            <text x="465" y="35" fill="#c9a959" font-size="13" font-weight="bold">The Bias–Variance Trade-Off</text>
+            <line x1="450" y1="240" x2="760" y2="240" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="450" y1="240" x2="450" y2="50" stroke="currentColor" stroke-width="1.5"/>
+            <!-- Bias^2 -->
+            <path d="M 465 75 Q 550 215 745 225" fill="none" stroke="#64b5f6" stroke-width="2"/>
+            <text x="680" y="215" fill="#64b5f6" font-size="11">Bias²</text>
+            <!-- Variance -->
+            <path d="M 465 225 Q 640 215 745 75" fill="none" stroke="#c9a959" stroke-width="2"/>
+            <text x="685" y="95" fill="#c9a959" font-size="11">Variance</text>
+            <!-- Total Test Error -->
+            <path d="M 465 95 Q 600 210 745 90" fill="none" stroke="#e07a5f" stroke-width="2.5"/>
+            <text x="565" y="75" fill="#e07a5f" font-size="12" font-weight="bold">Total Test Error</text>
+            <line x1="602" y1="60" x2="602" y2="240" stroke="#52b788" stroke-dasharray="4"/>
+            <text x="550" y="262" fill="#52b788" font-size="11">Optimal Model Complexity</text>
+          </svg>
+        `,
+        mathTitle: "Loss Functions, Regularization & Bellman Optimality Equation",
+        mathBlocks: [
+          {
+            name: "1. Mean Squared Error (MSE) with L2 Ridge Regularization",
+            formula: "J(θ) = (1 / 2m) Σ_{i=1}^m (h_θ(x^(i)) - y^(i))²  +  (λ / 2m) Σ_{j=1}^n θ_j²",
+            explanation: "Penalizes both prediction inaccuracy and excessively large weights θ_j, preventing high-degree polynomial overfitting."
+          },
+          {
+            name: "2. Binary Cross-Entropy (Log Loss for Classification)",
+            formula: "L(y, ŷ) = - [ y · log(ŷ) + (1 - y) · log(1 - ŷ) ]",
+            explanation: "Derived from Maximum Likelihood Estimation (MLE) of a Bernoulli distribution; heavily penalizes confident wrong predictions."
+          },
+          {
+            name: "3. Bellman Equation (Reinforcement Learning Q-Function)",
+            formula: "Q*(s, a) = R(s, a) + γ · max_{a'} Q*(s', a')",
+            explanation: "States that the optimal value of taking action a in state s equals the immediate reward R plus the discounted (γ) maximum future value of the next state s'."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Underfitting (High Bias) vs. Overfitting (High Variance)",
+            body: "Total Expected Error decomposes mathematically into: Error = Bias² + Variance + Irreducible Noise. A linear model fit to curved data suffers from High Bias (underfitting). A 50th-degree polynomial memorizing every noise point in the training set suffers from High Variance (overfitting). Cross-validation and L1/L2 regularization find the sweet spot."
+          },
+          {
+            heading: "Ensemble Methods: Random Forests & Gradient Boosted Trees (XGBoost)",
+            body: "Decision Trees split features by maximizing Information Gain (reducing Shannon Entropy H = -Σ p log₂ p). Random Forests train hundreds of trees in parallel on bootstrapped subsets (Bagging) to slash variance. Gradient Boosting (XGBoost/LightGBM) trains trees sequentially, where each new tree predicts the residual errors of the previous ensemble."
+          },
+          {
+            heading: "Support Vector Machines (SVMs) & The Kernel Trick",
+            body: "SVMs find the maximum-margin hyperplane separating classes. When data is non-linearly separable in 2D, the Kernel Trick (e.g., Radial Basis Function K(x, x') = exp(-γ||x - x'||²)) implicitly projects data into infinite-dimensional space where a linear hyperplane cleanly separates it."
+          }
+        ],
+        codeLang: "Python (Scikit-Learn Pipeline with Cross-Validation & Gradient Boosting)",
+        codeSnippet: `from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+from sklearn.datasets import make_classification
+
+X, y = make_classification(n_samples=1000, n_features=12, random_state=42)
+
+pipeline = make_pipeline(
+    StandardScaler(),
+    GradientBoostingClassifier(n_estimators=150, learning_rate=0.05, max_depth=4)
+)
+
+scores = cross_val_score(pipeline, X, y, cv=5, scoring='roc_auc')
+print(f"5-Fold Cross-Validated ROC-AUC: {scores.mean():.4f} ± {scores.std():.4f}")`,
+        videos: [
+          {
+            title: "Machine Learning Specialization / Stanford CS229 Lectures",
+            channel: "Andrew Ng (Stanford Online)",
+            duration: "Full Course",
+            desc: "The foundational lectures on Linear Regression, Logistic Regression, SVMs, K-Means, and Bias-Variance.",
+            url: "https://www.youtube.com/watch?v=jGwO_UgTS7I"
+          },
+          {
+            title: "Machine Learning & Gradient Boost Clearly Explained!",
+            channel: "StatQuest with Josh Starmer",
+            duration: "Playlist",
+            desc: "Breaks down complex statistical and ML math into intuitive visual step-by-step graphs.",
+            url: "https://www.youtube.com/watch?v=Gv9_4yMHFhI"
+          }
+        ]
+      },
+
+      {
+        id: "llm",
+        num: "05",
+        icon: "🗣️",
+        title: "Large Language Models (LLMs), NLP & Transformers",
+        category: "Generative AI",
+        readTime: "17 min read",
+        difficulty: "Advanced",
+        summary: "Byte-Pair Encoding tokenization, high-dimensional vector embeddings, Scaled Dot-Product Self-Attention, Transformer architecture, Pre-training, and RLHF.",
+        tagline: "How attention matrices capture the geometry of human language and thought.",
+        overview: [
+          "For decades, Natural Language Processing (NLP) struggled with sequential Recurrent Neural Networks (RNNs and LSTMs), which processed words one-by-one and forgot long-range context while preventing parallel GPU training. In 2017, Vaswani et al. published 'Attention Is All You Need,' introducing the Transformer architecture.",
+          "Large Language Models (such as GPT, Claude, Gemini, and Llama) are autoregressive Decoder Transformers trained on trillions of tokens using a remarkably simple self-supervised objective: Given a sequence of tokens (t₁, t₂, ..., t_k), predict the probability distribution over the vocabulary for the very next token P(t_{k+1} | t₁...t_k).",
+          "To compress world knowledge and reasoning into weights, LLMs undergo three stages: 1) Massive Pre-Training on internet-scale text, 2) Supervised Fine-Tuning (SFT) on curated instruction-response pairs, and 3) Reinforcement Learning from Human Feedback (RLHF / DPO) for alignment and safety."
+        ],
+        diagramTitle: "Fig 5.1 — Transformer Scaled Dot-Product Self-Attention & Token Embedding Pipeline",
+        svgDiagram: `
+          <svg viewBox="0 0 800 290" class="fig-svg">
+            <g transform="translate(25, 35)">
+              <!-- Tokenization -->
+              <rect x="0" y="75" width="120" height="80" rx="6" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="1.8"/>
+              <text x="15" y="105" fill="#52b788" font-size="12" font-weight="bold">1. Tokenizer</text>
+              <text x="15" y="125" fill="currentColor" font-size="10">" Silicon" → [8492]</text>
+              <text x="15" y="142" fill="currentColor" font-size="10">" Mind" → [3104]</text>
+              <!-- Embedding + Pos -->
+              <rect x="155" y="75" width="140" height="80" rx="6" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="1.8"/>
+              <text x="170" y="105" fill="#c9a959" font-size="12" font-weight="bold">2. Embeddings</text>
+              <text x="168" y="125" fill="currentColor" font-size="10">Vector ∈ ℝ⁴⁰⁹⁶</text>
+              <text x="168" y="142" fill="currentColor" font-size="10">+ RoPE Pos Angle</text>
+              <!-- Q K V Projections -->
+              <rect x="335" y="15" width="115" height="50" rx="5" fill="#18231f" stroke="#e07a5f"/>
+              <text x="350" y="45" fill="#e07a5f" font-size="12" font-weight="bold">Query (Q = XW_Q)</text>
+              <rect x="335" y="90" width="115" height="50" rx="5" fill="#18231f" stroke="#c9a959"/>
+              <text x="355" y="120" fill="#c9a959" font-size="12" font-weight="bold">Key (K = XW_K)</text>
+              <rect x="335" y="165" width="115" height="50" rx="5" fill="#18231f" stroke="#64b5f6"/>
+              <text x="350" y="195" fill="#64b5f6" font-size="12" font-weight="bold">Value (V = XW_V)</text>
+              <!-- Attention Matrix -->
+              <rect x="490" y="45" width="140" height="140" rx="8" fill="rgba(82,183,136,0.12)" stroke="#52b788" stroke-width="2"/>
+              <text x="505" y="78" fill="#52b788" font-size="12" font-weight="bold">Self-Attention</text>
+              <text x="505" y="102" fill="currentColor" font-size="11">Softmax(QKᵀ/√d_k)·V</text>
+              <text x="505" y="128" fill="currentColor" opacity="0.8" font-size="10">Causal Masking</text>
+              <text x="505" y="148" fill="currentColor" opacity="0.8" font-size="10">+ Feed-Forward MLP</text>
+              <!-- Next Token Output -->
+              <rect x="660" y="75" width="95" height="80" rx="6" fill="rgba(201,169,89,0.15)" stroke="#c9a959" stroke-width="2"/>
+              <text x="672" y="108" fill="#c9a959" font-size="12" font-weight="bold">Logits →</text>
+              <text x="672" y="128" fill="currentColor" font-size="11">P(w_next)</text>
+            </g>
+          </svg>
+        `,
+        mathTitle: "The Mathematics of Self-Attention, Embeddings & Perplexity",
+        mathBlocks: [
+          {
+            name: "1. Scaled Dot-Product Attention (Vaswani et al., 2017)",
+            formula: "Attention(Q, K, V) = softmax( (Q · Kᵀ) / √d_k + M ) · V",
+            explanation: "Computes dot products between Query vectors Q and Key vectors K to measure semantic relevance between every pair of tokens, scales by 1/√d_k to prevent softmax saturation, applies causal mask M (so tokens cannot peek into the future), and weights Value vectors V."
+          },
+          {
+            name: "2. Cosine Similarity in High-Dimensional Embedding Space",
+            formula: "cos(θ) = (A · B) / ( ||A||₂ · ||B||₂ )",
+            explanation: "Measures semantic closeness between token or document embedding vectors (e.g., E('King') - E('Man') + E('Woman') ≈ E('Queen'))."
+          },
+          {
+            name: "3. Autoregressive Cross-Entropy & Perplexity",
+            formula: "L = - Σ_{t=1}^T log P_θ(x_t | x_{<t})     ,     Perplexity (PPL) = exp( L / T )",
+            explanation: "Lower perplexity indicates the LLM assigns higher probability to the true next tokens in a test corpus."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Subword Tokenization (Byte-Pair Encoding — BPE)",
+            body: "LLMs do not read raw characters or whole dictionary words. Using Byte-Pair Encoding (BPE), common words become single integer IDs while rare or compound words split into subword tokens (vocabularies typically range from 32,000 to 128,000 tokens). Each integer ID maps to a dense vector in ℝ^d."
+          },
+          {
+            heading: "Multi-Head Attention & Rotary Position Embeddings (RoPE)",
+            body: "Because Self-Attention processes all tokens in parallel, it has no inherent sense of word order. Modern LLMs inject Rotary Position Embeddings (RoPE), rotating Query and Key vectors in complex 2D planes by angles proportional to their token index, while running multiple Attention Heads in parallel to track syntax, coreference, and tone simultaneously."
+          },
+          {
+            heading: "Inference Optimization: KV-Cache, Quantization & RAG",
+            body: "During generation, caching previously computed Key and Value matrices (KV-Cache) avoids recomputing history at every token step. Quantizing weights from 16-bit floating point (FP16) to 4-bit integers (INT4) allows 70-billion-parameter models to run locally, while Retrieval-Augmented Generation (RAG) grounds outputs in vector databases."
+          }
+        ],
+        codeLang: "Python (PyTorch Scaled Dot-Product Self-Attention Implementation)",
+        codeSnippet: `import torch
+import torch.nn.functional as F
+import math
+
+def causal_self_attention(Q, K, V):
+    # Q, K, V shape: (batch_size, num_heads, seq_len, head_dim)
+    d_k = Q.size(-1)
+    scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(d_k)
+    
+    # Apply causal lower-triangular mask so tokens only attend to past tokens
+    seq_len = Q.size(-2)
+    mask = torch.tril(torch.ones(seq_len, seq_len, device=Q.device))
+    scores = scores.masked_fill(mask == 0, float('-inf'))
+    
+    attn_weights = F.softmax(scores, dim=-1)
+    return torch.matmul(attn_weights, V)`,
+        videos: [
+          {
+            title: "Let's Build GPT: From Scratch, in Code, Spelled Out",
+            channel: "Andrej Karpathy",
+            duration: "1:56:00",
+            desc: "The definitive hands-on tutorial building a Transformer language model line-by-line in PyTorch.",
+            url: "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+          },
+          {
+            title: "Transformers & Attention in LLMs Visually Explained",
+            channel: "3Blue1Brown",
+            duration: "27:14",
+            desc: "Visualizes embeddings, Query-Key-Value matrices, and high-dimensional space inside GPT.",
+            url: "https://www.youtube.com/watch?v=wjZofJX0v4M"
+          }
+        ]
+      },
+
+      {
+        id: "cybersecurity",
+        num: "06",
+        icon: "🛡️",
+        title: "Cybersecurity, Cryptography & Ethical Hacking",
+        category: "Defense & Cryptography",
+        readTime: "17 min read",
+        difficulty: "Intermediate–Advanced",
+        summary: "The CIA Triad, symmetric & asymmetric encryption (AES, RSA, ECC), cryptographic hashing, Linux privilege escalation, web exploitation (OWASP), and network defense.",
+        tagline: "Number theory, protocol architecture, and adversarial thinking in defense of digital sovereignty.",
+        overview: [
+          "Cybersecurity is the practice of defending computer systems, kernels, networks, and cryptographic protocols from unauthorized access or modification. Every security architecture rests upon the CIA Triad: Confidentiality (only authorized entities can read data), Integrity (data cannot be tampered with undetected), and Availability (systems remain operational under load or attack).",
+          "Modern security relies on two complementary mindsets: Blue Team Defense (zero-trust network segmentation, Linux hardening, intrusion detection, and cryptographic key management) and Red Team / Penetration Testing (proactively discovering vulnerabilities in web applications, memory buffers, and authentication logic before malicious actors do).",
+          "Underpinning the entire internet is Applied Cryptography—using mathematical trapdoor functions from modular arithmetic and elliptic curves so strangers can communicate securely across untrusted public cables."
+        ],
+        diagramTitle: "Fig 6.1 — Asymmetric TLS/SSH Handshake & Cryptographic Defense-in-Depth",
+        svgDiagram: `
+          <svg viewBox="0 0 800 280" class="fig-svg">
+            <!-- Client Node -->
+            <rect x="45" y="45" width="160" height="190" rx="8" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="2"/>
+            <text x="72" y="80" fill="#52b788" font-weight="bold" font-size="14">CLIENT INITIATOR</text>
+            <text x="65" y="115" fill="currentColor" font-size="11">• Ephemeral Keypair</text>
+            <text x="65" y="140" fill="currentColor" font-size="11">• Verifies Cert Authority</text>
+            <text x="65" y="165" fill="currentColor" font-size="11">• Derives AES Session Key</text>
+
+            <!-- Server Node -->
+            <rect x="595" y="45" width="160" height="190" rx="8" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="2"/>
+            <text x="615" y="80" fill="#c9a959" font-weight="bold" font-size="14">HARDENED SERVER</text>
+            <text x="610" y="115" fill="currentColor" font-size="11">• Private Key (Vaulted)</text>
+            <text x="610" y="140" fill="currentColor" font-size="11">• Public X.509 Cert</text>
+            <text x="610" y="165" fill="currentColor" font-size="11">• iptables / Zero-Trust</text>
+
+            <!-- Handshake Arrows -->
+            <line x1="220" y1="80" x2="580" y2="95" stroke="#52b788" stroke-width="2"/>
+            <text x="275" y="75" fill="#52b788" font-size="11">1. ClientHello (Cipher Suites + Nonce)</text>
+
+            <line x1="580" y1="130" x2="220" y2="145" stroke="#c9a959" stroke-width="2"/>
+            <text x="255" y="128" fill="#c9a959" font-size="11">2. ServerHello + Digital Signature + Public Key</text>
+
+            <rect x="250" y="180" width="300" height="42" rx="6" fill="#18231f" stroke="#52b788" stroke-width="1.8"/>
+            <text x="270" y="206" fill="#52b788" font-size="12" font-weight="bold">🔒 3. Encrypted Tunnel: AES-256-GCM + SHA-384</text>
+          </svg>
+        `,
+        mathTitle: "Modular Arithmetic, RSA Trapdoor & Shannon Information Entropy",
+        mathBlocks: [
+          {
+            name: "1. RSA Public-Key Encryption & Decryption (Euler's Totient Theorem)",
+            formula: "n = p · q  ,  φ(n) = (p - 1)(q - 1)  ,  e · d ≡ 1 (mod φ(n))\nCiphertext: C = M^e mod n     |     Plaintext: M = C^d mod n",
+            explanation: "Multiplying two 2048-bit prime numbers p and q takes milliseconds, but factoring their product n back into p and q to find private key d is computationally infeasible for classical computers."
+          },
+          {
+            name: "2. Diffie–Hellman / ECDH Shared Secret Derivation",
+            formula: "Alice sends A = g^a mod p   ,   Bob sends B = g^b mod p\nShared Secret K = B^a mod p = A^b mod p = g^(a·b) mod p",
+            explanation: "Allows two parties to establish an identical secret key over an eavesdropped channel due to the hardness of the Discrete Logarithm Problem."
+          },
+          {
+            name: "3. Cryptographic Keyspace Entropy (Bits of Security)",
+            formula: "H = L · log₂(N)   (e.g., 256-bit key → 2²⁵⁶ ≈ 1.15 × 10⁷⁷ possibilities)",
+            explanation: "Even if a brute-force cluster tested 10¹⁸ keys per second, exhausting a 256-bit AES keyspace would take longer than the age of the universe."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Symmetric vs. Asymmetric Encryption & Cryptographic Hashing",
+            body: "Symmetric ciphers (AES-256, ChaCha20) use the same secret key for encryption and decryption and run at gigabytes per second via hardware instructions. Asymmetric ciphers (RSA, Ed25519 Elliptic Curve) use a Public/Private keypair to exchange symmetric session keys and verify digital signatures. Hash functions (SHA-256, Argon2id) are strictly one-way functions that produce a fixed-size digest; a 1-bit change in input flips ~50% of output bits (Avalanche Effect)."
+          },
+          {
+            heading: "Web Application Security (OWASP Top 10)",
+            body: "Critical vulnerabilities arise when user input is concatenated directly into interpreters: SQL Injection (bypassing authentication via `' OR 1=1 --`, prevented by Prepared Parameterized Queries), Cross-Site Scripting / XSS (injecting malicious JS into victim browsers, prevented by Context-Aware Output Encoding and Content Security Policy), and Cross-Site Request Forgery (CSRF)."
+          },
+          {
+            heading: "Linux Security, Permissions & Memory Exploitation",
+            body: "In Linux, access is governed by UID/GID permissions (`rwxr-xr-x`), SUID binaries, Capabilities, and SELinux/AppArmor namespaces. At the binary level, writing past a fixed C buffer on the stack (Buffer Overflow) can overwrite the saved Instruction Pointer (RIP), which modern OSes mitigate using ASLR (Address Space Layout Randomization), Stack Canaries, and NX (Non-Executable Stack)."
+          }
+        ],
+        codeLang: "Python (SHA-256 Avalanche Effect & HMAC Cryptographic Verification)",
+        codeSnippet: `import hashlib
+import hmac
+
+secret_key = b"computopia_master_vault_key"
+message = b"Transfer 500 Credits to Node-07"
+
+# Generate HMAC-SHA256 authentication tag
+signature = hmac.new(secret_key, message, hashlib.sha256).hexdigest()
+
+# Constant-time comparison prevents timing side-channel attacks
+is_valid = hmac.compare_digest(
+    signature,
+    hmac.new(secret_key, message, hashlib.sha256).hexdigest()
+)
+print(f"HMAC Tag : {signature}\\nVerified : {is_valid}")`,
+        videos: [
+          {
+            title: "Secret Key Exchange (Diffie-Hellman) & RSA Cryptography",
+            channel: "Computerphile (Dr. Mike Pound)",
+            duration: "15:20",
+            desc: "Clear explanation of how public-key cryptography, prime factorization, and TLS protect internet traffic.",
+            url: "https://www.youtube.com/watch?v=NmM9HA2MQGI"
+          },
+          {
+            title: "Binary Exploitation & Web Security Academy Walkthroughs",
+            channel: "LiveOverflow",
+            duration: "Playlist",
+            desc: "Deep technical breakdowns of memory corruption, Linux CTF wargames, and web security mechanics.",
+            url: "https://www.youtube.com/watch?v=iyAyN3GFM7A"
+          }
+        ]
+      },
+
+      {
+        id: "robotics",
+        num: "07",
+        icon: "🤖",
+        title: "Robotics, Embedded Systems & Control Theory",
+        category: "Cyber-Physical Systems",
+        readTime: "15 min read",
+        difficulty: "Intermediate",
+        summary: "Microcontrollers (Arduino/STM32) vs SBCs (Raspberry Pi), forward/inverse kinematics, PID closed-loop control math, Kalman filtering, and RTOS.",
+        tagline: "Where real-time firmware and control calculus command physical matter.",
+        overview: [
+          "Robotics and Embedded Systems sit at the intersection of Computer Science, Electronic Engineering, and Classical Mechanics. Unlike cloud servers with gigabytes of RAM, embedded microcontrollers (like AVR/Arduino, ESP32, and ARM Cortex-M) operate under strict deterministic real-time constraints, directly reading physical voltages from sensors and driving actuators via Pulse-Width Modulation (PWM).",
+          "Every autonomous robot executes the continuous Sense → Plan → Act loop: 1) Perception (fusing noisy data from LiDAR, IMUs, wheel encoders, and cameras), 2) Localization & Mapping (SLAM—simultaneously estimating the robot's pose while building a map), and 3) Motion Control (computing joint torques to follow a trajectory).",
+          "Bridging high-level AI planning with low-level motor control frequently utilizes a hybrid architecture: a Single-Board Computer (Raspberry Pi / Jetson) running Linux and ROS2 (Robot Operating System) communicating over UART/I2C/SPI with a dedicated real-time microcontroller."
+        ],
+        diagramTitle: "Fig 7.1 — Closed-Loop PID Control System & Embedded Hardware Bus Architecture",
+        svgDiagram: `
+          <svg viewBox="0 0 800 265" class="fig-svg">
+            <text x="45" y="35" fill="#c9a959" font-size="13" font-weight="bold">Closed-Loop Feedback Control (PID Controller)</text>
+            <!-- Setpoint -->
+            <text x="25" y="122" fill="#52b788" font-size="12" font-weight="bold">Target r(t)</text>
+            <line x1="95" y1="118" x2="145" y2="118" stroke="#52b788" stroke-width="2"/>
+            <!-- Summing Junction -->
+            <circle cx="165" cy="118" r="18" fill="#18231f" stroke="#c9a959" stroke-width="2"/>
+            <text x="159" y="123" fill="currentColor" font-size="14">Σ</text>
+            <line x1="183" y1="118" x2="255" y2="118" stroke="currentColor" stroke-width="2"/>
+            <text x="192" y="108" fill="#e07a5f" font-size="11">e(t)</text>
+            <!-- PID Block -->
+            <rect x="255" y="75" width="195" height="86" rx="6" fill="rgba(82,183,136,0.12)" stroke="#52b788" stroke-width="2"/>
+            <text x="275" y="102" fill="#52b788" font-weight="bold" font-size="13">PID Controller (MCU)</text>
+            <text x="275" y="124" fill="currentColor" font-size="11">P: K_p · e(t)</text>
+            <text x="275" y="144" fill="currentColor" font-size="11">I: K_i ∫e(t)dt  |  D: K_d de/dt</text>
+            <!-- Plant / Actuator -->
+            <line x1="450" y1="118" x2="515" y2="118" stroke="#c9a959" stroke-width="2"/>
+            <text x="458" y="108" fill="#c9a959" font-size="11">PWM u(t)</text>
+            <rect x="515" y="82" width="155" height="72" rx="6" fill="rgba(201,169,89,0.12)" stroke="#c9a959" stroke-width="2"/>
+            <text x="535" y="114" fill="#c9a959" font-weight="bold" font-size="13">Motors / Robot</text>
+            <text x="535" y="135" fill="currentColor" font-size="11">Physical Plant</text>
+            <!-- Output -->
+            <line x1="670" y1="118" x2="755" y2="118" stroke="#52b788" stroke-width="2"/>
+            <text x="695" y="105" fill="#52b788" font-size="12" font-weight="bold">Output y(t)</text>
+            <!-- Feedback Loop -->
+            <polyline points="715,118 715,215 165,215 165,136" fill="none" stroke="#64b5f6" stroke-width="2" stroke-dasharray="5"/>
+            <rect x="345" y="195" width="175" height="38" rx="5" fill="#18231f" stroke="#64b5f6"/>
+            <text x="362" y="218" fill="#64b5f6" font-size="11"> IMU / Encoder Sensor Feedback</text>
+          </svg>
+        `,
+        mathTitle: "PID Control Calculus, Forward Kinematics & PWM Duty Cycle",
+        mathBlocks: [
+          {
+            name: "1. Proportional–Integral–Derivative (PID) Control Law",
+            formula: "u(t) = K_p · e(t)  +  K_i ∫₀^t e(τ) dτ  +  K_d · (de(t) / dt)",
+            explanation: "Where error e(t) = r(t) - y(t). The Proportional term responds to current error, the Integral term eliminates steady-state drift, and the Derivative term dampens overshoot oscillations."
+          },
+          {
+            name: "2. 2D Planar Robotic Arm Forward Kinematics (Homogeneous Matrix)",
+            formula: "x = L₁ cos(θ₁) + L₂ cos(θ₁ + θ₂)     ,     y = L₁ sin(θ₁) + L₂ sin(θ₁ + θ₂)",
+            explanation: "Maps joint servo angles (θ₁, θ₂) and link lengths (L₁, L₂) to the exact Cartesian (x, y) position of the robot's end-effector."
+          },
+          {
+            name: "3. Pulse-Width Modulation (PWM) Effective Voltage",
+            formula: "V_eff = V_supply × (T_on / T_period) = V_supply × Duty_Cycle",
+            explanation: "Allows a purely digital GPIO pin (0V or 5V) to simulate analog voltage control for motor speed and LED brightness."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Microcontrollers (Bare-Metal / RTOS) vs. Application Processors",
+            body: "An Arduino Uno (ATmega328P) or STM32 runs bare-metal C/C++ or FreeRTOS with microsecond-accurate hardware interrupts and zero OS background jitter. A Raspberry Pi runs a full multi-user Linux kernel with virtual memory and HDMI graphics, making it ideal for OpenCV computer vision and ROS2 path planning, while delegating sub-millisecond PWM timing to the microcontroller."
+          },
+          {
+            heading: "Hardware Communication Protocols: UART, I2C, and SPI",
+            body: "Embedded chips communicate over three classic serial buses: UART (Asynchronous TX/RX pair, requires matching baud rate like 115200), I2C (2-wire synchronous bus SDA/SCL supporting 127 addressable sensors on shared wires), and SPI (4-wire full-duplex high-speed bus MISO/MOSI/SCK/CS used for SD cards and OLED displays)."
+          }
+        ],
+        codeLang: "C++ (Discrete PID Controller Loop for Microcontroller / Arduino)",
+        codeSnippet: `struct PIDController {
+    float kp, ki, kd;
+    float integral = 0.0f, prev_error = 0.0f;
+
+    float compute(float setpoint, float measured, float dt) {
+        float error = setpoint - measured;
+        integral += error * dt;
+        float derivative = (error - prev_error) / dt;
+        prev_error = error;
+        return (kp * error) + (ki * integral) + (kd * derivative);
+    }
+};`,
+        videos: [
+          {
+            title: "Understanding PID Control & Autonomous Control Theory",
+            channel: "Brian Douglas (Control System Lectures)",
+            duration: "14:35",
+            desc: "Visual and mathematical intuition behind PID controllers, stability, and Kalman filters.",
+            url: "https://www.youtube.com/watch?v=wkfEZmsQqiA"
+          },
+          {
+            title: "Stanford CS223A — Introduction to Robotics (Kinematics & Control)",
+            channel: "Stanford Online (Oussama Khatib)",
+            duration: "Full Course",
+            desc: "Covers spatial descriptions, forward/inverse kinematics, Jacobians, and robot dynamics.",
+            url: "https://www.youtube.com/watch?v=0yD3uB2JB14"
+          }
+        ]
+      },
+
+      {
+        id: "datascience",
+        num: "08",
+        icon: "📊",
+        title: "Data Science, Bayesian Statistics & Big Data",
+        category: "Empirical Analytics",
+        readTime: "15 min read",
+        difficulty: "Intermediate",
+        summary: "Probability distributions, Bayesian inference, hypothesis testing, Principal Component Analysis (eigenvectors), relational SQL algebra, and ETL pipelines.",
+        tagline: "Separating true mathematical signal from high-dimensional stochastic noise.",
+        overview: [
+          "Data Science is the synthesis of Probability & Mathematical Statistics, Linear Algebra, Database Engineering, and Domain Modeling. Raw telemetry generated by sensors, financial markets, and web traffic is inherently noisy, incomplete, and high-dimensional.",
+          "The Data Science lifecycle moves systematically through: 1) Data Engineering & ETL (Extracting, Transforming, and Loading raw streams into normalized SQL or distributed Parquet/NoSQL stores), 2) Exploratory Data Analysis (computing moments, correlations, and distributions), 3) Statistical Inference & Hypothesis Testing (determining if observed effects are statistically significant or random chance), and 4) Dimensionality Reduction & Predictive Deployment.",
+          "Through techniques like Principal Component Analysis (PCA) and Singular Value Decomposition (SVD), data scientists project thousands of correlated variables down into their most informative orthogonal axes."
+        ],
+        diagramTitle: "Fig 8.1 — Gaussian Normal Distribution (68–95–99.7 Rule) & PCA Eigenvector Projection",
+        svgDiagram: `
+          <svg viewBox="0 0 800 270" class="fig-svg">
+            <!-- Left: Bell Curve -->
+            <text x="65" y="35" fill="#52b788" font-size="13" font-weight="bold">Gaussian Distribution N(μ, σ²)</text>
+            <line x1="40" y1="225" x2="390" y2="225" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M 45 224 C 115 222, 155 55, 215 55 C 275 55, 315 222, 385 224" fill="rgba(82,183,136,0.15)" stroke="#52b788" stroke-width="2.5"/>
+            <line x1="215" y1="55" x2="215" y2="225" stroke="#c9a959" stroke-width="2" stroke-dasharray="4"/>
+            <text x="208" y="245" fill="#c9a959" font-size="12">μ</text>
+            <line x1="160" y1="125" x2="160" y2="225" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3"/>
+            <text x="148" y="245" fill="currentColor" font-size="11">−1σ</text>
+            <line x1="270" y1="125" x2="270" y2="225" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3"/>
+            <text x="262" y="245" fill="currentColor" font-size="11">+1σ</text>
+            <text x="180" y="185" fill="#fff" font-size="11" font-weight="bold">68.2%</text>
+
+            <!-- Right: PCA -->
+            <text x="485" y="35" fill="#c9a959" font-size="13" font-weight="bold">PCA Eigenvector Axis Projection</text>
+            <line x1="470" y1="225" x2="750" y2="225" stroke="currentColor" stroke-opacity="0.4"/>
+            <line x1="470" y1="225" x2="470" y2="55" stroke="currentColor" stroke-opacity="0.4"/>
+            <!-- Principal Component 1 -->
+            <line x1="490" y1="210" x2="725" y2="70" stroke="#e07a5f" stroke-width="2.5"/>
+            <text x="670" y="65" fill="#e07a5f" font-size="12" font-weight="bold">PC1 (λ₁ Max Variance)</text>
+            <!-- Principal Component 2 -->
+            <line x1="570" y1="95" x2="635" y2="195" stroke="#64b5f6" stroke-width="2"/>
+            <text x="642" y="195" fill="#64b5f6" font-size="11">PC2 (Orthogonal)</text>
+            <!-- Data Points -->
+            <circle cx="520" cy="185" r="4" fill="#52b788"/><circle cx="550" cy="175" r="4" fill="#52b788"/>
+            <circle cx="585" cy="145" r="4" fill="#52b788"/><circle cx="605" cy="150" r="4" fill="#52b788"/>
+            <circle cx="635" cy="120" r="4" fill="#52b788"/><circle cx="670" cy="105" r="4" fill="#52b788"/>
+            <circle cx="695" cy="85" r="4" fill="#52b788"/><circle cx="565" cy="160" r="4" fill="#52b788"/>
+          </svg>
+        `,
+        mathTitle: "Bayes' Theorem, Covariance Matrices & Eigen-Decomposition",
+        mathBlocks: [
+          {
+            name: "1. Bayes' Theorem (Posterior Probability Updating)",
+            formula: "P(A | B) = [ P(B | A) · P(A) ] / P(B)",
+            explanation: "Updates the prior belief P(A) of a hypothesis given new empirical evidence B, forming the foundation of Bayesian inference and Naive Bayes classifiers."
+          },
+          {
+            name: "2. Sample Covariance Matrix & Pearson Correlation",
+            formula: "Σ = (1 / (n - 1)) XᵀX     ,     r_{xy} = Cov(X, Y) / (σ_X · σ_Y) ∈ [-1, 1]",
+            explanation: "Quantifies how features co-vary together across dimensions."
+          },
+          {
+            name: "3. Principal Component Analysis (Eigenvalue Equation)",
+            formula: "Σ · v = λ · v",
+            explanation: "The eigenvectors v of the covariance matrix Σ point in the orthogonal directions of maximum variance, and their corresponding eigenvalues λ measure how much variance each principal component captures."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "The Central Limit Theorem & Hypothesis Testing (p-values)",
+            body: "The Central Limit Theorem states that the sampling distribution of the sample mean approaches a Normal Gaussian distribution as sample size grows, regardless of the population's underlying shape. This enables Z-tests, Student's t-tests, and confidence intervals to test whether an A/B experiment difference is real or random noise."
+          },
+          {
+            heading: "Relational Algebra (SQL) vs. Distributed Columnar Analytics",
+            body: "Transactional databases (OLTP like PostgreSQL) store rows contiguously and enforce ACID properties (Atomicity, Consistency, Isolation, Durability). Analytical data warehouses (OLAP like Apache Spark, DuckDB, Snowflake) store data by column so aggregating 100 million values of a single column reads only sequential blocks from disk."
+          }
+        ],
+        codeLang: "Python (PCA Eigen-Decomposition in Pure NumPy)",
+        codeSnippet: `import numpy as np
+
+def compute_pca(X, num_components=2):
+    # 1. Center features around mean 0
+    X_centered = X - np.mean(X, axis=0)
+    # 2. Compute Covariance Matrix
+    cov_matrix = np.cov(X_centered, rowvar=False)
+    # 3. Compute Eigenvalues and Eigenvectors
+    eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
+    # 4. Sort descending by eigenvalue magnitude
+    idx = np.argsort(eigenvalues)[::-1]
+    top_vectors = eigenvectors[:, idx[:num_components]]
+    return X_centered @ top_vectors`,
+        videos: [
+          {
+            title: "Principal Component Analysis (PCA), Step-by-Step",
+            channel: "StatQuest with Josh Starmer",
+            duration: "21:57",
+            desc: "Visualizes how singular vectors, eigenvalues, and covariance matrices compress high-dimensional datasets.",
+            url: "https://www.youtube.com/watch?v=FgakZw6K1QQ"
+          },
+          {
+            title: "Bayes' Theorem, The Geometry of Changing Beliefs",
+            channel: "3Blue1Brown",
+            duration: "15:12",
+            desc: "Shows why Bayesian probability is the mathematical foundation of scientific reasoning under uncertainty.",
+            url: "https://www.youtube.com/watch?v=HZGCoVF3YvM"
+          }
+        ]
+      },
+
+      {
+        id: "os-networks",
+        num: "09",
+        icon: "🌐",
+        title: "Operating Systems, Linux Kernel & Computer Networks",
+        category: "Systems & Infrastructure",
+        readTime: "16 min read",
+        difficulty: "Core CS",
+        summary: "Kernel space vs User space, virtual memory paging, process scheduling, concurrency locks, and the TCP/IP & 7-Layer OSI networking stack.",
+        tagline: "The invisible orchestrator of hardware resources and global packet routing.",
+        overview: [
+          "An Operating System (such as Linux, UNIX, or Windows NT) is the privileged software layer that sits between user applications and bare hardware. Without an OS, every program would have to manually write device drivers for NVMe disks, manage raw physical RAM addresses, and arbitrate CPU access.",
+          "To prevent a buggy or malicious program from crashing the machine, modern CPUs enforce hardware privilege rings: Ring 0 (Kernel Mode, unrestricted hardware access) and Ring 3 (User Mode, restricted sandbox). User programs request kernel services—like opening a file or creating a network socket—via controlled System Calls (`syscall`).",
+          "Simultaneously, the Networking Stack encapsulates application bytes into segments, packets, and frames, routing them across autonomous routers worldwide via BGP, IP, and TCP."
+        ],
+        diagramTitle: "Fig 9.1 — Linux Kernel/User Space Boundary & TCP/IP Packet Encapsulation",
+        svgDiagram: `
+          <svg viewBox="0 0 800 280" class="fig-svg">
+            <!-- Left: OS Ring Architecture -->
+            <rect x="35" y="30" width="330" height="70" rx="6" fill="rgba(100,181,246,0.1)" stroke="#64b5f6" stroke-width="1.8"/>
+            <text x="65" y="58" fill="#64b5f6" font-weight="bold" font-size="13">USER SPACE (Ring 3 — Unprivileged)</text>
+            <text x="65" y="80" fill="currentColor" font-size="11">Node.js • Python • Browser • Bash Shell</text>
+
+            <line x1="35" y1="115" x2="365" y2="115" stroke="#e07a5f" stroke-width="2" stroke-dasharray="5"/>
+            <text x="115" y="110" fill="#e07a5f" font-size="10" font-weight="bold">System Call Interface (fork, read, socket)</text>
+
+            <rect x="35" y="128" width="330" height="75" rx="6" fill="rgba(82,183,136,0.12)" stroke="#52b788" stroke-width="2"/>
+            <text x="65" y="155" fill="#52b788" font-weight="bold" font-size="13">LINUX KERNEL (Ring 0 — Privileged)</text>
+            <text x="65" y="175" fill="currentColor" font-size="11">CFS Scheduler • Virtual Memory (MMU) • VFS</text>
+
+            <rect x="35" y="218" width="330" height="42" rx="6" fill="rgba(201,169,89,0.12)" stroke="#c9a959" stroke-width="1.8"/>
+            <text x="85" y="244" fill="#c9a959" font-weight="bold" font-size="12">PHYSICAL HARDWARE (CPU, RAM, NIC)</text>
+
+            <!-- Right: TCP/IP Stack -->
+            <text x="455" y="38" fill="#c9a959" font-weight="bold" font-size="13">TCP/IP Packet Encapsulation</text>
+            <rect x="440" y="55" width="320" height="42" rx="5" fill="#18231f" stroke="#52b788"/>
+            <text x="460" y="81" fill="currentColor" font-size="12">L7 Application: [ HTTP / SSH / DNS Payload ]</text>
+            <rect x="440" y="108" width="320" height="42" rx="5" fill="#18231f" stroke="#c9a959"/>
+            <text x="460" y="134" fill="currentColor" font-size="12">L4 Transport: [ TCP Port + Seq ] [ Payload ]</text>
+            <rect x="440" y="161" width="320" height="42" rx="5" fill="#18231f" stroke="#64b5f6"/>
+            <text x="460" y="187" fill="currentColor" font-size="12">L3 Network: [ IP Src/Dst ] [ TCP ] [ Payload ]</text>
+            <rect x="440" y="214" width="320" height="42" rx="5" fill="#18231f" stroke="#e07a5f"/>
+            <text x="460" y="240" fill="currentColor" font-size="12">L2 Data Link: [ MAC ] [ IP ] [ TCP ] [ FCS ]</text>
+          </svg>
+        `,
+        mathTitle: "Virtual Memory Address Translation, Amdahl's Law & Bandwidth-Delay",
+        mathBlocks: [
+          {
+            name: "1. Amdahl's Law (Maximum Parallel Speedup Limit)",
+            formula: "Speedup(N) = 1 / [ (1 - P) + (P / N) ]",
+            explanation: "If P is the parallelizable fraction of a program and (1 - P) is the strictly serial portion, adding infinite CPU cores (N → ∞) cannot exceed a speedup of 1 / (1 - P)."
+          },
+          {
+            name: "2. Virtual-to-Physical Page Table Address Translation",
+            formula: "Virtual Address = [ Virtual Page Number (VPN) | Offset ]\nPhysical Address = [ Page Frame Number (PFN) | Offset ]",
+            explanation: "The CPU's Memory Management Unit (MMU) and Translation Lookaside Buffer (TLB) translate 4 KB virtual pages to physical RAM frames, isolating process memory spaces."
+          },
+          {
+            name: "3. Shannon–Hartley Channel Capacity Theorem",
+            formula: "C = B · log₂(1 + S / N)",
+            explanation: "Defines the theoretical maximum bit rate C (bits/sec) that can be transmitted over a communication channel of bandwidth B (Hz) with Signal-to-Noise ratio S/N."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Processes, Threads, Mutexes & Deadlocks",
+            body: "A Process is an isolated execution instance with its own virtual address space and file descriptors. Threads within a process share the same Heap memory, enabling fast communication but risking Race Conditions when two threads mutate shared state simultaneously. Synchronization primitives (Mutex locks, Semaphores, Atomic CAS instructions) enforce mutual exclusion."
+          },
+          {
+            heading: "TCP vs. UDP & The 3-Way Handshake",
+            body: "TCP provides reliable, ordered, congestion-controlled byte streams via a 3-way handshake (`SYN` → `SYN-ACK` → `ACK`), sequence numbers, and sliding window acknowledgments. UDP is a connectionless, minimal-overhead datagram protocol favored for real-time video streaming, gaming, and DNS queries."
+          }
+        ],
+        codeLang: "Bash / Linux Systems Inspection Commands",
+        codeSnippet: `# Inspect virtual memory, CPU load, and active kernel TCP sockets on Linux
+uname -srm                       # Display kernel version & architecture
+ps aux --sort=-%mem | head -n 6  # Top 5 memory-consuming processes
+ss -tulnp                        # Show all listening TCP/UDP sockets & PIDs
+strace -c ls /                   # Count all Linux kernel system calls invoked by 'ls'`,
+        videos: [
+          {
+            title: "How Does Linux Work? Kernel, Shell & System Calls",
+            channel: "ByteByteGo",
+            duration: "12:18",
+            desc: "Architectural diagrams explaining virtual memory, file systems, and how user processes talk to the kernel.",
+            url: "https://www.youtube.com/watch?v=rrB13utjYV4"
+          },
+          {
+            title: "Computer Networking Full Course — OSI Model Deep Dive",
+            channel: "Kunal Kushwaha",
+            duration: "4:15:00",
+            desc: "Complete walkthrough of MAC addresses, IPv4/IPv6 subnetting, TCP congestion control, DNS, and HTTP/3.",
+            url: "https://www.youtube.com/watch?v=IPvYjXCsTg8"
+          }
+        ]
+      },
+
+      {
+        id: "quantum",
+        num: "10",
+        icon: "🌌",
+        title: "Theoretical CS, Automata & Quantum Computing",
+        category: "Frontier Computation",
+        readTime: "16 min read",
+        difficulty: "Advanced",
+        summary: "Turing machines, the Halting Problem, P vs NP complexity classes, quantum superposition, Dirac ket notation, entanglement, and Shor's/Grover's algorithms.",
+        tagline: "Probing the ultimate mathematical boundaries of physical reality and decidability.",
+        overview: [
+          "Theoretical Computer Science asks two profound questions: 1) What can be computed at all? (Computability Theory), and 2) How efficiently can it be computed? (Complexity Theory). In 1936, before a single electronic computer existed, Alan Turing invented an abstract mathematical device—the Universal Turing Machine—and proved via diagonalization that certain problems (such as the Halting Problem) are fundamentally undecidable by any algorithm.",
+          "In Complexity Theory, the millennium-prize P vs NP question asks whether every problem whose solution can be verified quickly by a deterministic computer in polynomial time (NP) can also be solved from scratch quickly in polynomial time (P).",
+          "Quantum Computing transcends classical bit limitations by encoding information in quantum mechanical two-level systems (Qubits)—exploiting Superposition, Quantum Interference, and Entanglement to manipulate $2^n$ basis amplitudes simultaneously."
+        ],
+        diagramTitle: "Fig 10.1 — Complexity Classes (P, NP, NP-Complete) & Quantum Circuit (Bell State)",
+        svgDiagram: `
+          <svg viewBox="0 0 800 270" class="fig-svg">
+            <!-- Left: P vs NP Euler Diagram -->
+            <text x="85" y="35" fill="#c9a959" font-size="13" font-weight="bold">Complexity Landscape (Assuming P ≠ NP)</text>
+            <ellipse cx="205" cy="155" rx="150" ry="95" fill="rgba(201,169,89,0.06)" stroke="#c9a959" stroke-width="2"/>
+            <text x="195" y="85" fill="#c9a959" font-size="13" font-weight="bold">NP</text>
+            <ellipse cx="145" cy="175" rx="68" ry="45" fill="rgba(82,183,136,0.15)" stroke="#52b788" stroke-width="2"/>
+            <text x="138" y="175" fill="#52b788" font-size="14" font-weight="bold">P</text>
+            <text x="100" y="195" fill="currentColor" font-size="10">Sorting, Shortest Path</text>
+            <ellipse cx="275" cy="175" rx="62" ry="45" fill="rgba(224,122,95,0.15)" stroke="#e07a5f" stroke-width="2"/>
+            <text x="235" y="172" fill="#e07a5f" font-size="12" font-weight="bold">NP-Complete</text>
+            <text x="235" y="192" fill="currentColor" font-size="10">3-SAT, TSP, Clique</text>
+
+            <!-- Right: Quantum Entanglement Circuit -->
+            <text x="465" y="35" fill="#52b788" font-size="13" font-weight="bold">Quantum Bell State Entanglement Circuit</text>
+            <text x="440" y="110" fill="currentColor" font-size="14">|q₀⟩ = |0⟩</text>
+            <line x1="510" y1="105" x2="730" y2="105" stroke="currentColor" stroke-width="2"/>
+            <text x="440" y="190" fill="currentColor" font-size="14">|q₁⟩ = |0⟩</text>
+            <line x1="510" y1="185" x2="730" y2="185" stroke="currentColor" stroke-width="2"/>
+            <!-- Hadamard Gate -->
+            <rect x="545" y="82" width="46" height="46" rx="4" fill="#18231f" stroke="#c9a959" stroke-width="2"/>
+            <text x="561" y="111" fill="#c9a959" font-size="16" font-weight="bold">H</text>
+            <!-- CNOT Gate -->
+            <circle cx="645" cy="105" r="7" fill="#52b788"/>
+            <line x1="645" y1="105" x2="645" y2="203" stroke="#52b788" stroke-width="2.5"/>
+            <circle cx="645" cy="185" r="18" fill="none" stroke="#52b788" stroke-width="2.5"/>
+            <line x1="627" y1="185" x2="663" y2="185" stroke="#52b788" stroke-width="2.5"/>
+            <text x="470" y="242" fill="#52b788" font-size="12">Output Bell State: |Φ⁺⟩ = (|00⟩ + |11⟩) / √2</text>
+          </svg>
+        `,
+        mathTitle: "Dirac Ket Notation, Unitary Quantum Gates & Born's Rule",
+        mathBlocks: [
+          {
+            name: "1. Single Qubit Quantum Superposition & Born Normalization",
+            formula: "|ψ⟩ = α|0⟩ + β|1⟩ = [α, β]ᵀ     where α, β ∈ ℂ  and  |α|² + |β|² = 1",
+            explanation: "Unlike a classical bit restricted to 0 or 1, a qubit exists in a complex linear combination of basis states |0⟩ and |1⟩. Measuring the qubit collapses it to |0⟩ with probability |α|² and |1⟩ with probability |β|²."
+          },
+          {
+            name: "2. The Hadamard Gate (Unitary Superposition Operator)",
+            formula: "H = (1 / √2) [ [1,  1], [1, -1] ]     →     H|0⟩ = (|0⟩ + |1⟩) / √2",
+            explanation: "Maps computational basis states into equal-probability superpositions; all quantum logic gates must be unitary matrices (U†U = I) to preserve total probability."
+          },
+          {
+            name: "3. Grover's Quantum Search Speedup & Shor's Period Finding",
+            formula: "Classical Unsorted Search: O(N)     |     Grover's Quantum Amplitude Amplification: O(√N)",
+            explanation: "Grover's algorithm provides a quadratic speedup for unstructured search, while Shor's Quantum Fourier Transform factors N-bit integers in polynomial O((log N)³) time."
+          }
+        ],
+        deepDive: [
+          {
+            heading: "Turing Completeness & The Undecidability of the Halting Problem",
+            body: "Alan Turing proved by contradiction that no general algorithm `Halts(Program, Input)` can exist that determines for every arbitrary program whether it will eventually finish running or loop forever. If such a program existed, feeding it a wrapper that loops whenever `Halts` returns true creates an inescapable logical paradox."
+          },
+          {
+            heading: "Quantum Entanglement & Post-Quantum Cryptography (PQC)",
+            body: "When a Hadamard gate and a CNOT gate act on two qubits |00⟩, they form an entangled Bell state (|00⟩ + |11⟩)/√2 that cannot be factored into independent qubit states. Because large fault-tolerant quantum computers running Shor's Algorithm will eventually break RSA and ECC, NIST has standardized lattice-based Post-Quantum Cryptography (ML-KEM / Kyber)."
+          }
+        ],
+        codeLang: "Python (Quantum Statevector Simulation of H + CNOT Bell State)",
+        codeSnippet: `import numpy as np
+
+# Basis state |00> as a 4D statevector
+psi = np.array([1, 0, 0, 0], dtype=complex)
+
+# Hadamard on Qubit 0 tensored with Identity on Qubit 1: H ⊗ I
+H = (1 / np.sqrt(2)) * np.array([[1, 1], [1, -1]])
+I = np.eye(2)
+H_I = np.kron(H, I)
+
+# 2-Qubit CNOT Gate Matrix
+CNOT = np.array([[1,0,0,0], [0,1,0,0], [0,0,0,1], [0,0,1,0]])
+
+bell_state = CNOT @ (H_I @ psi)
+print("Entangled Statevector Amplitudes [|00>, |01>, |10>, |11>]:")
+print(np.round(bell_state, 4))`,
+        videos: [
+          {
+            title: "P vs NP and the Computational Complexity Zoo",
+            channel: "Hackerdashery / Veritasium",
+            duration: "10:45",
+            desc: "Visual explanation of P, NP, NP-Complete, NP-Hard, and the Halting Problem.",
+            url: "https://www.youtube.com/watch?v=YX40hbAHx3s"
+          },
+          {
+            title: "How Quantum Computers Break the Internet (Shor's Algorithm)",
+            channel: "Veritasium",
+            duration: "24:50",
+            desc: "Walks through qubits, superposition, quantum interference, and how Shor's algorithm factors prime numbers.",
+            url: "https://www.youtube.com/watch?v=lvTqbM5Dq4Q"
+          }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // RENDER ENGINE: POPULATE SIDEBAR, DIRECTORY CARDS, AND FULL ARTICLES
+    // =========================================================================
+    const sidebarList = document.getElementById('sidebarList');
+    const directoryGrid = document.getElementById('directoryGrid');
+    const directoryView = document.getElementById('directoryView');
+    const articleView = document.getElementById('articleView');
+    const articleContent = document.getElementById('articleContent');
+    const articlePagination = document.getElementById('articlePagination');
+    const btnDirectoryView = document.getElementById('btnDirectoryView');
+
+    function initCodex(fields = csFields) {
+      // 1. Render Sidebar List
+      sidebarList.innerHTML = fields.map(f => `
+        <li>
+          <button class="sidebar-item" id="side-${f.id}" onclick="openFieldArticle('${f.id}')">
+            <span class="side-num">${f.num}</span>
+            <span class="side-icon">${f.icon}</span>
+            <div class="side-text">
+              <span class="side-title">${f.title}</span>
+              <span class="side-cat">${f.category}</span>
+            </div>
+          </button>
+        </li>
+      `).join('');
+
+      // 2. Render Directory Grid Cards
+      directoryGrid.innerHTML = fields.map(f => `
+        <div class="field-card" onclick="openFieldArticle('${f.id}')">
+          <div class="card-top">
+            <span class="card-num">FIELD ${f.num}</span>
+            <span class="card-badge">${f.category}</span>
+          </div>
+          <div class="card-icon-row">
+            <span class="card-icon">${f.icon}</span>
+            <h3>${f.title}</h3>
+          </div>
+          <p class="card-summary">${f.summary}</p>
+          <div class="card-includes">
+            <span>📐 Math Proofs</span>
+            <span>📊 SVG Diagrams</span>
+            <span>▶️ ${f.videos.length} Lectures</span>
+          </div>
+          <div class="card-footer">
+            <span class="meta-info">⏱️ ${f.readTime} • ${f.difficulty}</span>
+            <span class="open-cta">Open Full Treatise →</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openFieldArticle(fieldId) {
+      const idx = csFields.findIndex(f => f.id === fieldId);
+      if (idx === -1) return;
+      const f = csFields[idx];
+
+      // Update active states
+      document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+      const activeSide = document.getElementById(`side-${f.id}`);
+      if (activeSide) activeSide.classList.add('active');
+      btnDirectoryView.classList.remove('active');
+
+      // Switch View
+      directoryView.classList.add('hidden');
+      articleView.classList.remove('hidden');
+
+      // Populate Full Comprehensive Article
+      articleContent.innerHTML = `
+        <header class="art-header" id="sec-overview">
+          <div class="art-meta-strip">
+            <span class="art-pill">DISCIPLINE ${f.num} // ${f.category.toUpperCase()}</span>
+            <span class="art-pill">⏱️ ${f.readTime}</span>
+            <span class="art-pill">🎓 Level: ${f.difficulty}</span>
+          </div>
+          <h1 class="art-title">${f.icon} ${f.title}</h1>
+          <p class="art-tagline">“${f.tagline}”</p>
+        </header>
+
+        <!-- Section 1: First Principles Overview -->
+        <section class="art-block">
+          <h2 class="block-heading"><span>01</span> Executive Overview & First Principles</h2>
+          <div class="prose-paragraphs">
+            ${f.overview.map(p => `<p>${p}</p>`).join('')}
+          </div>
+        </section>
+
+        <!-- Section 2: Interactive SVG Diagram / Architecture Figure -->
+        <section class="art-block" id="sec-diagram">
+          <h2 class="block-heading"><span>02</span> Architectural Diagram & Visual Graph</h2>
+          <figure class="diagram-container">
+            <div class="svg-wrapper">
+              ${f.svgDiagram}
+            </div>
+            <figcaption>${f.diagramTitle}</figcaption>
+          </figure>
+        </section>
+
+        <!-- Section 3: Mathematical Foundations -->
+        <section class="art-block" id="sec-math">
+          <h2 class="block-heading"><span>03</span> ${f.mathTitle}</h2>
+          <div class="math-grid">
+            ${f.mathBlocks.map(m => `
+              <div class="math-card">
+                <h4>📐 ${m.name}</h4>
+                <div class="formula-box">${m.formula}</div>
+                <p>${m.explanation}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+
+        <!-- Section 4: Comprehensive Technical Deep Dive -->
+        <section class="art-block" id="sec-concepts">
+          <h2 class="block-heading"><span>04</span> Core Pillars & Deep-Dive Mechanics</h2>
+          <div class="deepdive-list">
+            ${f.deepDive.map((d, i) => `
+              <div class="deepdive-item">
+                <h3>${f.num}.${i + 1} — ${d.heading}</h3>
+                <p>${d.body}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+
+        <!-- Section 5: Code Implementation -->
+        <section class="art-block" id="sec-code">
+          <h2 class="block-heading"><span>05</span> Reference Implementation (${f.codeLang})</h2>
+          <div class="code-panel">
+            <div class="code-panel-header">
+              <span>💻 ${f.codeLang}</span>
+              <button class="copy-btn" onclick="copySnippet(this)">Copy Code</button>
+            </div>
+            <pre><code>${f.codeSnippet}</code></pre>
+          </div>
+        </section>
+
+        <!-- Section 6: Curated YouTube Masterclasses -->
+        <section class="art-block" id="sec-videos">
+          <h2 class="block-heading"><span>06</span> Curated Video Masterclasses & Lectures</h2>
+          <p class="video-intro">Watch the highest-rated visual explanations and university lectures covering <strong>${f.title}</strong>:</p>
+          <div class="video-grid">
+            ${f.videos.map(v => `
+              <a href="${v.url}" target="_blank" rel="noopener noreferrer" class="video-card">
+                <div class="video-play-banner">
+                  <span class="yt-badge">▶ YOUTUBE LECTURE</span>
+                  <span class="yt-duration">⏱️ ${v.duration}</span>
+                </div>
+                <div class="video-body">
+                  <h4>${v.title}</h4>
+                  <span class="yt-channel">🎙️ Channel: <strong>${v.channel}</strong></span>
+                  <p>${v.desc}</p>
+                  <span class="watch-link">Watch on YouTube ↗</span>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+      `;
+
+      // Prev / Next Pagination
+      const prevField = csFields[idx - 1];
+      const nextField = csFields[idx + 1];
+      articlePagination.innerHTML = `
+        <div>
+          ${prevField ? `<button class="page-nav-btn" onclick="openFieldArticle('${prevField.id}')">← Previous: ${prevField.num}. ${prevField.title}</button>` : ''}
+        </div>
+        <div>
+          ${nextField ? `<button class="page-nav-btn" onclick="openFieldArticle('${nextField.id}')">Next: ${nextField.num}. ${nextField.title} →</button>` : ''}
+        </div>
+      `;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showDirectory() {
+      articleView.classList.add('hidden');
+      directoryView.classList.remove('hidden');
+      btnDirectoryView.classList.add('active');
+      document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterFields(query) {
+      const q = query.toLowerCase().trim();
+      const filtered = csFields.filter(f =>
+        f.title.toLowerCase().includes(q) ||
+        f.summary.toLowerCase().includes(q) ||
+        f.category.toLowerCase().includes(q)
+      );
+      showDirectory();
+      initCodex(filtered);
+    }
+
+    function toggleEyeComfort() {
+      const html = document.documentElement;
+      const label = document.getElementById('themeLabel');
+      if (html.getAttribute('data-theme') === 'dark-comfort') {
+        html.setAttribute('data-theme', 'sepia-comfort');
+        label.innerText = 'Soft Dark Mode';
+      } else {
+        html.setAttribute('data-theme', 'dark-comfort');
+        label.innerText = 'Sepia Paper Mode';
+      }
+    }
+
+    function copySnippet(btn) {
+      const code = btn.closest('.code-panel').querySelector('code').innerText;
+      navigator.clipboard.writeText(code);
+      btn.innerText = '✓ Copied!';
+      setTimeout(() => (btn.innerText = 'Copy Code'), 1800);
+    }
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      document.getElementById('readingProgress').style.width = scrolled + '%';
+    });
+
+    // Initialize on load
+    initCodex();
+  </script>
+
+</body>
+</html>

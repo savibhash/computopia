@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-comfort">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMPUTOPIA | Visual Vault & Interactive Algorithm Lab</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='c' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='60%25' stop-color='%23e2e8f0'/%3E%3Cstop offset='100%25' stop-color='%2394a3b8'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='55%25' stop-color='%23cbd5e1'/%3E%3Cstop offset='100%25' stop-color='%2364748b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='45' rx='28' ry='7' fill='%23000000' opacity='0.45'/%3E%3Cpath d='M3 41 C12 52 52 52 61 41 C54 34 46 35 32 35 C18 35 10 34 3 41 Z' fill='url(%23b)' stroke='%23ffffff' stroke-width='1'/%3E%3Cpath d='M15 38 L21 15 C22 11 27 14 32 14 C37 14 42 11 43 15 L49 38 Z' fill='url(%23c)'/%3E%3Cpath d='M22 14 C26 19 38 19 42 14 C37 16 27 16 22 14 Z' fill='%2394a3b8'/%3E%3Cpath d='M32 14 L32 38 L49 38 L43 15 C42 11 37 14 32 14 Z' fill='%23475569' opacity='0.25'/%3E%3Cpath d='M15.5 33 C26 36 38 36 48.5 33 L49 38 C38 41 26 41 15 38 Z' fill='%230f172a'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/fundamentals.css" />
+</head>
+
+<body>
+
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="../home.html" class="brand-link">
+                <span class="sigil">❖</span>
+                <div>
+                    <span class="brand-name">COMPUTOPIA</span>
+                    <span class="brand-sub">VISUAL VAULT LAB</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <a href="fundamentals.html" class="back-home-btn">⚙️ Fundamentals</a>
+            <a href="domains.html" class="back-home-btn">🧭 Domains</a>
+            <button class="view-btn active">🎞️ Interactive Simulators (5)</button>
+            <a href="articles.html" class="back-home-btn">📜 Articles</a>
+            <a href="terminal.html" class="back-home-btn">💻 Terminal Lab</a>
+        </div>
+
+        <div class="nav-right">
+            <button class="theme-toggle" onclick="toggleEyeComfort()">
+                👁️ <span id="themeLabel">Sepia Paper Mode</span>
+            </button>
+            <a href="../home.html" class="back-home-btn">↩ Home Hub</a>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <!-- Left Sidebar: Simulation Selector -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-eyebrow">SELECT A SIMULATION</span>
+                <h3>Interactive Lab</h3>
+            </div>
+            <ul class="field-list">
+                <li>
+                    <button class="sidebar-item active" id="sim-btn-sorting" onclick="switchSimulator('sorting')">
+                        <span class="side-num">01</span>
+                        <span class="side-icon">📊</span>
+                        <div class="side-text">
+                            <span class="side-title">Sorting Algorithms Engine</span>
+                            <span class="side-cat">Quicksort • Bubble • Selection</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" id="sim-btn-path" onclick="switchSimulator('path')">
+                        <span class="side-num">02</span>
+                        <span class="side-icon">🕸️</span>
+                        <div class="side-text">
+                            <span class="side-title">Graph Pathfinding Matrix</span>
+                            <span class="side-cat">Interactive BFS Shortest Path</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" id="sim-btn-life" onclick="switchSimulator('life')">
+                        <span class="side-num">03</span>
+                        <span class="side-icon">🧬</span>
+                        <div class="side-text">
+                            <span class="side-title">Conway's Game of Life</span>
+                            <span class="side-cat">Cellular Automata Simulator</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" id="sim-btn-alu" onclick="switchSimulator('alu')">
+                        <span class="side-num">04</span>
+                        <span class="side-icon">⚡</span>
+                        <div class="side-text">
+                            <span class="side-title">1-Bit Full Adder Logic Gate</span>
+                            <span class="side-cat">Interactive Hardware Circuit</span>
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-item" id="sim-btn-nn" onclick="switchSimulator('nn')">
+                        <span class="side-num">05</span>
+                        <span class="side-icon">🧠</span>
+                        <div class="side-text">
+                            <span class="side-title">Neural Network Forward Pass</span>
+                            <span class="side-cat">Live Activation Propagation</span>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>⚡ <strong>Live Execution:</strong> Every simulation runs natively in your browser using HTML5 Canvas
+                    & mathematical state machines.</p>
+            </div>
+        </aside>
+
+        <!-- Main Simulator Stage -->
+        <main class="main-stage">
+
+            <!-- SIMULATOR 1: SORTING ALGORITHMS -->
+            <section id="sim-sorting" class="sim-panel">
+                <div class="hero-banner">
+                    <span class="eyebrow">SIMULATION 01 • ALGORITHMIC COMPLEXITY</span>
+                    <h1>📊 Live Sorting Algorithm Visualizer</h1>
+                    <p>Compare how <strong>Quicksort O(n log n)</strong>, <strong>Selection Sort O(n²)</strong>, and
+                        <strong>Bubble Sort O(n²)</strong> partition and swap array elements in real time.</p>
+                </div>
+
+                <div class="sim-controls-bar">
+                    <button class="view-btn active" onclick="generateSortArray()">🔄 Shuffle New Array</button>
+                    <button class="view-btn" onclick="runQuickSort()">⚡ Run Quicksort O(n log n)</button>
+                    <button class="view-btn" onclick="runBubbleSort()">🫧 Run Bubble Sort O(n²)</button>
+                    <span class="sim-metric" id="sortTelemetry">Comparisons: 0 | Swaps: 0</span>
+                </div>
+
+                <div class="diagram-container">
+                    <canvas id="sortCanvas" width="820" height="320" class="sim-canvas"></canvas>
+                </div>
+            </section>
+
+            <!-- SIMULATOR 2: GRAPH PATHFINDING -->
+            <section id="sim-path" class="sim-panel hidden">
+                <div class="hero-banner">
+                    <span class="eyebrow">SIMULATION 02 • GRAPH THEORY TRAVERSAL</span>
+                    <h1>🕸️ Interactive Shortest-Path Grid (BFS / Dijkstra)</h1>
+                    <p><strong>Click on any grid cell</strong> to toggle obstacle walls, then click <strong>Find
+                            Shortest Path</strong> to watch the wavefront explore the graph from Start (Green) to Target
+                        (Gold).</p>
+                </div>
+
+                <div class="sim-controls-bar">
+                    <button class="view-btn active" onclick="runPathfinder()">🚀 Find Shortest Path</button>
+                    <button class="view-btn" onclick="randomizeWalls()">🧱 Generate Random Maze Walls</button>
+                    <button class="view-btn" onclick="resetGrid()">🧹 Clear Grid</button>
+                    <span class="sim-metric" id="pathTelemetry">Click cells to place walls</span>
+                </div>
+
+                <div class="diagram-container">
+                    <canvas id="pathCanvas" width="760" height="340" class="sim-canvas"></canvas>
+                </div>
+            </section>
+
+            <!-- SIMULATOR 3: CONWAY'S GAME OF LIFE -->
+            <section id="sim-life" class="sim-panel hidden">
+                <div class="hero-banner">
+                    <span class="eyebrow">SIMULATION 03 • TURING-COMPLETE CELLULAR AUTOMATA</span>
+                    <h1>🧬 Conway’s Game of Life Lab</h1>
+                    <p>Click cells to toggle living organisms or spawn a glider fleet. Governed by 4 simple
+                        birth/survival rules, this 2D grid is mathematically capable of universal computation.</p>
+                </div>
+
+                <div class="sim-controls-bar">
+                    <button class="view-btn active" id="lifeToggleBtn" onclick="toggleLife()">▶ Start Evolution</button>
+                    <button class="view-btn" onclick="seedRandomLife()">🎲 Seed Random Soup</button>
+                    <button class="view-btn" onclick="clearLife()">🧹 Clear Dish</button>
+                    <span class="sim-metric" id="lifeGenLabel">Generation: 0</span>
+                </div>
+
+                <div class="diagram-container">
+                    <canvas id="lifeCanvas" width="760" height="340" class="sim-canvas"></canvas>
+                </div>
+            </section>
+
+            <!-- SIMULATOR 4: INTERACTIVE HARDWARE ALU LOGIC CIRCUIT -->
+            <section id="sim-alu" class="sim-panel hidden">
+                <div class="hero-banner">
+                    <span class="eyebrow">SIMULATION 04 • DIGITAL LOGIC GATES</span>
+                    <h1>⚡ Interactive 1-Bit Full Adder Hardware Circuit</h1>
+                    <p>Click the input switches (<strong>Bit A</strong>, <strong>Bit B</strong>, and <strong>Carry-In
+                            C_in</strong>) below to toggle between 0V and 5V and watch the XOR and AND logic gates
+                        compute the binary Sum and Carry-Out.</p>
+                </div>
+
+                <div class="sim-controls-bar">
+                    <button class="view-btn active" id="btnBitA" onclick="toggleAluBit('A')">Input A = 0</button>
+                    <button class="view-btn active" id="btnBitB" onclick="toggleAluBit('B')">Input B = 0</button>
+                    <button class="view-btn active" id="btnBitC" onclick="toggleAluBit('C')">Carry-In (C_in) =
+                        0</button>
+                    <span class="sim-metric" id="aluResultLabel">Output: Sum = 0 | Carry-Out = 0 (Decimal: 0)</span>
+                </div>
+
+                <div class="diagram-container" id="aluSvgStage"></div>
+            </section>
+
+            <!-- SIMULATOR 5: NEURAL NETWORK FORWARD PASS -->
+            <section id="sim-nn" class="sim-panel hidden">
+                <div class="hero-banner">
+                    <span class="eyebrow">SIMULATION 05 • DEEP LEARNING MATHEMATICS</span>
+                    <h1>🧠 Interactive Neural Network Forward Propagation</h1>
+                    <p>Drag the input sliders ($x_1, x_2$) below to watch real-time matrix multiplication and
+                        $\text{Sigmoid}(W \cdot X + b)$ activation signals propagate through the hidden layer.</p>
+                </div>
+
+                <div class="sim-controls-bar">
+                    <label>Input $x_1$: <input type="range" id="nnX1" min="-2" max="2" step="0.1" value="1.0"
+                            oninput="updateNeuralSim()" /></label>
+                    <label>Input $x_2$: <input type="range" id="nnX2" min="-2" max="2" step="0.1" value="-0.5"
+                            oninput="updateNeuralSim()" /></label>
+                    <button class="view-btn" onclick="randomizeNnWeights()">🎲 Randomize Synaptic Weights</button>
+                    <span class="sim-metric" id="nnOutputLabel">Prediction Ŷ = 0.72</span>
+                </div>
+
+                <div class="diagram-container">
+                    <canvas id="nnCanvas" width="760" height="300" class="sim-canvas"></canvas>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        function switchSimulator(name) {
+            document.querySelectorAll('.sim-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+            document.getElementById(`sim-${name}`).classList.remove('hidden');
+            document.getElementById(`sim-btn-${name}`).classList.add('active');
+            if (name === 'alu') renderAluCircuit();
+            if (name === 'nn') updateNeuralSim();
+        }
+
+        // =========================================================================
+        // 1. SORTING ENGINE
+        // =========================================================================
+        const sortCanvas = document.getElementById('sortCanvas');
+        const sCtx = sortCanvas.getContext('2d');
+        let sortArr = [];
+        let isSorting = false;
+        let comparisons = 0, swaps = 0;
+
+        function generateSortArray() {
+            if (isSorting) return;
+            sortArr = Array.from({ length: 48 }, () => Math.floor(Math.random() * 260) + 25);
+            comparisons = 0; swaps = 0;
+            drawSortArray();
+        }
+
+        function drawSortArray(activeA = -1, activeB = -1, pivotIdx = -1) {
+            sCtx.clearRect(0, 0, sortCanvas.width, sortCanvas.height);
+            const barW = sortCanvas.width / sortArr.length;
+            sortArr.forEach((val, idx) => {
+                if (idx === pivotIdx) sCtx.fillStyle = '#c9a959';
+                else if (idx === activeA || idx === activeB) sCtx.fillStyle = '#e07a5f';
+                else sCtx.fillStyle = '#52b788';
+                sCtx.fillRect(idx * barW + 2, sortCanvas.height - val, barW - 4, val);
+            });
+            document.getElementById('sortTelemetry').innerText = `Comparisons: ${comparisons} | Swaps: ${swaps}`;
+        }
+
+        const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+        async function runBubbleSort() {
+            if (isSorting) return;
+            isSorting = true;
+            for (let i = 0; i < sortArr.length; i++) {
+                for (let j = 0; j < sortArr.length - i - 1; j++) {
+                    comparisons++;
+                    if (sortArr[j] > sortArr[j + 1]) {
+                        [sortArr[j], sortArr[j + 1]] = [sortArr[j + 1], sortArr[j]];
+                        swaps++;
+                    }
+                    drawSortArray(j, j + 1);
+                    await sleep(12);
+                }
+            }
+            drawSortArray();
+            isSorting = false;
+        }
+
+        async function runQuickSort() {
+            if (isSorting) return;
+            isSorting = true;
+            await quickSortHelper(0, sortArr.length - 1);
+            drawSortArray();
+            isSorting = false;
+        }
+
+        async function quickSortHelper(low, high) {
+            if (low < high) {
+                let p = await partition(low, high);
+                await quickSortHelper(low, p - 1);
+                await quickSortHelper(p + 1, high);
+            }
+        }
+
+        async function partition(low, high) {
+            let pivot = sortArr[high];
+            let i = low - 1;
+            for (let j = low; j < high; j++) {
+                comparisons++;
+                if (sortArr[j] < pivot) {
+                    i++;
+                    [sortArr[i], sortArr[j]] = [sortArr[j], sortArr[i]];
+                    swaps++;
+                }
+                drawSortArray(i, j, high);
+                await sleep(22);
+            }
+            [sortArr[i + 1], sortArr[high]] = [sortArr[high], sortArr[i + 1]];
+            swaps++;
+            drawSortArray(i + 1, high);
+            return i + 1;
+        }
+
+        generateSortArray();
+
+        // =========================================================================
+        // 2. PATHFINDING GRID LAB (BFS SHORTEST PATH)
+        // =========================================================================
+        const pathCanvas = document.getElementById('pathCanvas');
+        const pCtx = pathCanvas.getContext('2d');
+        const COLS = 38, ROWS = 17, CELL = 20;
+        let grid = [];
+        const startNode = { r: 8, c: 4 }, endNode = { r: 8, c: 33 };
+
+        function resetGrid() {
+            grid = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+            drawGrid();
+            document.getElementById('pathTelemetry').innerText = 'Click cells to draw obstacle walls';
+        }
+
+        function randomizeWalls() {
+            resetGrid();
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    if ((r === startNode.r && c === startNode.c) || (r === endNode.r && c === endNode.c)) continue;
+                    if (Math.random() < 0.26) grid[r][c] = 1;
+                }
+            }
+            drawGrid();
+        }
+
+        function drawGrid() {
+            pCtx.clearRect(0, 0, pathCanvas.width, pathCanvas.height);
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    if (r === startNode.r && c === startNode.c) pCtx.fillStyle = '#52b788';
+                    else if (r === endNode.r && c === endNode.c) pCtx.fillStyle = '#c9a959';
+                    else if (grid[r][c] === 1) pCtx.fillStyle = '#2d3f38';
+                    else if (grid[r][c] === 2) pCtx.fillStyle = 'rgba(82, 183, 136, 0.28)';
+                    else if (grid[r][c] === 3) pCtx.fillStyle = '#e07a5f';
+                    else pCtx.fillStyle = '#111a16';
+
+                    pCtx.fillRect(c * CELL + 1, r * CELL + 1, CELL - 2, CELL - 2);
+                }
+            }
+        }
+
+        pathCanvas.addEventListener('click', (e) => {
+            const rect = pathCanvas.getBoundingClientRect();
+            const c = Math.floor((e.clientX - rect.left) / (rect.width / COLS));
+            const r = Math.floor((e.clientY - rect.top) / (rect.height / ROWS));
+            if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
+                if ((r === startNode.r && c === startNode.c) || (r === endNode.r && c === endNode.c)) return;
+                grid[r][c] = grid[r][c] === 1 ? 0 : 1;
+                drawGrid();
+            }
+        });
+
+        async function runPathfinder() {
+            for (let r = 0; r < ROWS; r++)
+                for (let c = 0; c < COLS; c++)
+                    if (grid[r][c] >= 2) grid[r][c] = 0;
+
+            const queue = [startNode];
+            const visited = new Set([`${startNode.r},${startNode.c}`]);
+            const parent = {};
+            let found = false;
+
+            while (queue.length > 0) {
+                const curr = queue.shift();
+                if (curr.r === endNode.r && curr.c === endNode.c) {
+                    found = true;
+                    break;
+                }
+                const dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+                for (const [dr, dc] of dirs) {
+                    const nr = curr.r + dr, nc = curr.c + dc;
+                    const key = `${nr},${nc}`;
+                    if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && grid[nr][nc] !== 1 && !visited.has(key)) {
+                        visited.add(key);
+                        parent[key] = curr;
+                        grid[nr][nc] = 2;
+                        queue.push({ r: nr, c: nc });
+                    }
+                }
+                drawGrid();
+                await sleep(10);
+            }
+
+            if (found) {
+                let cur = endNode;
+                let steps = 0;
+                while (cur) {
+                    const prev = parent[`${cur.r},${cur.c}`];
+                    if (prev && !(prev.r === startNode.r && prev.c === startNode.c)) {
+                        grid[prev.r][prev.c] = 3;
+                        steps++;
+                    }
+                    cur = prev;
+                    drawGrid();
+                    await sleep(18);
+                }
+                document.getElementById('pathTelemetry').innerText = `Optimal Path Found! Length: ${steps + 1} steps`;
+            } else {
+                document.getElementById('pathTelemetry').innerText = 'No valid path exists (Target blocked)';
+            }
+        }
+
+        resetGrid();
+
+        // =========================================================================
+        // 3. CONWAY'S GAME OF LIFE
+        // =========================================================================
+        const lifeCanvas = document.getElementById('lifeCanvas');
+        const lCtx = lifeCanvas.getContext('2d');
+        let lifeGrid = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+        let lifeTimer = null, generation = 0;
+
+        function seedRandomLife() {
+            generation = 0;
+            for (let r = 0; r < ROWS; r++)
+                for (let c = 0; c < COLS; c++)
+                    lifeGrid[r][c] = Math.random() < 0.28 ? 1 : 0;
+            drawLife();
+        }
+
+        function clearLife() {
+            generation = 0;
+            lifeGrid = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+            drawLife();
+        }
+
+        function drawLife() {
+            lCtx.clearRect(0, 0, lifeCanvas.width, lifeCanvas.height);
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    lCtx.fillStyle = lifeGrid[r][c] ? '#52b788' : '#111a16';
+                    lCtx.fillRect(c * CELL + 1, r * CELL + 1, CELL - 2, CELL - 2);
+                }
+            }
+            document.getElementById('lifeGenLabel').innerText = `Generation: ${generation}`;
+        }
+
+        function stepLife() {
+            const next = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    let neighbors = 0;
+                    for (let dr = -1; dr <= 1; dr++) {
+                        for (let dc = -1; dc <= 1; dc++) {
+                            if (dr === 0 && dc === 0) continue;
+                            const nr = (r + dr + ROWS) % ROWS;
+                            const nc = (c + dc + COLS) % COLS;
+                            neighbors += lifeGrid[nr][nc];
+                        }
+                    }
+                    if (lifeGrid[r][c] === 1 && (neighbors === 2 || neighbors === 3)) next[r][c] = 1;
+                    else if (lifeGrid[r][c] === 0 && neighbors === 3) next[r][c] = 1;
+                }
+            }
+            lifeGrid = next;
+            generation++;
+            drawLife();
+        }
+
+        function toggleLife() {
+            const btn = document.getElementById('lifeToggleBtn');
+            if (lifeTimer) {
+                clearInterval(lifeTimer);
+                lifeTimer = null;
+                btn.innerText = '▶ Start Evolution';
+            } else {
+                lifeTimer = setInterval(stepLife, 110);
+                btn.innerText = '⏸ Pause Evolution';
+            }
+        }
+
+        seedRandomLife();
+
+        // =========================================================================
+        // 4. INTERACTIVE 1-BIT FULL ADDER HARDWARE LOGIC GATE
+        // =========================================================================
+        let aluBits = { A: 0, B: 0, C: 0 };
+
+        function toggleAluBit(bit) {
+            aluBits[bit] = aluBits[bit] ? 0 : 1;
+            document.getElementById(`btnBit${bit}`).innerText = `Input ${bit} = ${aluBits[bit]}`;
+            renderAluCircuit();
+        }
+
+        function renderAluCircuit() {
+            const { A, B, C } = aluBits;
+            const xor1 = A ^ B;
+            const sum = xor1 ^ C;
+            const and1 = A & B;
+            const and2 = xor1 & C;
+            const cout = and1 | and2;
+            const dec = (cout << 1) | sum;
+
+            document.getElementById('aluResultLabel').innerText =
+                `Output: Sum = ${sum} | Carry-Out = ${cout} (Binary: ${cout}${sum} = Decimal ${dec})`;
+
+            const col = (v) => (v ? '#52b788' : '#5c6b64');
+            document.getElementById('aluSvgStage').innerHTML = `
+        <svg viewBox="0 0 780 250" class="fig-svg">
+          <line x1="60" y1="60" x2="230" y2="60" stroke="${col(A)}" stroke-width="3"/>
+          <text x="20" y="65" fill="${col(A)}" font-weight="bold">A=${A}</text>
+          <line x1="60" y1="110" x2="230" y2="110" stroke="${col(B)}" stroke-width="3"/>
+          <text x="20" y="115" fill="${col(B)}" font-weight="bold">B=${B}</text>
+          <line x1="60" y1="185" x2="430" y2="185" stroke="${col(C)}" stroke-width="3"/>
+          <text x="15" y="190" fill="${col(C)}" font-weight="bold">Cin=${C}</text>
+
+          <rect x="230" y="45" width="110" height="75" rx="8" fill="#18231f" stroke="${col(xor1)}" stroke-width="2.5"/>
+          <text x="252" y="88" fill="currentColor" font-weight="bold">XOR Gate 1</text>
+
+          <line x1="340" y1="82" x2="430" y2="82" stroke="${col(xor1)}" stroke-width="3"/>
+
+          <rect x="430" y="65" width="115" height="75" rx="8" fill="#18231f" stroke="${col(sum)}" stroke-width="2.5"/>
+          <text x="452" y="108" fill="currentColor" font-weight="bold">XOR Gate 2</text>
+
+          <line x1="545" y1="102" x2="680" y2="102" stroke="${col(sum)}" stroke-width="4"/>
+          <text x="690" y="107" fill="${col(sum)}" font-size="15" font-weight="bold">SUM = ${sum}</text>
+
+          <rect x="430" y="160" width="115" height="65" rx="8" fill="#18231f" stroke="${col(cout)}" stroke-width="2.5"/>
+          <text x="442" y="198" fill="currentColor" font-weight="bold">CARRY LOGIC</text>
+
+          <line x1="545" y1="192" x2="680" y2="192" stroke="${col(cout)}" stroke-width="4"/>
+          <text x="690" y="197" fill="${col(cout)}" font-size="15" font-weight="bold">Cout = ${cout}</text>
+        </svg>
+      `;
+        }
+
+        // =========================================================================
+        // 5. NEURAL NETWORK FORWARD PASS SIMULATOR
+        // =========================================================================
+        const nnCanvas = document.getElementById('nnCanvas');
+        const nCtx = nnCanvas.getContext('2d');
+        let nnWeights = [0.8, -0.6, 0.5, 0.9, -0.7, 0.4, 1.1, -0.8, 0.6];
+
+        function randomizeNnWeights() {
+            nnWeights = Array.from({ length: 9 }, () => (Math.random() * 2 - 1).toFixed(2) * 1);
+            updateNeuralSim();
+        }
+
+        const sigmoid = (z) => 1 / (1 + Math.exp(-z));
+
+        function updateNeuralSim() {
+            const x1 = parseFloat(document.getElementById('nnX1').value);
+            const x2 = parseFloat(document.getElementById('nnX2').value);
+            const h1 = sigmoid(x1 * nnWeights[0] + x2 * nnWeights[1]);
+            const h2 = sigmoid(x1 * nnWeights[2] + x2 * nnWeights[3]);
+            const h3 = sigmoid(x1 * nnWeights[4] + x2 * nnWeights[5]);
+            const out = sigmoid(h1 * nnWeights[6] + h2 * nnWeights[7] + h3 * nnWeights[8]);
+
+            document.getElementById('nnOutputLabel').innerText = `Output Ŷ = ${out.toFixed(4)}`;
+
+            nCtx.clearRect(0, 0, nnCanvas.width, nnCanvas.height);
+            const inNodes = [{ x: 130, y: 95, v: x1, l: 'x₁' }, { x: 130, y: 205, v: x2, l: 'x₂' }];
+            const hidNodes = [
+                { x: 380, y: 65, v: h1, l: 'h₁' },
+                { x: 380, y: 150, v: h2, l: 'h₂' },
+                { x: 380, y: 235, v: h3, l: 'h₃' }
+            ];
+            const outNode = { x: 630, y: 150, v: out, l: 'Ŷ' };
+
+            // Connections
+            inNodes.forEach(iNode => {
+                hidNodes.forEach(hNode => {
+                    nCtx.strokeStyle = 'rgba(201, 169, 89, 0.4)';
+                    nCtx.lineWidth = 2;
+                    nCtx.beginPath();
+                    nCtx.moveTo(iNode.x, iNode.y);
+                    nCtx.lineTo(hNode.x, hNode.y);
+                    nCtx.stroke();
+                });
+            });
+            hidNodes.forEach(hNode => {
+                nCtx.strokeStyle = 'rgba(82, 183, 136, 0.5)';
+                nCtx.lineWidth = 2.5;
+                nCtx.beginPath();
+                nCtx.moveTo(hNode.x, hNode.y);
+                nCtx.lineTo(outNode.x, outNode.y);
+                nCtx.stroke();
+            });
+
+            // Draw Nodes
+            [...inNodes, ...hidNodes, outNode].forEach(n => {
+                nCtx.fillStyle = '#16221d';
+                nCtx.strokeStyle = '#52b788';
+                nCtx.lineWidth = 2.5;
+                nCtx.beginPath();
+                nCtx.arc(n.x, n.y, 28, 0, Math.PI * 2);
+                nCtx.fill();
+                nCtx.stroke();
+                nCtx.fillStyle = '#e3ebe6';
+                nCtx.font = 'bold 12px JetBrains Mono';
+                nCtx.textAlign = 'center';
+                nCtx.fillText(`${n.l}:${n.v.toFixed(2)}`, n.x, n.y + 4);
+            });
+        }
+
+        function toggleEyeComfort() {
+            const html = document.documentElement;
+            const label = document.getElementById('themeLabel');
+            if (html.getAttribute('data-theme') === 'dark-comfort') {
+                html.setAttribute('data-theme', 'sepia-comfort');
+                label.innerText = 'Soft Dark Mode';
+            } else {
+                html.setAttribute('data-theme', 'dark-comfort');
+                label.innerText = 'Sepia Paper Mode';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMPUTOPIA | The Grand Grimoire of Computer Science</title>
+    <!-- Google Fonts for the Mysterious Classic Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='c' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='60%25' stop-color='%23e2e8f0'/%3E%3Cstop offset='100%25' stop-color='%2394a3b8'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='55%25' stop-color='%23cbd5e1'/%3E%3Cstop offset='100%25' stop-color='%2364748b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='45' rx='28' ry='7' fill='%23000000' opacity='0.45'/%3E%3Cpath d='M3 41 C12 52 52 52 61 41 C54 34 46 35 32 35 C18 35 10 34 3 41 Z' fill='url(%23b)' stroke='%23ffffff' stroke-width='1'/%3E%3Cpath d='M15 38 L21 15 C22 11 27 14 32 14 C37 14 42 11 43 15 L49 38 Z' fill='url(%23c)'/%3E%3Cpath d='M22 14 C26 19 38 19 42 14 C37 16 27 16 22 14 Z' fill='%2394a3b8'/%3E%3Cpath d='M32 14 L32 38 L49 38 L43 15 C42 11 37 14 32 14 Z' fill='%23475569' opacity='0.25'/%3E%3Cpath d='M15.5 33 C26 36 38 36 48.5 33 L49 38 C38 41 26 41 15 38 Z' fill='%230f172a'/%3E%3C/svg%3E" />
+</head>
+
+<body>
+
+    <!-- Top System Telemetry Bar -->
+    <div class="telemetry-bar">
+        <div class="telemetry-left">
+            <span class="pulse-dot"></span>
+            <span>SYSTEM: <strong>COMPUTOPIA-CORE v4.2</strong></span>
+            <span class="divider">|</span>
+            <span>ARCH: <strong>VON NEUMANN / QUANTUM HYBRID</strong></span>
+        </div>
+        <div class="telemetry-right">
+            <span>⚡ LOGIC GATES: ACTIVE</span>
+            <span class="divider">|</span>
+            <span>🔐 CIPHER: AES-256-GCM</span>
+            <span class="divider">|</span>
+            <a href="index.html" class="portal-return">↩ RETURN TO PORTAL</a>
+        </div>
+    </div>
+    <!-- Sticky Navigation Bar (Clean & Single-Line) -->
+    <header class="navbar">
+        <a href="home.html" class="nav-brand">
+            <span class="brand-sigil">❖</span>
+            <div>
+                <span class="brand-title">COMPUTOPIA</span>
+                <span class="brand-subtitle">ARCHIVE OF COMPUTATION</span>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="pages/fundamentals.html">Fundamentals</a>
+            <a href="pages/domains.html">Domains</a>
+            <a href="pages/visual-vault.html">Visual Vault</a>
+            <a href="pages/articles.html">Articles</a>
+            <a href="pages/terminal.html">Terminal</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="#domains" class="btn-gold">Explore Codex</a>
+            <button type="button" class="btn-auth-trigger" id="authTriggerBtn" onclick="window.openAuthModal('login')">
+                <span class="auth-key-icon">🗝️</span>
+                <span id="authBtnLabel">Login / Join</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video"
+            poster="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-green-lines-996-large.mp4"
+                type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">✦ EST. ERA OF TURING & BABBAGE • THE DIGITAL CODEX ✦</div>
+            <h1 class="hero-title">COMPUTOPIA</h1>
+            <p class="hero-tagline">
+                <em>“Where pure mathematical logic crystallizes into silicon consciousness.”</em>
+            </p>
+            <p class="hero-description">
+                Welcome to the sanctuary of Computer Science. From the microscopic dance of electrons across
+                semiconductor junctions and Boolean algebra, to the vast architectures of Artificial Intelligence,
+                Cryptography, and Data Science.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="pages/fundamentals.html" class="btn-gold-large">📖 Read the Foundations</a>
+                <a href="pages/domains.html" class="btn-glass-large">🌌 Explore the 6 Realms</a>
+            </div>
+
+            <!-- Quick Metrics Strip -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">0 & 1</span>
+                    <span class="stat-label">Binary Duality</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">O(log n)</span>
+                    <span class="stat-label">Algorithmic Elegance</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">7 Layers</span>
+                    <span class="stat-label">OSI Network Stack</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">∞</span>
+                    <span class="stat-label">Turing Completeness</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Fundamental Definitions -->
+    <section id="fundamentals" class="section-container">
+        <div class="section-header">
+            <span class="section-eyebrow">CHAPTER I • THE FIRST PRINCIPLES</span>
+            <h2 class="section-title">Fundamental Pillars of Computation</h2>
+            <p class="section-subtitle">
+                Before neural networks dream or encrypted packets cross oceans, every computing machine obeys four
+                timeless foundational laws.
+            </p>
+        </div>
+
+        <!-- Core Definition Banner -->
+        <div class="definition-monolith">
+            <div class="monolith-icon">🏛️</div>
+            <div class="monolith-text">
+                <h3>What is Computer Science?</h3>
+                <p>
+                    <strong>Computer Science</strong> is the formal study of computation, information processing, and
+                    algorithmic problem-solving. As the computer scientist Edsger Dijkstra famously noted: <em>"Computer
+                        science is no more about computers than astronomy is about telescopes."</em> It is the bridge
+                    between abstract mathematics, physical engineering, and human logic.
+                </p>
+            </div>
+        </div>
+
+        <div class="pillars-grid">
+            <!-- Pillar 1 -->
+            <div class="pillar-card">
+                <div class="pillar-top">
+                    <span class="pillar-num">01</span>
+                    <span class="pillar-emoji">⚡</span>
+                </div>
+                <h3>Binary & Boolean Logic</h3>
+                <p>
+                    At the lowest physical layer, transistors act as microscopic switches representing <strong>0 (Low
+                        Voltage)</strong> and <strong>1 (High Voltage)</strong>. Through Boolean gates
+                    (<code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>XOR</code>), simple voltage states
+                    combine to perform arithmetic, store memory, and execute instructions.
+                </p>
+                <div class="code-snippet">01000011 01010011 = "CS"</div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="pillar-card">
+                <div class="pillar-top">
+                    <span class="pillar-num">02</span>
+                    <span class="pillar-emoji">📐</span>
+                </div>
+                <h3>Algorithms & Data Structures</h3>
+                <p>
+                    An <strong>Algorithm</strong> is a finite, deterministic sequence of instructions designed to solve
+                    a class of problems. <strong>Data Structures</strong> (Arrays, Linked Lists, Trees, Graphs, Hash
+                    Maps) organize data in memory so algorithms can query and mutate it with optimal time and space
+                    complexity.
+                </p>
+                <div class="code-snippet">T(n) = O(n log n) • Space: O(1)</div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="pillar-card">
+                <div class="pillar-top">
+                    <span class="pillar-num">03</span>
+                    <span class="pillar-emoji">🖥️</span>
+                </div>
+                <h3>Architecture & Operating Systems</h3>
+                <p>
+                    Built on the <strong>Von Neumann Architecture</strong> (CPU, Memory Unit, I/O, and Control Unit),
+                    hardware is orchestrated by the <strong>Operating System Kernel</strong> (like Linux). The kernel
+                    manages CPU scheduling, virtual memory, file systems, and hardware interrupts.
+                </p>
+                <div class="code-snippet">Ring 0: Kernel • Ring 3: User Space</div>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="pillar-card">
+                <div class="pillar-top">
+                    <span class="pillar-num">04</span>
+                    <span class="pillar-emoji">🌐</span>
+                </div>
+                <h3>Networks & Distributed Protocols</h3>
+                <p>
+                    Computation scales across the globe via packet-switched networks governed by the
+                    <strong>TCP/IP</strong> and <strong>OSI</strong> models. From physical fiber-optic pulses to DNS
+                    resolution, TLS handshakes, and HTTP routing, networks bind isolated machines into one planetary
+                    superorganism.
+                </p>
+                <div class="code-snippet">SYN → SYN-ACK → ACK [ESTABLISHED]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Major Fields / Domains of CS -->
+    <section id="domains" class="section-container alt-bg">
+        <div class="section-header">
+            <span class="section-eyebrow">CHAPTER II • THE GREAT REALMS</span>
+            <h2 class="section-title">The Six Domains of Computopia</h2>
+            <p class="section-subtitle">
+                Explore the specialized disciplines that power modern civilization—from intelligent machines to
+                impenetrable cryptographic vaults.
+            </p>
+        </div>
+
+        <div class="domains-grid">
+            <!-- Domain 1: AI & ML -->
+            <article class="domain-card">
+                <div class="domain-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80"
+                        alt="Artificial Intelligence" />
+                    <span class="domain-tag">🧠 COGNITIVE COMPUTING</span>
+                </div>
+                <div class="domain-body">
+                    <h3>Artificial Intelligence & Machine Learning</h3>
+                    <p>
+                        Instead of following rigid hand-coded rules, ML systems learn statistical patterns directly from
+                        data. Using <strong>Artificial Neural Networks</strong>, backpropagation, and linear algebra,
+                        machines master computer vision, natural language processing (LLMs), and autonomous
+                        decision-making.
+                    </p>
+                    <ul class="domain-topics">
+                        <li>✦ Supervised, Unsupervised & Reinforcement Learning</li>
+                        <li>✦ Deep Learning, CNNs & Transformer Architectures</li>
+                        <li>✦ Gradient Descent & High-Dimensional Vector Spaces</li>
+                    </ul>
+                    <div class="domain-footer">
+                        <span class="tech-stack">Python • PyTorch • TensorFlow • CUDA</span>
+                        <a href="#sanctum" class="btn-card">Inspect Node →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Domain 2: Cybersecurity -->
+            <article class="domain-card">
+                <div class="domain-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+                        alt="Cybersecurity" />
+                    <span class="domain-tag">🛡️ DIGITAL WARFARE & DEFENSE</span>
+                </div>
+                <div class="domain-body">
+                    <h3>Cybersecurity & Cryptography</h3>
+                    <p>
+                        The art and science of protecting systems, networks, and data from adversarial exploitation.
+                        Grounded in number theory and discrete mathematics, cryptography ensures
+                        <strong>Confidentiality, Integrity, and Availability (The CIA Triad)</strong> across hostile
+                        environments.
+                    </p>
+                    <ul class="domain-topics">
+                        <li>✦ Penetration Testing, Web Security & Reverse Engineering</li>
+                        <li>✦ Public-Key Cryptography (RSA, Elliptic Curve, SHA-3)</li>
+                        <li>✦ Linux Hardening, Network Firewalls & Zero-Trust Systems</li>
+                    </ul>
+                    <div class="domain-footer">
+                        <span class="tech-stack">Kali Linux • Wireshark • SSH • BurpSuite</span>
+                        <a href="#sanctum" class="btn-card">Inspect Node →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Domain 3: Data Science -->
+            <article class="domain-card">
+                <div class="domain-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                        alt="Data Science" />
+                    <span class="domain-tag">📊 EMPIRICAL ORACLE</span>
+                </div>
+                <div class="domain-body">
+                    <h3>Data Science & Big Data Analytics</h3>
+                    <p>
+                        Extracting actionable truth from massive, noisy datasets. Data scientists blend probability
+                        theory, inferential statistics, and distributed database engineering to clean data, test
+                        hypotheses, and build predictive forecasting engines.
+                    </p>
+                    <ul class="domain-topics">
+                        <li>✦ Exploratory Data Analysis (EDA) & Statistical Inference</li>
+                        <li>✦ Data Pipelines (ETL), SQL & NoSQL Distributed Stores</li>
+                        <li>✦ Predictive Modeling, Time-Series & Data Visualization</li>
+                    </ul>
+                    <div class="domain-footer">
+                        <span class="tech-stack">Pandas • NumPy • SQL • Apache Spark</span>
+                        <a href="#sanctum" class="btn-card">Inspect Node →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Domain 4: Software Engineering -->
+            <article class="domain-card">
+                <div class="domain-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+                        alt="Software Engineering" />
+                    <span class="domain-tag">💻 SYSTEM CRAFTSMANSHIP</span>
+                </div>
+                <div class="domain-body">
+                    <h3>Software Engineering & Web Architecture</h3>
+                    <p>
+                        Designing, building, testing, and maintaining fault-tolerant software applications at scale.
+                        From responsive browser interfaces to asynchronous backend microservices and cloud-native
+                        databases.
+                    </p>
+                    <ul class="domain-topics">
+                        <li>✦ Full-Stack Development (HTML/CSS/JS, Node.js, REST/GraphQL)</li>
+                        <li>✦ System Design, Load Balancing & Database Indexing</li>
+                        <li>✦ Version Control (Git), CI/CD & Containerization</li>
+                    </ul>
+                    <div class="domain-footer">
+                        <span class="tech-stack">JavaScript • Node.js • Git • MongoDB</span>
+                        <a href="#sanctum" class="btn-card">Inspect Node →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Domain 5: Embedded Systems & Hardware -->
+            <article class="domain-card">
+                <div class="domain-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+                        alt="Embedded Hardware" />
+                    <span class="domain-tag">🔌 SILICON & CIRCUITS</span>
+                </div>
+                <div class="domain-body">
+                    <h3>Embedded Systems, Robotics & Hardware</h3>
+                    <p>
+                        Where code directly commands physical matter. Embedded engineers program microcontrollers,
+                        sensors, and custom PCBs with tight real-time constraints, bridging semiconductor physics with
+                        low-level firmware.
+                    </p>
+                    <ul class="domain-topics">
+                        <li>✦ Microcontrollers (Arduino, ESP32) & Single-Board Computers (Raspberry Pi)</li>
+                        <li>✦ Semiconductor Physics, Logic Gates & Microarchitecture</li>
+                        <li>✦ Real-Time Operating Systems (RTOS) & GPIO Interfacing</li>
+                    </ul>
+                    <div class="domain-footer">
+                        <span class="tech-stack">C / C++ • Assembly • Arduino • RISC-V</span>
+                        <a href="#sanctum" class="btn-card">Inspect Node →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Domain 6: Theoretical CS & Quantum -->
+            <article class="domain-card">
+                <div class="domain-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80"
+                        alt="Quantum Computing" />
+                    <span class="domain-tag">🌌 FRONTIER COMPUTATION</span>
+                </div>
+                <div class="domain-body">
+                    <h3>Theoretical CS & Quantum Computing</h3>
+                    <p>
+                        Exploring the ultimate mathematical limits of what can and cannot be computed. Quantum computing
+                        harnesses <strong>Qubits</strong>, superposition, and entanglement to solve problems intractable
+                        for classical supercomputers.
+                    </p>
+                    <ul class="domain-topics">
+                        <li>✦ Automata Theory, Turing Machines & The Halting Problem</li>
+                        <li>✦ Complexity Classes: P vs NP & NP-Completeness</li>
+                        <li>✦ Quantum Gates, Shor’s Algorithm & Grover’s Search</li>
+                    </ul>
+                    <div class="domain-footer">
+                        <span class="tech-stack">Qiskit • Linear Algebra • Formal Logic</span>
+                        <a href="#sanctum" class="btn-card">Inspect Node →</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 3: Animated GIF & Visual Vault -->
+    <section id="visual-vault" class="section-container">
+        <div class="section-header">
+            <span class="section-eyebrow">CHAPTER III • LIVING MECHANICS</span>
+            <h2 class="section-title">The Visual Laboratory (GIFs & Simulations)</h2>
+            <p class="section-subtitle">
+                Observe algorithms and mathematical structures in motion—sorting chaos into order, traversing graphs,
+                and folding state spaces.
+            </p>
+        </div>
+
+        <div class="gif-showcase">
+            <div class="gif-card">
+                <div class="gif-frame">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif"
+                        alt="Quicksort Algorithm Animation" />
+                </div>
+                <div class="gif-info">
+                    <span class="gif-badge">🔄 SORTING ALGORITHM</span>
+                    <h4>Quicksort Partitioning in Action</h4>
+                    <p>Tony Hoare's divide-and-conquer algorithm recursively partitions elements around a pivot in
+                        <code>O(n log n)</code> average time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="gif-card">
+                <div class="gif-frame">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif"
+                        alt="Dijkstra Shortest Path GIF" />
+                </div>
+                <div class="gif-info">
+                    <span class="gif-badge">🕸️ GRAPH THEORY</span>
+                    <h4>Dijkstra’s Shortest Path Traversal</h4>
+                    <p>Evaluating weighted edges across nodes to discover the mathematically optimal route—powering GPS
+                        and internet OSPF routing.</p>
+                </div>
+            </div>
+
+            <div class="gif-card">
+                <div class="gif-frame">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif"
+                        alt="Conway's Game of Life Glider Gun" />
+                </div>
+                <div class="gif-info">
+                    <span class="gif-badge">🧬 CELLULAR AUTOMATA</span>
+                    <h4>Conway’s Game of Life (Turing Complete)</h4>
+                    <p>Gosper's Glider Gun demonstrates how four simple local rules on a 2D grid give rise to infinite
+                        emergent complexity and universal computation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Featured Articles (The Turing Chronicles) -->
+    <section id="chronicles" class="section-container alt-bg">
+        <div class="section-header">
+            <span class="section-eyebrow">CHAPTER IV • THE TURING CHRONICLES</span>
+            <h2 class="section-title">Featured Dispatches & Deep Dives</h2>
+            <p class="section-subtitle">
+                Curated essays examining the philosophy, mathematics, and hidden architecture of the digital world.
+            </p>
+        </div>
+
+        <div class="articles-list">
+            <!-- Article 1 -->
+            <article class="article-row">
+                <div class="article-meta">
+                    <span class="article-date">DISPATCH #01</span>
+                    <span class="article-read">⏱️ 6 MIN READ</span>
+                    <span class="article-category">ARCHITECTURE</span>
+                </div>
+                <div class="article-main">
+                    <h3>From Babbage’s Brass Gears to 3-Nanometer Silicon: The Evolution of the CPU</h3>
+                    <p>
+                        In 1837, Charles Babbage conceived the Analytical Engine—a mechanical general-purpose computer
+                        programmed with punched cards by Ada Lovelace. Today, billions of FinFET transistors switch
+                        billions of times per second inside a single square centimeter of doped silicon. How did
+                        humanity compress a room-sized mechanical loom into sub-microscopic quantum tunnels?
+                    </p>
+                    <div class="article-tags">
+                        <span>#Microarchitecture</span>
+                        <span>#AdaLovelace</span>
+                        <span>#Semiconductors</span>
+                        <span>#MooresLaw</span>
+                    </div>
+                </div>
+                <div class="article-action">
+                    <button class="btn-outline" onclick="loadArticleInTerminal('cpu')">Read in Terminal ↗</button>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="article-row">
+                <div class="article-meta">
+                    <span class="article-date">DISPATCH #02</span>
+                    <span class="article-read">⏱️ 8 MIN READ</span>
+                    <span class="article-category">CRYPTOGRAPHY</span>
+                </div>
+                <div class="article-main">
+                    <h3>The Asymmetric Miracle: How Two Strangers Share a Secret in Plain Sight</h3>
+                    <p>
+                        For millennia, encryption required both sender and receiver to secretly meet and exchange a
+                        physical key beforehand. In the 1970s, Diffie, Hellman, Rivest, Shamir, and Adleman shattered
+                        this limitation using trapdoor one-way mathematical functions—prime factorization and modular
+                        arithmetic—making modern HTTPS and SSH possible.
+                    </p>
+                    <div class="article-tags">
+                        <span>#RSA</span>
+                        <span>#PrimeNumbers</span>
+                        <span>#ModularArithmetic</span>
+                        <span>#ZeroKnowledge</span>
+                    </div>
+                </div>
+                <div class="article-action">
+                    <button class="btn-outline" onclick="loadArticleInTerminal('crypto')">Read in Terminal ↗</button>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="article-row">
+                <div class="article-meta">
+                    <span class="article-date">DISPATCH #03</span>
+                    <span class="article-read">⏱️ 7 MIN READ</span>
+                    <span class="article-category">ARTIFICIAL INTELLIGENCE</span>
+                </div>
+                <div class="article-main">
+                    <h3>Matrices That Dream: Inside the Calculus of Deep Neural Networks</h3>
+                    <p>
+                        Strip away the mystique of modern AI and you find pure multivariable calculus and linear
+                        algebra. Every image, word, and sound is embedded as a vector in high-dimensional space,
+                        multiplied through weight matrices, and sculpted by the chain rule of derivatives during
+                        backpropagation.
+                    </p>
+                    <div class="article-tags">
+                        <span>#LinearAlgebra</span>
+                        <span>#Calculus</span>
+                        <span>#Backpropagation</span>
+                        <span>#Transformers</span>
+                    </div>
+                </div>
+                <div class="article-action">
+                    <button class="btn-outline" onclick="loadArticleInTerminal('ai')">Read in Terminal ↗</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 5: Interactive Command Sanctum (Terminal) -->
+    <section id="sanctum" class="section-container">
+        <div class="section-header">
+            <span class="section-eyebrow">CHAPTER V • INTERACTIVE SHELL</span>
+            <h2 class="section-title">The Computopia Command Sanctum</h2>
+            <p class="section-subtitle">
+                Click any preset command below or type directly into the shell (try <code>help</code>, <code>ai</code>,
+                <code>cyber</code>, <code>binary</code>, <code>quote</code>, or <code>clear</code>).
+            </p>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-title">root@computopia:~/codex# — bash (80x24)</div>
+                <div class="terminal-status">SSH ENCRYPTED</div>
+            </div>
+
+            <!-- Quick Command Buttons -->
+            <div class="terminal-quick-bar">
+                <span>Quick Execute:</span>
+                <button onclick="runCommand('help')">help</button>
+                <button onclick="runCommand('ai')">ai --info</button>
+                <button onclick="runCommand('cyber')">cyber --scan</button>
+                <button onclick="runCommand('datasci')">datasci</button>
+                <button onclick="runCommand('binary')">binary</button>
+                <button onclick="runCommand('quote')">quote</button>
+                <button onclick="runCommand('clear')">clear</button>
+            </div>
+
+            <div class="terminal-body" id="terminal-output">
+                <div class="term-line muted">Initializing Computopia Kernel v4.2.0-arcane...</div>
+                <div class="term-line muted">Mounting /dev/knowledge_base... [OK]</div>
+                <div class="term-line gold">Welcome, Seeker of Computation. Type 'help' or click a command above to
+                    query the archive.</div>
+            </div>
+
+            <div class="terminal-input-row">
+                <span class="prompt">seeker@computopia:~$</span>
+                <input type="text" id="terminal-input"
+                    placeholder="Type a command (e.g., help, ai, cyber, quote) and press Enter..." autocomplete="off" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-brand">
+                    <span class="brand-sigil">❖</span>
+                    <div>
+                        <span class="brand-title">COMPUTOPIA</span>
+                        <span class="brand-subtitle">THE GRAND CS ARCHIVE</span>
+                    </div>
+                </div>
+                <p class="footer-desc">
+                    An encyclopedic sanctuary dedicated to the foundations, mathematics, engineering, and future
+                    horizons of Computer Science.
+                </p>
+                <div class="ascii-sigil">
+                    [ 01000011 01001111 01000100 01000101 ]
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Core Disciplines</h4>
+                <ul>
+                    <li><a href="#domains">🧠 Artificial Intelligence & ML</a></li>
+                    <li><a href="#domains">🛡️ Cybersecurity & Cryptography</a></li>
+                    <li><a href="#domains">📊 Data Science & Analytics</a></li>
+                    <li><a href="#domains">💻 Full-Stack Engineering</a></li>
+                    <li><a href="#domains">🔌 Embedded & Microcontrollers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Foundations</h4>
+                <ul>
+                    <li><a href="#fundamentals">⚡ Boolean Algebra & Logic Gates</a></li>
+                    <li><a href="#fundamentals">📐 Data Structures & Big-O</a></li>
+                    <li><a href="#fundamentals">🖥️ Linux Kernel & OS Internals</a></li>
+                    <li><a href="#fundamentals">🌐 TCP/IP & Network Protocols</a></li>
+                    <li><a href="#visual-vault">🎞️ Algorithm Visualizations</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">🚪 Return to Kaleidoscope Portal</a></li>
+                    <li><a href="#sanctum">💻 Launch Interactive Shell</a></li>
+                    <li><a href="#chronicles">📜 The Turing Chronicles</a></li>
+                    <li><a href="#">⬆️ Back to Top</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© COMPUTOPIA ARCHIVES • CRAFTED IN HTML5, CSS3 & PURE LOGIC</span>
+            <span>STATUS: ALL NODES OPERATIONAL 🟢</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Terminal Script -->
+    <script>
+        const output = document.getElementById('terminal-output');
+        const input = document.getElementById('terminal-input');
+
+        const responses = {
+            help: `Available Computopia Commands:
+  • ai        — Inspect Artificial Intelligence & Neural Network metrics
+  • cyber     — Run simulated cryptographic & security audit
+  • datasci   — View Data Science & Statistical pipeline overview
+  • binary    — Convert "COMPUTOPIA" into raw 8-bit ASCII binary
+  • quote     — Retrieve timeless wisdom from CS pioneers
+  • clear     — Clear terminal buffer`,
+            ai: `[AI / ML MODULE LOADED]
+  • Architecture : Multi-Head Self-Attention Transformer & Deep CNN
+  • Optimization : Stochastic Gradient Descent (AdamW, lr=0.0003)
+  • Core Math    : Matrix Multiplication (Y = W·X + b) + Partial Derivatives
+  • Status       : Synaptic weights converged.`,
+            cyber: `[CYBERSECURITY AUDIT INITIATED]
+  • Port Scan    : 22/SSH (Open - Key Auth), 443/HTTPS (TLS 1.3 Active)
+  • Cipher Suite : ECDHE-RSA-AES256-GCM-SHA384
+  • Firewall     : Netfilter/iptables enforcing strict zero-trust policy
+  • Advice       : "Never trust raw user input; validate, sanitize, encrypt."`,
+            datasci: `[DATA SCIENCE ENGINE]
+  • Ingestion    : 4.8 Terabytes structured + unstructured telemetry
+  • Pipeline     : Clean -> Normalize -> Feature Engineer -> Cross-Validate
+  • Models       : Random Forest, XGBoost, Bayesian Inference`,
+            binary: `[ASCII TO 8-BIT BINARY ENCODER]
+  C = 01000011 | O = 01001111 | M = 01001101 | P = 01010000
+  U = 01010101 | T = 01010100 | O = 01001111 | P = 01010000
+  I = 01001001 | A = 01000001`,
+            quote: `"We can only see a short distance ahead, but we can see plenty there that needs to be done." — Alan Turing (1950)`
+        };
+
+        function printLine(text, className = '') {
+            const div = document.createElement('div');
+            div.className = 'term-line ' + className;
+            div.innerText = text;
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function runCommand(cmd) {
+            const clean = cmd.trim().toLowerCase().split(' ')[0];
+            printLine(`seeker@computopia:~$ ${cmd}`, 'cmd-echo');
+
+            if (clean === 'clear') {
+                output.innerHTML = '';
+                return;
+            }
+
+            if (responses[clean]) {
+                printLine(responses[clean], 'term-response');
+            } else {
+                printLine(`Command not recognized: '${cmd}'. Type 'help' for available commands.`, 'term-error');
+            }
+        }
+
+        function loadArticleInTerminal(topic) {
+            document.getElementById('sanctum').scrollIntoView({ behavior: 'smooth' });
+            if (topic === 'cpu') {
+                printLine('seeker@computopia:~$ cat /chronicles/cpu_architecture.txt', 'cmd-echo');
+                printLine('[DISPATCH #01: SILICON & GATES]\nEvery instruction goes through the Fetch -> Decode -> Execute -> Writeback cycle inside the CPU pipeline, driven by a quartz crystal oscillator pulsing billions of times per second (GHz).', 'term-response');
+            } else if (topic === 'crypto') {
+                printLine('seeker@computopia:~$ cat /chronicles/asymmetric_crypto.txt', 'cmd-echo');
+                printLine('[DISPATCH #02: TRAPDOOR FUNCTIONS]\nMultiplying two 2048-bit prime numbers takes milliseconds. Factoring their product back into the original primes takes classical supercomputers thousands of years.', 'term-response');
+            } else if (topic === 'ai') {
+                printLine('seeker@computopia:~$ cat /chronicles/neural_calculus.txt', 'cmd-echo');
+                printLine('[DISPATCH #03: MATRICES THAT DREAM]\nBy computing the gradient of the Loss Function with respect to millions of weights (∇L), a neural network iteratively steps downhill in high-dimensional space toward minimum error.', 'term-response');
+            }
+        }
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && input.value.trim() !== '') {
+                runCommand(input.value);
+                input.value = '';
+            }
+        });
+        // =====================================================================
+        // AUTHENTICATION VAULT CONTROLLER (LOGIN & REGISTER)
+        // =====================================================================
+        const authBackdrop = document.getElementById('authBackdrop');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const tabLogin = document.getElementById('tabLogin');
+        const tabRegister = document.getElementById('tabRegister');
+        const loreHeading = document.getElementById('loreHeading');
+        const loreSubtext = document.getElementById('loreSubtext');
+        const authAlert = document.getElementById('authAlert');
+        const authTriggerBtn = document.getElementById('authTriggerBtn');
+        const authBtnLabel = document.getElementById('authBtnLabel');
+
+        function openAuthModal(mode = 'login') {
+            // If user is already logged in, clicking asks if they want to log out
+            const savedUser = localStorage.getItem('computopia_initiate');
+            if (savedUser) {
+                if (confirm(`Logged in as Initiate [${savedUser}]. Do you wish to terminate your session (Logout)?`)) {
+                    localStorage.removeItem('computopia_initiate');
+                    updateNavbarAuthState();
+                }
+                return;
+            }
+            authBackdrop.classList.add('active');
+            switchAuthTab(mode);
+        }
+
+        function closeAuthModal() {
+            authBackdrop.classList.remove('active');
+            authAlert.classList.add('hidden');
+        }
+
+        function closeAuthOnOutsideClick(e) {
+            if (e.target === authBackdrop) closeAuthModal();
+        }
+
+        function switchAuthTab(mode) {
+            authAlert.classList.add('hidden');
+            if (mode === 'login') {
+                tabLogin.classList.add('active');
+                tabRegister.classList.remove('active');
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                loreHeading.innerText = 'Verify Your Identity';
+                loreSubtext.innerText = 'Enter your credentials to synchronize your progress, unlock restricted terminal commands, and access the deeper archives of Computopia.';
+            } else {
+                tabRegister.classList.add('active');
+                tabLogin.classList.remove('active');
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+                loreHeading.innerText = 'Inscribe New Initiate';
+                loreSubtext.innerText = 'Forge your cryptographic identity inside the Computopia Codex and select your primary realm of study.';
+            }
+        }
+
+        function togglePassVisibility(inputId, btn) {
+            const field = document.getElementById(inputId);
+            if (field.type === 'password') {
+                field.type = 'text';
+                btn.innerText = '🙈';
+            } else {
+                field.type = 'password';
+                btn.innerText = '👁️';
+            }
+        }
+
+        function evaluateEntropy(val) {
+            const fill = document.getElementById('entropyFill');
+            const label = document.getElementById('entropyLabel');
+            let score = 0;
+            if (val.length >= 6) score += 25;
+            if (val.length >= 10) score += 25;
+            if (/[A-Z]/.test(val) && /[0-9]/.test(val)) score += 25;
+            if (/[^A-Za-z0-9]/.test(val)) score += 25;
+
+            fill.style.width = score + '%';
+            if (score <= 25) {
+                fill.style.background = '#ef4444';
+                label.innerText = 'Entropy: Low (Vulnerable to brute-force)';
+            } else if (score <= 50) {
+                fill.style.background = '#f59e0b';
+                label.innerText = 'Entropy: Moderate (Standard cipher)';
+            } else if (score <= 75) {
+                fill.style.background = '#d4af37';
+                label.innerText = 'Entropy: Strong ( Cryptographically sound)';
+            } else {
+                fill.style.background = '#10b981';
+                label.innerText = 'Entropy: Maximum (AES-256 Vault Grade)';
+            }
+        }
+
+        function showAuthAlert(msg) {
+            authAlert.innerText = msg;
+            authAlert.classList.remove('hidden');
+        }
+
+        function handleAuthSubmit(e, mode) {
+            e.preventDefault();
+            let handle = '';
+            if (mode === 'login') {
+                handle = document.getElementById('loginIdentifier').value.split('@')[0];
+                showAuthAlert(`⚡ Verifying SHA-256 key signature for [${handle}]... Access Granted!`);
+            } else {
+                handle = document.getElementById('regHandle').value;
+                const realm = document.getElementById('regRealm').value;
+                showAuthAlert(`✦ Initiate [${handle}] inscribed under ${realm}! Mounting profile...`);
+            }
+
+            localStorage.setItem('computopia_initiate', handle);
+            setTimeout(() => {
+                updateNavbarAuthState();
+                closeAuthModal();
+            }, 1100);
+        }
+
+        function simulateOAuth(provider) {
+            showAuthAlert(`🔐 Handshaking with ${provider} OAuth 2.0 endpoint... Authenticated!`);
+            localStorage.setItem('computopia_initiate', `${provider}_Initiate`);
+            setTimeout(() => {
+                updateNavbarAuthState();
+                closeAuthModal();
+            }, 1000);
+        }
+
+        function triggerResetCipher(e) {
+            e.preventDefault();
+            showAuthAlert('📩 Recovery cipher dispatch link transmitted to your registered node.');
+        }
+
+        function updateNavbarAuthState() {
+            const savedUser = localStorage.getItem('computopia_initiate');
+            if (savedUser) {
+                authTriggerBtn.classList.add('logged-in');
+                authBtnLabel.innerText = `INITIATE: ${savedUser}`;
+            } else {
+                authTriggerBtn.classList.remove('logged-in');
+                authBtnLabel.innerText = 'Login / Join';
+            }
+        }
+
+        // Close modal with Escape key & initialize navbar state
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAuthModal();
+        });
+        updateNavbarAuthState();
+    </script>
+    <!-- =====================================================================
+       COMPUTOPIA — LOGIN & REGISTER AUTHENTICATION VAULT OVERLAY
+       ===================================================================== -->
+    <!-- =====================================================================
+       1. INITIATE PERSONNEL DROPDOWN MENU (SCROLLABLE DRAWER)
+       ===================================================================== -->
+    <div class="personnel-dropdown" id="personnelDropdown">
+
+        <!-- Top Identity Header with Interactive Profile Photo -->
+        <div class="pd-header">
+            <div class="pd-avatar-wrap" onclick="window.cycleProfileAvatar()" title="Click to change avatar">
+                <img id="pdAvatarImg"
+                    src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Savibhash&backgroundColor=09130f"
+                    alt="Initiate Avatar" />
+                <span class="pd-avatar-edit">📷</span>
+                <span class="pd-online-dot"></span>
+            </div>
+            <div class="pd-identity">
+                <div class="pd-name-row">
+                    <h4 id="pdHandle">SAVIBHASH</h4>
+                    <span class="pd-rank-badge">LVL 04</span>
+                </div>
+                <span class="pd-email" id="pdEmail">savibhash@computopia.core</span>
+                <span class="pd-realm" id="pdRealm">🧠 AI & Cybersecurity</span>
+            </div>
+        </div>
+
+        <!-- XP & Clearance Progress Bar -->
+        <div class="pd-xp-section">
+            <div class="pd-xp-labels">
+                <span>CLEARANCE: <strong>GRAND ARCHITECT</strong></span>
+                <span>2,450 / 3,000 XP</span>
+            </div>
+            <div class="pd-xp-bar">
+                <div class="pd-xp-fill" style="width: 82%;"></div>
+            </div>
+        </div>
+
+        <!-- Scrollable Inner Body -->
+        <div class="pd-scroll-body">
+
+            <!-- Quick Telemetry Stats -->
+            <div class="pd-stats-grid">
+                <div class="pd-stat-box">
+                    <strong>10</strong>
+                    <span>Codex Modules</span>
+                </div>
+                <div class="pd-stat-box">
+                    <strong>06</strong>
+                    <span>Realms Unlocked</span>
+                </div>
+                <div class="pd-stat-box">
+                    <strong>99.8%</strong>
+                    <span>Sync Integrity</span>
+                </div>
+            </div>
+
+            <!-- Section: Command & Dossier Links -->
+            <div class="pd-section-label">PERSONNEL DOSSIER & NAVIGATION</div>
+            <ul class="pd-menu-list">
+                <li>
+                    <button type="button" class="pd-menu-item" onclick="window.togglePdSubpanel('dashboardPanel')">
+                        <span class="pd-icon">📊</span>
+                        <div class="pd-item-text">
+                            <strong>Initiate Dashboard</strong>
+                            <small>Active study progress, mastery & metrics</small>
+                        </div>
+                        <span class="pd-arrow">▾</span>
+                    </button>
+                    <!-- Expandable Mini-Dashboard inside Drawer -->
+                    <div class="pd-subpanel hidden" id="dashboardPanel">
+                        <div class="pd-progress-row">
+                            <span>⚡ Core Architecture & Binary</span>
+                            <span class="emerald-txt">100%</span>
+                        </div>
+                        <div class="pd-progress-row">
+                            <span>🧠 Neural Networks & LLMs</span>
+                            <span class="gold-txt">85%</span>
+                        </div>
+                        <div class="pd-progress-row">
+                            <span>🛡️ Cryptography & Linux Sec</span>
+                            <span class="gold-txt">90%</span>
+                        </div>
+                        <a href="pages/fundamentals.html" class="pd-sub-btn">Open Full Codex →</a>
+                    </div>
+                </li>
+
+                <li>
+                    <button type="button" class="pd-menu-item" onclick="window.togglePdSubpanel('profileEditPanel')">
+                        <span class="pd-icon">👤</span>
+                        <div class="pd-item-text">
+                            <strong>Edit Personnel Profile</strong>
+                            <small>Update codename, realm or upload photo URL</small>
+                        </div>
+                        <span class="pd-arrow">▾</span>
+                    </button>
+                    <!-- Expandable Profile Editor inside Drawer -->
+                    <div class="pd-subpanel hidden" id="profileEditPanel">
+                        <label class="pd-sub-label">Update Handle</label>
+                        <input type="text" id="editHandleInput" class="pd-sub-input" placeholder="New Codename..." />
+                        <label class="pd-sub-label">Custom Avatar Image URL (Optional)</label>
+                        <input type="url" id="editAvatarInput" class="pd-sub-input" placeholder="https://..." />
+                        <button type="button" class="pd-sub-save" onclick="window.saveProfileChanges()">✓ Save
+                            Dossier</button>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="pages/fundamentals.html" class="pd-menu-item">
+                        <span class="pd-icon">📖</span>
+                        <div class="pd-item-text">
+                            <strong>CS Fundamentals Encyclopedia</strong>
+                            <small>Jump to 10 interactive textbook modules</small>
+                        </div>
+                        <span class="pd-arrow">↗</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#sanctum" class="pd-menu-item" onclick="window.closePersonnelDropdown()">
+                        <span class="pd-icon">💻</span>
+                        <div class="pd-item-text">
+                            <strong>Command Sanctum (CLI)</strong>
+                            <small>Execute root shell commands</small>
+                        </div>
+                        <span class="pd-arrow">↗</span>
+                    </a>
+                </li>
+
+                <li>
+                    <button type="button" class="pd-menu-item" onclick="window.togglePdSubpanel('keysPanel')">
+                        <span class="pd-icon">🔑</span>
+                        <div class="pd-item-text">
+                            <strong>SSH & Cryptographic Keys</strong>
+                            <small>View your active ED25519 fingerprint</small>
+                        </div>
+                        <span class="pd-arrow">▾</span>
+                    </button>
+                    <div class="pd-subpanel hidden" id="keysPanel">
+                        <code class="pd-fingerprint">SHA256:9f8e7d6c5b4a...computopia_ed25519</code>
+                        <button type="button" class="pd-sub-save"
+                            onclick="navigator.clipboard.writeText('SHA256:9f8e7d6c5b4a_computopia_ed25519'); this.innerText='✓ Fingerprint Copied!'">Copy
+                            Public Key</button>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Section: System Settings Toggles -->
+            <div class="pd-section-label">INTERFACE & SYSTEM SETTINGS</div>
+            <div class="pd-settings-list">
+                <label class="pd-toggle-row">
+                    <div>
+                        <strong>📡 Top Telemetry Bar</strong>
+                        <small>Show system clock & cipher bar</small>
+                    </div>
+                    <input type="checkbox" checked onchange="window.toggleTelemetryBar(this.checked)" />
+                </label>
+
+                <label class="pd-toggle-row">
+                    <div>
+                        <strong>✨ Arcane Glow Effects</strong>
+                        <small>Ambient emerald & gold shadows</small>
+                    </div>
+                    <input type="checkbox" checked
+                        onchange="document.body.style.filter = this.checked ? 'none' : 'contrast(1.05) saturate(0.8)'" />
+                </label>
+
+                <label class="pd-toggle-row">
+                    <div>
+                        <strong>🛡️ Zero-Trust Session Lock</strong>
+                        <small>Keep encrypted session active</small>
+                    </div>
+                    <input type="checkbox" checked />
+                </label>
+            </div>
+
+        </div>
+
+        <!-- Bottom Logout Footer -->
+        <div class="pd-footer">
+            <button type="button" class="pd-logout-btn" onclick="window.terminateInitiateSession()">
+                <span>🚪</span> Terminate Session (Logout)
+            </button>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+       2. LOGIN & REGISTER AUTHENTICATION VAULT MODAL
+       ===================================================================== -->
+    <div class="auth-backdrop" id="authBackdrop">
+        <div class="auth-vault-card" id="authVaultCard">
+
+            <button type="button" class="auth-close-btn" onclick="window.closeAuthModal()"
+                title="Close Vault (Esc)">✕</button>
+
+            <div class="auth-lore-pane">
+                <div class="lore-top">
+                    <div class="arcane-crest">
+                        <div class="crest-ring ring-1"></div>
+                        <div class="crest-ring ring-2"></div>
+                        <span class="crest-sigil">❖</span>
+                    </div>
+                    <span class="lore-eyebrow">CRYPTOGRAPHIC GATEWAY</span>
+                    <h3 id="loreHeading">Verify Your Identity</h3>
+                    <p id="loreSubtext">
+                        Enter your credentials to synchronize your progress, unlock restricted terminal commands, and
+                        access the deeper archives of Computopia.
+                    </p>
+                </div>
+
+                <div class="lore-telemetry">
+                    <div class="tele-row">
+                        <span>PROTOCOL</span>
+                        <strong>ZERO-KNOWLEDGE TLS 1.3</strong>
+                    </div>
+                    <div class="tele-row">
+                        <span>KEY DERIVATION</span>
+                        <strong>ARGON2ID / SHA-256</strong>
+                    </div>
+                    <div class="tele-row">
+                        <span>NODE STATUS</span>
+                        <strong class="status-ok">● VAULT ONLINE</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-form-pane">
+                <div class="auth-tabs">
+                    <button type="button" class="auth-tab active" id="tabLogin" onclick="window.switchAuthTab('login')">
+                        🔐 Login
+                    </button>
+                    <button type="button" class="auth-tab" id="tabRegister" onclick="window.switchAuthTab('register')">
+                        📜 Register Initiate
+                    </button>
+                </div>
+
+                <div class="auth-alert hidden" id="authAlert"></div>
+
+                <!-- FORM 1: LOGIN -->
+                <form id="loginForm" class="auth-form" onsubmit="window.handleAuthSubmit(event, 'login')">
+                    <div class="input-group">
+                        <label for="loginIdentifier">INITIATE HANDLE OR EMAIL</label>
+                        <div class="input-field-wrap">
+                            <span class="field-icon">👤</span>
+                            <input type="text" id="loginIdentifier" placeholder="e.g., Savibhash or neo@computopia.io"
+                                required autocomplete="username" />
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="label-row">
+                            <label for="loginPassword">MASTER PASSKEY</label>
+                            <a href="#" class="forgot-link" onclick="window.triggerResetCipher(event)">Lost Passkey?</a>
+                        </div>
+                        <div class="input-field-wrap">
+                            <span class="field-icon">🔑</span>
+                            <input type="password" id="loginPassword" placeholder="••••••••••••" required
+                                autocomplete="current-password" />
+                            <button type="button" class="peek-btn"
+                                onclick="window.togglePassVisibility('loginPassword', this)">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="auth-options-row">
+                        <label class="custom-check">
+                            <input type="checkbox" checked />
+                            <span>Persist encrypted session token</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-auth-submit">
+                        ⚡ Authenticate & Enter
+                    </button>
+
+                    <div class="oauth-divider"><span>OR CONNECT VIA PROTOCOL</span></div>
+
+                    <div class="oauth-grid">
+                        <button type="button" class="oauth-btn" onclick="window.simulateOAuth('GitHub')">
+                            🐙 GitHub
+                        </button>
+                        <button type="button" class="oauth-btn" onclick="window.simulateOAuth('Google')">
+                            🌐 Google
+                        </button>
+                        <button type="button" class="oauth-btn" onclick="window.simulateOAuth('SSH')">
+                            💻 SSH Key
+                        </button>
+                    </div>
+                </form>
+
+                <!-- FORM 2: REGISTER -->
+                <form id="registerForm" class="auth-form hidden" onsubmit="window.handleAuthSubmit(event, 'register')">
+                    <div class="input-row-2col">
+                        <div class="input-group">
+                            <label for="regHandle">CODENAME / HANDLE</label>
+                            <div class="input-field-wrap">
+                                <span class="field-icon">⚡</span>
+                                <input type="text" id="regHandle" placeholder="e.g., Savibhash" required />
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="regRealm">PRIMARY REALM</label>
+                            <div class="input-field-wrap">
+                                <select id="regRealm" required>
+                                    <option value="🧠 AI & Neural Nets">🧠 AI & Neural Nets</option>
+                                    <option value="🛡️ Cybersecurity">🛡️ Cybersecurity</option>
+                                    <option value="📊 Data Science">📊 Data Science</option>
+                                    <option value="💻 Full-Stack Eng">💻 Full-Stack Eng</option>
+                                    <option value="🔌 Embedded & Robotics">🔌 Embedded & Robotics</option>
+                                    <option value="🌌 Quantum & Theory">🌌 Quantum & Theory</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regEmail">ENCRYPTED DISPATCH (EMAIL)</label>
+                        <div class="input-field-wrap">
+                            <span class="field-icon">✉️</span>
+                            <input type="email" id="regEmail" placeholder="initiate@domain.com" required
+                                autocomplete="email" />
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regPassword">FORGE MASTER PASSKEY</label>
+                        <div class="input-field-wrap">
+                            <span class="field-icon">🛡️</span>
+                            <input type="password" id="regPassword" placeholder="Minimum 8 characters..." required
+                                oninput="window.evaluateEntropy(this.value)" />
+                            <button type="button" class="peek-btn"
+                                onclick="window.togglePassVisibility('regPassword', this)">👁️</button>
+                        </div>
+                        <div class="entropy-meter">
+                            <div class="entropy-bar-bg">
+                                <div class="entropy-bar-fill" id="entropyFill"></div>
+                            </div>
+                            <span class="entropy-label" id="entropyLabel">Entropy: Awaiting input...</span>
+                        </div>
+                    </div>
+
+                    <div class="auth-options-row">
+                        <label class="custom-check">
+                            <input type="checkbox" required />
+                            <span>I accept the Computopia Codex & Zero-Trust Charter</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-auth-submit">
+                        ✦ Inscribe Initiate Record
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+       3. AUTH & PERSONNEL DROPDOWN CONTROLLER SCRIPT
+       ===================================================================== -->
+    <script>
+        const avatarSeeds = ['Savibhash', 'Turing', 'Cipher', 'Nexus', 'Quantum', 'Kali'];
+        let currentSeedIndex = 0;
+
+        // Clicking the top-right Navbar button:
+        // - If logged in -> Smoothly toggles the Personnel Dropdown Menu
+        // - If logged out -> Opens the Login/Register Modal
+        window.openAuthModal = function (mode = 'login') {
+            const savedUser = localStorage.getItem('computopia_initiate');
+            if (savedUser) {
+                window.togglePersonnelDropdown();
+                return;
+            }
+            const backdrop = document.getElementById('authBackdrop');
+            if (backdrop) {
+                backdrop.classList.add('active');
+                window.switchAuthTab(mode);
+            }
+        };
+
+        window.togglePersonnelDropdown = function () {
+            const dropdown = document.getElementById('personnelDropdown');
+            const triggerBtn = document.getElementById('authTriggerBtn');
+            if (!dropdown || !triggerBtn) return;
+
+            // Align dropdown directly beneath the Initiate button
+            const rect = triggerBtn.getBoundingClientRect();
+            dropdown.style.top = (rect.bottom + 10) + 'px';
+            dropdown.style.right = (window.innerWidth - rect.right) + 'px';
+
+            dropdown.classList.toggle('open');
+        };
+
+        window.closePersonnelDropdown = function () {
+            const dropdown = document.getElementById('personnelDropdown');
+            if (dropdown) dropdown.classList.remove('open');
+        };
+
+        window.togglePdSubpanel = function (panelId) {
+            const panel = document.getElementById(panelId);
+            if (panel) panel.classList.toggle('hidden');
+        };
+
+        window.cycleProfileAvatar = function () {
+            currentSeedIndex = (currentSeedIndex + 1) % avatarSeeds.length;
+            const newUrl = `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${avatarSeeds[currentSeedIndex]}&backgroundColor=09130f`;
+            document.getElementById('pdAvatarImg').src = newUrl;
+            localStorage.setItem('computopia_avatar', newUrl);
+        };
+
+        window.saveProfileChanges = function () {
+            const newHandle = document.getElementById('editHandleInput').value.trim();
+            const newAvatar = document.getElementById('editAvatarInput').value.trim();
+
+            if (newHandle) {
+                localStorage.setItem('computopia_initiate', newHandle);
+            }
+            if (newAvatar) {
+                localStorage.setItem('computopia_avatar', newAvatar);
+            }
+            window.updateNavbarAuthState();
+            document.getElementById('profileEditPanel').classList.add('hidden');
+        };
+
+        window.toggleTelemetryBar = function (show) {
+            const bar = document.querySelector('.telemetry-bar');
+            if (bar) bar.style.display = show ? 'flex' : 'none';
+        };
+
+        window.terminateInitiateSession = function () {
+            localStorage.removeItem('computopia_initiate');
+            window.closePersonnelDropdown();
+            window.updateNavbarAuthState();
+        };
+
+        window.closeAuthModal = function () {
+            const backdrop = document.getElementById('authBackdrop');
+            const alertBox = document.getElementById('authAlert');
+            if (backdrop) backdrop.classList.remove('active');
+            if (alertBox) alertBox.classList.add('hidden');
+        };
+
+        window.switchAuthTab = function (mode) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabLogin = document.getElementById('tabLogin');
+            const tabRegister = document.getElementById('tabRegister');
+            const loreHeading = document.getElementById('loreHeading');
+            const loreSubtext = document.getElementById('loreSubtext');
+            const alertBox = document.getElementById('authAlert');
+
+            if (alertBox) alertBox.classList.add('hidden');
+
+            if (mode === 'login') {
+                tabLogin.classList.add('active');
+                tabRegister.classList.remove('active');
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                loreHeading.innerText = 'Verify Your Identity';
+                loreSubtext.innerText = 'Enter your credentials to synchronize your progress, unlock restricted terminal commands, and access the deeper archives of Computopia.';
+            } else {
+                tabRegister.classList.add('active');
+                tabLogin.classList.remove('active');
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+                loreHeading.innerText = 'Inscribe New Initiate';
+                loreSubtext.innerText = 'Forge your cryptographic identity inside the Computopia Codex and select your primary realm of study.';
+            }
+        };
+
+        window.togglePassVisibility = function (inputId, btn) {
+            const field = document.getElementById(inputId);
+            if (field.type === 'password') {
+                field.type = 'text';
+                btn.innerText = '🙈';
+            } else {
+                field.type = 'password';
+                btn.innerText = '👁️';
+            }
+        };
+
+        window.evaluateEntropy = function (val) {
+            const fill = document.getElementById('entropyFill');
+            const label = document.getElementById('entropyLabel');
+            let score = 0;
+            if (val.length >= 6) score += 25;
+            if (val.length >= 10) score += 25;
+            if (/[A-Z]/.test(val) && /[0-9]/.test(val)) score += 25;
+            if (/[^A-Za-z0-9]/.test(val)) score += 25;
+
+            fill.style.width = score + '%';
+            if (score <= 25) {
+                fill.style.background = '#ef4444';
+                label.innerText = 'Entropy: Low (Vulnerable to brute-force)';
+            } else if (score <= 50) {
+                fill.style.background = '#f59e0b';
+                label.innerText = 'Entropy: Moderate (Standard cipher)';
+            } else if (score <= 75) {
+                fill.style.background = '#d4af37';
+                label.innerText = 'Entropy: Strong (Cryptographically sound)';
+            } else {
+                fill.style.background = '#10b981';
+                label.innerText = 'Entropy: Maximum (AES-256 Vault Grade)';
+            }
+        };
+
+        window.showAuthAlert = function (msg) {
+            const alertBox = document.getElementById('authAlert');
+            alertBox.innerText = msg;
+            alertBox.classList.remove('hidden');
+        };
+
+        window.handleAuthSubmit = function (e, mode) {
+            e.preventDefault();
+            let handle = '';
+            if (mode === 'login') {
+                const raw = document.getElementById('loginIdentifier').value.trim();
+                handle = raw.split('@')[0];
+                localStorage.setItem('computopia_email', raw.includes('@') ? raw : `${handle.toLowerCase()}@computopia.core`);
+                window.showAuthAlert(`⚡ Verifying SHA-256 signature for [${handle}]... Access Granted!`);
+            } else {
+                handle = document.getElementById('regHandle').value.trim();
+                const email = document.getElementById('regEmail').value.trim();
+                const realm = document.getElementById('regRealm').value;
+                localStorage.setItem('computopia_email', email);
+                localStorage.setItem('computopia_realm', realm);
+                window.showAuthAlert(`✦ Initiate [${handle}] inscribed under ${realm}!`);
+            }
+
+            localStorage.setItem('computopia_initiate', handle);
+            setTimeout(() => {
+                window.updateNavbarAuthState();
+                window.closeAuthModal();
+            }, 950);
+        };
+
+        window.simulateOAuth = function (provider) {
+            window.showAuthAlert(`🔐 Handshaking with ${provider} OAuth 2.0... Authenticated!`);
+            localStorage.setItem('computopia_initiate', `${provider}_Initiate`);
+            setTimeout(() => {
+                window.updateNavbarAuthState();
+                window.closeAuthModal();
+            }, 900);
+        };
+
+        window.triggerResetCipher = function (e) {
+            e.preventDefault();
+            window.showAuthAlert('📩 Recovery cipher dispatch transmitted to your registered email.');
+        };
+
+        window.updateNavbarAuthState = function () {
+            const btn = document.getElementById('authTriggerBtn');
+            const label = document.getElementById('authBtnLabel');
+            const savedUser = localStorage.getItem('computopia_initiate');
+            const savedEmail = localStorage.getItem('computopia_email') || `${(savedUser || 'initiate').toLowerCase()}@computopia.core`;
+            const savedRealm = localStorage.getItem('computopia_realm') || '🧠 AI & Cybersecurity';
+            const savedAvatar = localStorage.getItem('computopia_avatar');
+
+            if (!btn || !label) return;
+
+            if (savedUser) {
+                btn.classList.add('logged-in');
+                label.innerText = `INITIATE: ${savedUser.toUpperCase()} ▾`;
+                document.getElementById('pdHandle').innerText = savedUser.toUpperCase();
+                document.getElementById('pdEmail').innerText = savedEmail;
+                document.getElementById('pdRealm').innerText = savedRealm;
+                if (savedAvatar) {
+                    document.getElementById('pdAvatarImg').src = savedAvatar;
+                }
+            } else {
+                btn.classList.remove('logged-in');
+                label.innerText = 'Login / Join';
+            }
+        };
+
+        // Close dropdown or modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const dropdown = document.getElementById('personnelDropdown');
+            const triggerBtn = document.getElementById('authTriggerBtn');
+            if (dropdown && dropdown.classList.contains('open')) {
+                if (!dropdown.contains(e.target) && !triggerBtn.contains(e.target)) {
+                    window.closePersonnelDropdown();
+                }
+            }
+            if (e.target.id === 'authBackdrop') {
+                window.closeAuthModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                window.closeAuthModal();
+                window.closePersonnelDropdown();
+            }
+        });
+
+        window.updateNavbarAuthState();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-comfort">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMPUTOPIA | The 6 Realms & Domain Roadmaps</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='c' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='60%25' stop-color='%23e2e8f0'/%3E%3Cstop offset='100%25' stop-color='%2394a3b8'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='55%25' stop-color='%23cbd5e1'/%3E%3Cstop offset='100%25' stop-color='%2364748b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='45' rx='28' ry='7' fill='%23000000' opacity='0.45'/%3E%3Cpath d='M3 41 C12 52 52 52 61 41 C54 34 46 35 32 35 C18 35 10 34 3 41 Z' fill='url(%23b)' stroke='%23ffffff' stroke-width='1'/%3E%3Cpath d='M15 38 L21 15 C22 11 27 14 32 14 C37 14 42 11 43 15 L49 38 Z' fill='url(%23c)'/%3E%3Cpath d='M22 14 C26 19 38 19 42 14 C37 16 27 16 22 14 Z' fill='%2394a3b8'/%3E%3Cpath d='M32 14 L32 38 L49 38 L43 15 C42 11 37 14 32 14 Z' fill='%23475569' opacity='0.25'/%3E%3Cpath d='M15.5 33 C26 36 38 36 48.5 33 L49 38 C38 41 26 41 15 38 Z' fill='%230f172a'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/fundamentals.css" />
+</head>
+
+<body>
+
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Shared Top Navigation -->
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="../home.html" class="brand-link">
+                <span class="sigil">❖</span>
+                <div>
+                    <span class="brand-name">COMPUTOPIA</span>
+                    <span class="brand-sub">DOMAINS & REALMS</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <button class="view-btn active" id="btnDirectoryView" onclick="showDirectory()">
+                🧭 All 6 Realms Index
+            </button>
+            <a href="fundamentals.html" class="back-home-btn">⚙️ Fundamentals</a>
+            <a href="visual-vault.html" class="back-home-btn">🎞️ Visual Vault</a>
+            <a href="articles.html" class="back-home-btn">📜 Articles</a>
+            <a href="terminal.html" class="back-home-btn">💻 Terminal Lab</a>
+        </div>
+
+        <div class="nav-right">
+            <button class="theme-toggle" onclick="toggleEyeComfort()">
+                👁️ <span id="themeLabel">Sepia Paper Mode</span>
+            </button>
+            <a href="../home.html" class="back-home-btn">↩ Home Hub</a>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <!-- Persistent Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-eyebrow">SELECT A REALM</span>
+                <h3>The 6 Specializations</h3>
+            </div>
+            <ul class="field-list" id="sidebarList"></ul>
+            <div class="sidebar-footer">
+                <p>🧭 <strong>Domain Blueprints:</strong> Each realm contains an end-to-end engineering roadmap,
+                    production architecture, math pillars, and real-world projects.</p>
+            </div>
+        </aside>
+
+        <!-- Main Stage -->
+        <main class="main-stage">
+            <!-- Directory Grid View -->
+            <section id="directoryView">
+                <div class="hero-banner">
+                    <span class="eyebrow">CHAPTER II • SPECIALIZED DISCIPLINES</span>
+                    <h1>The Six Realms of Computopia</h1>
+                    <p>
+                        Choose a specialization below to inspect its complete industry architecture, mathematical
+                        prerequisites, 4-stage mastery roadmap, production toolchain, and flagship projects.
+                    </p>
+                </div>
+                <div class="directory-grid" id="directoryGrid"></div>
+            </section>
+
+            <!-- Full Domain Treatise View -->
+            <article id="articleView" class="hidden">
+                <div class="article-topbar">
+                    <button class="btn-back-index" onclick="showDirectory()">← Back to All Realms</button>
+                    <div class="article-QuickNav">
+                        <a href="#dom-arch">1. Architecture</a>
+                        <a href="#dom-roadmap">2. Mastery Roadmap</a>
+                        <a href="#dom-math">3. Core Math</a>
+                        <a href="#dom-projects">4. Flagship Projects</a>
+                        <a href="#dom-videos">5. Masterclasses</a>
+                    </div>
+                </div>
+                <div id="articleContent"></div>
+                <div class="article-pagination" id="articlePagination"></div>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        const csDomains = [
+            {
+                id: "ai-ml-realm",
+                num: "01",
+                icon: "🧠",
+                title: "Artificial Intelligence, Deep Learning & LLM Engineering",
+                category: "Cognitive Computing",
+                roles: "AI Research Scientist • ML Engineer • LLM Systems Architect",
+                summary: "Designing, training, fine-tuning, and deploying deep neural networks, computer vision pipelines, and multi-agent Large Language Model systems.",
+                tagline: "Building autonomous synthetic intelligence from linear algebra, calculus, and GPU clusters.",
+                overview: [
+                    "Modern AI Engineering bridges theoretical machine learning with high-throughput distributed systems. Engineers in this realm do not merely call APIs—they design neural architectures, curate terabyte-scale pre-training datasets, write custom CUDA kernels, fine-tune foundation models with LoRA/QLoRA, and deploy low-latency inference engines.",
+                    "Mastering this realm requires fluency across four layers: 1) Mathematical Foundations (Matrix Calculus, Probability, Optimization), 2) Classical ML (XGBoost, SVMs, Feature Engineering), 3) Deep Learning (CNNs, Diffusion Models, Transformers), and 4) Production MLOps (Quantization, vLLM, Vector RAG Databases)."
+                ],
+                svgDiagram: `
+          <svg viewBox="0 0 800 250" class="fig-svg">
+            <rect x="20" y="70" width="150" height="105" rx="8" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="2"/>
+            <text x="38" y="102" fill="#52b788" font-weight="bold" font-size="13">1. Data Corpus</text>
+            <text x="38" y="125" fill="currentColor" font-size="11">• Tokenization (BPE)</text>
+            <text x="38" y="145" fill="currentColor" font-size="11">• Tensor Sharding</text>
+            <line x1="170" y1="122" x2="220" y2="122" stroke="#c9a959" stroke-width="2"/>
+            <rect x="220" y="70" width="170" height="105" rx="8" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="2"/>
+            <text x="238" y="102" fill="#c9a959" font-weight="bold" font-size="13">2. GPU Pre-Training</text>
+            <text x="238" y="125" fill="currentColor" font-size="11">• PyTorch DDP / FSDP</text>
+            <text x="238" y="145" fill="currentColor" font-size="11">• FlashAttention-2</text>
+            <line x1="390" y1="122" x2="440" y2="122" stroke="#c9a959" stroke-width="2"/>
+            <rect x="440" y="70" width="160" height="105" rx="8" fill="rgba(100,181,246,0.1)" stroke="#64b5f6" stroke-width="2"/>
+            <text x="458" y="102" fill="#64b5f6" font-weight="bold" font-size="13">3. Alignment & RAG</text>
+            <text x="458" y="125" fill="currentColor" font-size="11">• SFT + LoRA / DPO</text>
+            <text x="458" y="145" fill="currentColor" font-size="11">• Vector Embeddings</text>
+            <line x1="600" y1="122" x2="645" y2="122" stroke="#52b788" stroke-width="2"/>
+            <rect x="645" y="70" width="135" height="105" rx="8" fill="rgba(224,122,95,0.12)" stroke="#e07a5f" stroke-width="2"/>
+            <text x="660" y="102" fill="#e07a5f" font-weight="bold" font-size="13">4. Edge / Cloud</text>
+            <text x="660" y="125" fill="currentColor" font-size="11">• INT4 Quantized</text>
+            <text x="660" y="145" fill="currentColor" font-size="11">• KV-Cache Engine</text>
+          </svg>
+        `,
+                roadmap: [
+                    { stage: "Phase I: Mathematical & Python Core", items: "Linear Algebra (Eigenvectors, SVD, Matrix Multiplication), Multivariable Calculus (Gradients, Jacobians, Chain Rule), Probability Theory, NumPy, Pandas, Matplotlib." },
+                    { stage: "Phase II: Classical Machine Learning", items: "Linear & Logistic Regression, Decision Trees, Random Forests, XGBoost, SVMs, K-Means, PCA, Cross-Validation, Scikit-Learn." },
+                    { stage: "Phase III: Deep Neural Networks", items: "MLPs, Backpropagation from scratch, PyTorch tensors & autograd, CNNs (ResNet, YOLO), Sequence Models, Vision Transformers." },
+                    { stage: "Phase IV: LLMs, RAG & Production MLOps", items: "Transformer Self-Attention, LoRA/QLoRA Fine-Tuning, Vector Databases (FAISS/Chroma), LangChain/LlamaIndex Agents, ONNX/TensorRT." }
+                ],
+                mathEquations: [
+                    { title: "LoRA (Low-Rank Adaptation) Weight Update Decomposition", eq: "W_updated = W₀ + ΔW = W₀ + (B · A)   where B ∈ ℝ^(d×r), A ∈ ℝ^(r×k), rank r ≪ min(d,k)", desc: "Freezes billions of pretrained weights W₀ and trains tiny rank-decomposed matrices A and B, cutting VRAM usage by 90%+." },
+                    { title: "Contrastive Cosine Loss for Vector RAG Retrieval", eq: "sim(q, d) = (E(q) · E(d)) / (||E(q)||₂ · ||E(d)||₂)", desc: "Aligns query embeddings E(q) and relevant document chunks E(d) in high-dimensional semantic space." }
+                ],
+                projects: [
+                    "1. Build 'Micrograd & NanoGPT': Write an automatic differentiation engine and character-level Transformer from scratch in pure Python/PyTorch.",
+                    "2. Local RAG Research Assistant: Build a local PDF/Codebase question-answering system using hybrid BM25 + Vector Embeddings and a quantized Llama model.",
+                    "3. Real-Time Computer Vision Pipeline: Train a custom YOLOv8 object detector and deploy it at 60 FPS with OpenCV."
+                ],
+                videos: [
+                    { title: "Neural Networks: Zero to Hero (Complete Series)", channel: "Andrej Karpathy", duration: "Playlist", url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" },
+                    { title: "Stanford CS229: Machine Learning Full Course", channel: "Stanford Online", duration: "Playlist", url: "https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU" }
+                ]
+            },
+            {
+                id: "cyber-realm",
+                num: "02",
+                icon: "🛡️",
+                title: "Cybersecurity, Offensive Pentesting & Cryptography",
+                category: "Digital Warfare & Defense",
+                roles: "Penetration Tester (Red Team) • Security Architect • Cryptographer",
+                summary: "Securing Linux kernels, auditing network protocols, exploiting web and binary vulnerabilities, and implementing zero-trust cryptographic systems.",
+                tagline: "To defend the fortress, you must first understand every way its walls can be breached.",
+                overview: [
+                    "Cybersecurity demands deep, cross-cutting mastery of how computers actually work beneath abstractions. Where a regular developer sees a login form or a C function, a security engineer sees SQL abstract syntax trees, HTTP session cookies, stack frames, CPU registers (`RSP`, `RIP`), and TLS cipher suites.",
+                    "This realm unites offensive security (Red Teaming, ethical hacking, reverse engineering, exploit development) with defensive engineering (Blue Teaming, SIEM telemetry, Linux kernel hardening, and zero-knowledge cryptography)."
+                ],
+                svgDiagram: `
+          <svg viewBox="0 0 800 240" class="fig-svg">
+            <rect x="25" y="60" width="165" height="115" rx="8" fill="rgba(224,122,95,0.1)" stroke="#e07a5f" stroke-width="2"/>
+            <text x="42" y="92" fill="#e07a5f" font-weight="bold" font-size="13">1. Reconnaissance</text>
+            <text x="42" y="118" fill="currentColor" font-size="11">• Nmap Port Discovery</text>
+            <text x="42" y="140" fill="currentColor" font-size="11">• Subdomain & OSINT</text>
+            <line x1="190" y1="118" x2="230" y2="118" stroke="#c9a959" stroke-width="2"/>
+            <rect x="230" y="60" width="165" height="115" rx="8" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="2"/>
+            <text x="248" y="92" fill="#c9a959" font-weight="bold" font-size="13">2. Vulnerability Audit</text>
+            <text x="248" y="118" fill="currentColor" font-size="11">• OWASP Web Proxying</text>
+            <text x="248" y="140" fill="currentColor" font-size="11">• ELF Binary Analysis</text>
+            <line x1="395" y1="118" x2="435" y2="118" stroke="#c9a959" stroke-width="2"/>
+            <rect x="435" y="60" width="160" height="115" rx="8" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="2"/>
+            <text x="452" y="92" fill="#52b788" font-weight="bold" font-size="13">3. Hardening</text>
+            <text x="452" y="118" fill="currentColor" font-size="11">• SELinux / AppArmor</text>
+            <text x="452" y="140" fill="currentColor" font-size="11">• ASLR + Stack Canary</text>
+            <line x1="595" y1="118" x2="635" y2="118" stroke="#52b788" stroke-width="2"/>
+            <rect x="635" y="60" width="145" height="115" rx="8" fill="rgba(100,181,246,0.1)" stroke="#64b5f6" stroke-width="2"/>
+            <text x="650" y="92" fill="#64b5f6" font-weight="bold" font-size="13">4. Zero-Trust</text>
+            <text x="650" y="118" fill="currentColor" font-size="11">• mTLS & Ed25519</text>
+            <text x="650" y="140" fill="currentColor" font-size="11">• AES-256-GCM Vault</text>
+          </svg>
+        `,
+                roadmap: [
+                    { stage: "Phase I: Linux Internals & Networking", items: "Kali/Ubuntu CLI mastery, File permissions (SUID/SGID), Bash scripting, SSH tunneling, TCP/IP packet analysis with Wireshark & tcpdump, OverTheWire Bandit." },
+                    { stage: "Phase II: Web Application Security (OWASP)", items: "HTTP/HTTPS internals, SQL Injection, XSS, CSRF, SSRF, JWT authentication flaws, Burp Suite interception, PortSwigger Web Security Academy." },
+                    { stage: "Phase III: Applied Cryptography", items: "Symmetric ciphers (AES-GCM, ChaCha20), Asymmetric (RSA, Elliptic Curve Diffie-Hellman), Hashing (SHA-256, Argon2), TLS 1.3 handshakes." },
+                    { stage: "Phase IV: Binary Exploitation & Reverse Engineering", items: "x86-64 Assembly, GDB debugging, Ghidra decompilation, Stack Buffer Overflows, Return-Oriented Programming (ROP), Kernel privilege escalation." }
+                ],
+                mathEquations: [
+                    { title: "Elliptic Curve Cryptography (ECC) Group Law over Finite Fields", eq: "y² ≡ x³ + ax + b (mod p)     |     Q = k · G (Scalar Point Multiplication)", desc: "Computing Q given scalar k and base point G is fast, but recovering secret key k from Q (Elliptic Curve Discrete Logarithm) is infeasible." },
+                    { title: "Authenticated Encryption with Associated Data (AES-GCM)", eq: "(C, Tag) = Encrypt_K(Nonce, Plaintext, AAD)", desc: "Simultaneously guarantees message confidentiality and tamper-proof integrity." }
+                ],
+                projects: [
+                    "1. Custom Python Port Scanner & Packet Sniffer: Build a raw-socket SYN scanner and protocol analyzer from scratch.",
+                    "2. Vulnerable Web Lab & Patch Suite: Build a Node.js/SQL app demonstrating SQLi, XSS, and CSRF, then write the hardened middleware patches.",
+                    "3. CLI Password Manager Vault: Build an Argon2id + AES-256-GCM encrypted local credential vault in Python or C++."
+                ],
+                videos: [
+                    { title: "OverTheWire Bandit & Binary Exploitation Series", channel: "LiveOverflow", duration: "Playlist", url: "https://www.youtube.com/playlist?list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN" },
+                    { title: "MIT 6.858 Computer Systems Security Lectures", channel: "MIT OpenCourseWare", duration: "Full Course", url: "https://www.youtube.com/playlist?list=PLUl4u3cNGP62K2DjQLRxDNRi0z2IRWnNh" }
+                ]
+            },
+            {
+                id: "datasci-realm",
+                num: "03",
+                icon: "📊",
+                title: "Data Science, Statistical Inference & Big Data Engineering",
+                category: "Empirical Analytics",
+                roles: "Data Scientist • Quantitative Analyst • Data Platform Engineer",
+                summary: "Transforming massive, noisy datasets into statistical certainty, causal inference, interactive visual dashboards, and distributed ETL pipelines.",
+                tagline: "Turning petabytes of raw digital telemetry into mathematical foresight.",
+                overview: [
+                    "Data Science combines rigorous statistical hypothesis testing with scalable software engineering. Whether analyzing genomic sequences, high-frequency financial order books, or global user telemetry, data scientists separate true causal signals from spurious correlations.",
+                    "This realm spans both Quantitative Analytics (Bayesian inference, A/B experimentation, time-series forecasting) and Big Data Engineering (distributed SQL/NoSQL storage, Apache Spark clusters, and automated data pipelines)."
+                ],
+                svgDiagram: `
+          <svg viewBox="0 0 800 230" class="fig-svg">
+            <rect x="30" y="55" width="160" height="110" rx="8" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="2"/>
+            <text x="48" y="88" fill="#52b788" font-weight="bold" font-size="13">1. Ingestion (ETL)</text>
+            <text x="48" y="112" fill="currentColor" font-size="11">• Kafka Streams</text>
+            <text x="48" y="132" fill="currentColor" font-size="11">• SQL / Parquet Lake</text>
+            <line x1="190" y1="110" x2="235" y2="110" stroke="#c9a959" stroke-width="2"/>
+            <rect x="235" y="55" width="165" height="110" rx="8" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="2"/>
+            <text x="252" y="88" fill="#c9a959" font-weight="bold" font-size="13">2. Wrangling & EDA</text>
+            <text x="252" y="112" fill="currentColor" font-size="11">• Pandas / Polars</text>
+            <text x="252" y="132" fill="currentColor" font-size="11">• Outlier Imputation</text>
+            <line x1="400" y1="110" x2="445" y2="110" stroke="#c9a959" stroke-width="2"/>
+            <rect x="445" y="55" width="160" height="110" rx="8" fill="rgba(100,181,246,0.1)" stroke="#64b5f6" stroke-width="2"/>
+            <text x="462" y="88" fill="#64b5f6" font-weight="bold" font-size="13">3. Inference</text>
+            <text x="462" y="112" fill="currentColor" font-size="11">• Bayesian / MCMC</text>
+            <text x="462" y="132" fill="currentColor" font-size="11">• Time-Series ARIMA</text>
+            <line x1="605" y1="110" x2="645" y2="110" stroke="#52b788" stroke-width="2"/>
+            <rect x="645" y="55" width="130" height="110" rx="8" fill="rgba(82,183,136,0.15)" stroke="#52b788" stroke-width="2"/>
+            <text x="660" y="88" fill="#52b788" font-weight="bold" font-size="13">4. Decision Engine</text>
+            <text x="660" y="112" fill="currentColor" font-size="11">• Interactive BI</text>
+            <text x="660" y="132" fill="currentColor" font-size="11">• Forecasting API</text>
+          </svg>
+        `,
+                roadmap: [
+                    { stage: "Phase I: Python Data Stack & Relational SQL", items: "NumPy vectorization, Pandas/Polars DataFrames, Complex SQL Window Functions (`OVER`, `PARTITION BY`), CTEs, PostgreSQL indexing." },
+                    { stage: "Phase II: Probability & Statistical Inference", items: "Gaussian/Poisson/Binomial distributions, Central Limit Theorem, Hypothesis Testing (t-test, ANOVA, Chi-Square), Bayesian updating." },
+                    { stage: "Phase III: Feature Engineering & Forecasting", items: "PCA/t-SNE/UMAP dimensionality reduction, Time-Series decomposition (ARIMA, Prophet), Survival Analysis, Causal Inference." },
+                    { stage: "Phase IV: Big Data & Distributed Pipelines", items: "Apache Spark (PySpark), DuckDB, Columnar Parquet storage, Airflow orchestration, Interactive Streamlit/D3.js dashboards." }
+                ],
+                mathEquations: [
+                    { title: "Welch's Two-Sample t-Test Statistic for A/B Experiments", eq: "t = (X̄₁ - X̄₂) / √( (s₁² / n₁) + (s₂² / n₂) )", desc: "Determines whether the difference in means between treatment and control groups is statistically significant." },
+                    { title: "Singular Value Decomposition (Matrix Factorization)", eq: "M = U · Σ · Vᵀ", desc: "Generalizes eigendecomposition to any m×n matrix; powers recommender systems and dimensionality reduction." }
+                ],
+                projects: [
+                    "1. End-to-End Financial/Climate Time-Series Forecaster: Ingest live API streams, clean anomalies, and forecast trends with confidence intervals.",
+                    "2. Distributed SQL & DuckDB Analytics Engine: Benchmark 50-million-row CSV vs. Parquet queries with interactive visualizations."
+                ],
+                videos: [
+                    { title: "Statistics & Probability Full University Course", channel: "StatQuest with Josh Starmer", duration: "Playlist", url: "https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9" }
+                ]
+            },
+            {
+                id: "fullstack-realm",
+                num: "04",
+                icon: "💻",
+                title: "Full-Stack Software Engineering & Distributed Cloud Systems",
+                category: "System Craftsmanship",
+                roles: "Full-Stack Engineer • Backend Systems Architect • DevOps Engineer",
+                summary: "Architecting responsive frontend interfaces, high-concurrency Node.js/Go backend APIs, database indexing engines, and fault-tolerant distributed clusters.",
+                tagline: "Engineering resilient software systems that scale from one user to one hundred million.",
+                overview: [
+                    "Software Engineering is the discipline of turning abstract algorithms into reliable, maintainable, high-concurrency applications. A modern Full-Stack Systems Architect understands the entire journey of a network request: from browser DOM rendering and CSS GPU compositing, across TLS load balancers, into asynchronous event-loop servers and B-Tree indexed databases.",
+                    "At scale, software engineering becomes Distributed Systems Engineering—navigating the CAP Theorem, caching hot keys in Redis, sharding databases, and containerizing microservices with Docker and Linux namespaces."
+                ],
+                svgDiagram: `
+          <svg viewBox="0 0 800 230" class="fig-svg">
+            <rect x="25" y="60" width="150" height="105" rx="8" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="2"/>
+            <text x="42" y="92" fill="#52b788" font-weight="bold" font-size="13">1. Client UI</text>
+            <text x="42" y="115" fill="currentColor" font-size="11">• HTML5 / CSS3 / JS</text>
+            <text x="42" y="135" fill="currentColor" font-size="11">• 60fps DOM / WebGL</text>
+            <line x1="175" y1="112" x2="220" y2="112" stroke="#c9a959" stroke-width="2"/>
+            <rect x="220" y="60" width="165" height="105" rx="8" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="2"/>
+            <text x="238" y="92" fill="#c9a959" font-weight="bold" font-size="13">2. API Gateway</text>
+            <text x="238" y="115" fill="currentColor" font-size="11">• Nginx Reverse Proxy</text>
+            <text x="238" y="135" fill="currentColor" font-size="11">• Rate Limit & JWT</text>
+            <line x1="385" y1="112" x2="430" y2="112" stroke="#c9a959" stroke-width="2"/>
+            <rect x="430" y="60" width="165" height="105" rx="8" fill="rgba(100,181,246,0.1)" stroke="#64b5f6" stroke-width="2"/>
+            <text x="448" y="92" fill="#64b5f6" font-weight="bold" font-size="13">3. App Workers</text>
+            <text x="448" y="115" fill="currentColor" font-size="11">• Node.js / Express</text>
+            <text x="448" y="135" fill="currentColor" font-size="11">• Async Event Loop</text>
+            <line x1="595" y1="112" x2="640" y2="112" stroke="#52b788" stroke-width="2"/>
+            <rect x="640" y="60" width="140" height="105" rx="8" fill="rgba(224,122,95,0.1)" stroke="#e07a5f" stroke-width="2"/>
+            <text x="655" y="92" fill="#e07a5f" font-weight="bold" font-size="13">4. Data Layer</text>
+            <text x="655" y="115" fill="currentColor" font-size="11">• Redis RAM Cache</text>
+            <text x="655" y="135" fill="currentColor" font-size="11">• MongoDB / Postgres</text>
+          </svg>
+        `,
+                roadmap: [
+                    { stage: "Phase I: Frontend Architecture & Browser Internals", items: "Semantic HTML5, Modern CSS Grid/Flexbox/Animations, ES6+ JavaScript, Event Loop & Promises, Canvas/Three.js 3D rendering." },
+                    { stage: "Phase II: Backend APIs & Authentication", items: "Node.js & Express, RESTful API design, WebSockets for real-time bi-directional streams, JWT/Session security, OAuth 2.0." },
+                    { stage: "Phase III: Database Internals (SQL & NoSQL)", items: "B+ Tree vs LSM-Tree storage engines, MongoDB aggregation pipelines, PostgreSQL ACID transactions, Redis in-memory caching." },
+                    { stage: "Phase IV: System Design, Git & Cloud Deployment", items: "Git branching & CI/CD, Linux server administration, Docker containers, Load Balancers, Horizontal Sharding, Consistent Hashing." }
+                ],
+                mathEquations: [
+                    { title: "Little's Law for High-Concurrency Server Throughput", eq: "L = λ · W   (Concurrent Requests L = Arrival Rate λ × Mean Response Latency W)", desc: "Governs thread-pool sizing, connection queues, and capacity planning in web servers." },
+                    { title: "Consistent Hashing Ring Mapping", eq: "Node_Index = Hash(Key) mod 2³²", desc: "Minimizes cache key remapping to K/N keys when server nodes join or leave a cluster." }
+                ],
+                projects: [
+                    "1. Real-Time Collaborative Code Editor: Build a multi-user editor using WebSockets, Node.js, and local persistence.",
+                    "2. Custom URL Shortener & Rate-Limiter API: Handle 10,000 req/sec using Token Bucket rate limiting and indexed lookups."
+                ],
+                videos: [
+                    { title: "System Design Primer & Architecture Deep Dives", channel: "ByteByteGo", duration: "Playlist", url: "https://www.youtube.com/c/ByteByteGo" }
+                ]
+            },
+            {
+                id: "embedded-realm",
+                num: "05",
+                icon: "🔌",
+                title: "Embedded Systems, Microcontrollers, Robotics & IoT",
+                category: "Silicon & Circuits",
+                roles: "Firmware Engineer • Robotics Architect • Embedded Linux Developer",
+                summary: "Programming bare-metal C/C++ on microcontrollers, interfacing sensors over I2C/SPI/UART, designing PCBs, and building autonomous robotic control loops.",
+                tagline: "Bridging low-level C registers with motors, sensors, and physical reality.",
+                overview: [
+                    "Embedded Systems Engineering strips away bloated abstractions so your C/C++ code directly manipulates memory-mapped hardware registers. Every smartwatch, drone flight controller, automotive braking unit, and satellite relies on deterministic firmware.",
+                    "Engineers in this domain read component datasheets, configure Analog-to-Digital Converters (ADCs), trigger hardware timer interrupts, and fuse inertial sensor telemetry inside tight microsecond loops."
+                ],
+                svgDiagram: `
+          <svg viewBox="0 0 800 230" class="fig-svg">
+            <rect x="30" y="60" width="175" height="105" rx="8" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="2"/>
+            <text x="48" y="92" fill="#52b788" font-weight="bold" font-size="13">1. Analog Sensors</text>
+            <text x="48" y="115" fill="currentColor" font-size="11">• IMU Gyro / Accel</text>
+            <text x="48" y="135" fill="currentColor" font-size="11">• LiDAR / Ultrasonic</text>
+            <line x1="205" y1="112" x2="275" y2="112" stroke="#c9a959" stroke-width="2"/>
+            <text x="215" y="102" fill="#c9a959" font-size="10">I2C / SPI</text>
+            <rect x="275" y="50" width="240" height="125" rx="8" fill="rgba(201,169,89,0.12)" stroke="#c9a959" stroke-width="2"/>
+            <text x="300" y="82" fill="#c9a959" font-weight="bold" font-size="14">2. Microcontroller (MCU)</text>
+            <text x="300" y="108" fill="currentColor" font-size="11">• Bare-Metal C / FreeRTOS</text>
+            <text x="300" y="128" fill="currentColor" font-size="11">• Hardware ISR Interrupts</text>
+            <text x="300" y="148" fill="currentColor" font-size="11">• PID & Kalman Filter Loop</text>
+            <line x1="515" y1="112" x2="590" y2="112" stroke="#52b788" stroke-width="2"/>
+            <text x="528" y="102" fill="#52b788" font-size="10">PWM / H-Bridge</text>
+            <rect x="590" y="60" width="175" height="105" rx="8" fill="rgba(100,181,246,0.1)" stroke="#64b5f6" stroke-width="2"/>
+            <text x="610" y="92" fill="#64b5f6" font-weight="bold" font-size="13">3. Actuators</text>
+            <text x="610" y="115" fill="currentColor" font-size="11">• Brushless DC Motors</text>
+            <text x="610" y="135" fill="currentColor" font-size="11">• Servo Kinematics</text>
+          </svg>
+        `,
+                roadmap: [
+                    { stage: "Phase I: Electronics & Microcontroller Fundamentals", items: "Ohm's Law, Kirchhoff's Laws, Breadboarding, Multimeter/Oscilloscope diagnostics, Arduino & ESP32 GPIO, ADC, and PWM." },
+                    { stage: "Phase II: Bare-Metal C/C++ & Serial Protocols", items: "Bitwise register manipulation (`DDRB`, `PORTB`), Hardware Timers, Interrupt Service Routines (ISRs), UART, I2C, and SPI." },
+                    { stage: "Phase III: Real-Time OS (RTOS) & Control Theory", items: "FreeRTOS task scheduling, Semaphores, PID closed-loop motor control, IMU sensor fusion (Complementary & Kalman Filters)." },
+                    { stage: "Phase IV: Embedded Linux & ROS2 Robotics", items: "Raspberry Pi / Jetson interfacing, ROS2 publisher/subscriber nodes, SLAM mapping, Custom PCB design in KiCad." }
+                ],
+                mathEquations: [
+                    { title: "Analog-to-Digital Converter (ADC) Quantization Resolution", eq: "ADC_Reading = round( (V_in / V_ref) × (2^N - 1) )", desc: "A 10-bit ADC (N=10) divides a 5V reference into 1024 discrete steps (~4.88 mV per step)." },
+                    { title: "1D Complementary Filter for IMU Pitch/Roll Fusion", eq: "θ_est = α · (θ_prev + ω_gyro · Δt) + (1 - α) · θ_accel", desc: "Combines high-frequency gyroscope integration with drift-free low-frequency accelerometer tilt." }
+                ],
+                projects: [
+                    "1. Self-Balancing Two-Wheeled Robot: Fuse MPU6050 gyroscope/accelerometer data with a C++ PID loop driving stepper or DC motors.",
+                    "2. Custom ESP32 Telemetry Weather & Security Node: Read I2C sensors and stream encrypted MQTT telemetry to a web dashboard."
+                ],
+                videos: [
+                    { title: "Embedded Systems & Microcontroller Engineering", channel: "Ben Eater / Mitch Davis", duration: "Playlist", url: "https://www.youtube.com/c/BenEater" }
+                ]
+            },
+            {
+                id: "quantum-realm",
+                num: "06",
+                icon: "🌌",
+                title: "Theoretical CS, Compilers & Quantum Computing",
+                category: "Frontier Computation",
+                roles: "Quantum Algorithms Researcher • Compiler Engineer • Complexity Theorist",
+                summary: "Building lexers, parsers, and LLVM compilers, exploring P vs NP complexity bounds, and programming quantum circuits in Qiskit.",
+                tagline: "Where formal mathematical logic meets the quantum foundations of the universe.",
+                overview: [
+                    "Theoretical Computer Science and Quantum Computing form the foundational bedrock and the farthest horizon of the field. Compiler Engineers translate high-level human languages into optimized machine instructions using formal grammars and abstract syntax trees, while Quantum Researchers design unitary gate circuits that manipulate entangled qubits.",
+                    "Understanding Automata Theory, Turing Decidability, and Quantum Linear Algebra prepares you for the next paradigm shift in computation."
+                ],
+                svgDiagram: `
+          <svg viewBox="0 0 800 230" class="fig-svg">
+            <rect x="30" y="60" width="165" height="105" rx="8" fill="rgba(82,183,136,0.1)" stroke="#52b788" stroke-width="2"/>
+            <text x="48" y="92" fill="#52b788" font-weight="bold" font-size="13">1. Formal Grammar</text>
+            <text x="48" y="115" fill="currentColor" font-size="11">• Lexer & Parser (AST)</text>
+            <text x="48" y="135" fill="currentColor" font-size="11">• Type Checker</text>
+            <line x1="195" y1="112" x2="245" y2="112" stroke="#c9a959" stroke-width="2"/>
+            <rect x="245" y="60" width="175" height="105" rx="8" fill="rgba(201,169,89,0.1)" stroke="#c9a959" stroke-width="2"/>
+            <text x="262" y="92" fill="#c9a959" font-weight="bold" font-size="13">2. Compiler IR</text>
+            <text x="262" y="115" fill="currentColor" font-size="11">• LLVM Intermediate</text>
+            <text x="262" y="135" fill="currentColor" font-size="11">• Register Allocation</text>
+            <line x1="420" y1="112" x2="470" y2="112" stroke="#c9a959" stroke-width="2"/>
+            <rect x="470" y="60" width="295" height="105" rx="8" fill="rgba(100,181,246,0.1)" stroke="#64b5f6" stroke-width="2"/>
+            <text x="490" y="92" fill="#64b5f6" font-weight="bold" font-size="13">3. Quantum Co-Processor (QPU)</text>
+            <text x="490" y="115" fill="currentColor" font-size="11">• Superposition |ψ⟩ = α|0⟩ + β|1⟩</text>
+            <text x="490" y="135" fill="currentColor" font-size="11">• Hadamard, CNOT & Quantum Fourier</text>
+          </svg>
+        `,
+                roadmap: [
+                    { stage: "Phase I: Discrete Math & Formal Automata", items: "Propositional & Predicate Logic, Set Theory, Graph Theory, Deterministic Finite Automata (DFA), Regular Expressions, Context-Free Grammars." },
+                    { stage: "Phase II: Compilers & Programming Language Design", items: "Lexical Tokenization, Recursive Descent Parsing, Abstract Syntax Trees (AST), Bytecode Virtual Machines, LLVM IR." },
+                    { stage: "Phase III: Computability & Complexity Theory", items: "Turing Machines, The Halting Problem, Time/Space Complexity Classes (P, NP, NP-Complete, PSPACE), Cook-Levin Theorem." },
+                    { stage: "Phase IV: Quantum Information & Algorithms", items: "Complex Hilbert Spaces, Bloch Sphere, Unitary Gates, Deutsch-Jozsa, Grover's Search, Shor's Factoring Algorithm, Qiskit." }
+                ],
+                mathEquations: [
+                    { title: "Quantum Fourier Transform (Core of Shor's Algorithm)", eq: "QFT |x⟩ = (1 / √N) Σ_{k=0}^{N-1} e^(2πi · x · k / N) |k⟩", desc: "Extracts periodicities in quantum amplitudes exponentially faster than the classical Fast Fourier Transform." }
+                ],
+                projects: [
+                    "1. Build Your Own Programming Language Interpreter (Lox/TinyC): Write a lexer, AST parser, and tree-walk interpreter.",
+                    "2. Quantum Teleportation & Grover's Search Simulator: Simulate multi-qubit quantum circuits in Python using NumPy/Qiskit."
+                ],
+                videos: [
+                    { title: "Quantum Computing for the Determined (Full Lecture Series)", channel: "Michael Nielsen", duration: "Playlist", url: "https://www.youtube.com/playlist?list=PL1826E60FD05B44E4" }
+                ]
+            }
+        ];
+
+        const sidebarList = document.getElementById('sidebarList');
+        const directoryGrid = document.getElementById('directoryGrid');
+        const directoryView = document.getElementById('directoryView');
+        const articleView = document.getElementById('articleView');
+        const articleContent = document.getElementById('articleContent');
+        const articlePagination = document.getElementById('articlePagination');
+        const btnDirectoryView = document.getElementById('btnDirectoryView');
+
+        function initDomains() {
+            sidebarList.innerHTML = csDomains.map(d => `
+        <li>
+          <button class="sidebar-item" id="side-${d.id}" onclick="openDomain('${d.id}')">
+            <span class="side-num">${d.num}</span>
+            <span class="side-icon">${d.icon}</span>
+            <div class="side-text">
+              <span class="side-title">${d.title}</span>
+              <span class="side-cat">${d.category}</span>
+            </div>
+          </button>
+        </li>
+      `).join('');
+
+            directoryGrid.innerHTML = csDomains.map(d => `
+        <div class="field-card" onclick="openDomain('${d.id}')">
+          <div class="card-top">
+            <span class="card-num">REALM ${d.num}</span>
+            <span class="card-badge">${d.category}</span>
+          </div>
+          <div class="card-icon-row">
+            <span class="card-icon">${d.icon}</span>
+            <h3>${d.title}</h3>
+          </div>
+          <p class="card-summary">${d.summary}</p>
+          <div class="card-includes">
+            <span>🗺️ 4-Phase Roadmap</span>
+            <span>📐 Math & Stack</span>
+            <span>🛠️ Projects</span>
+          </div>
+          <div class="card-footer">
+            <span class="meta-info">${d.roles.split('•')[0]}</span>
+            <span class="open-cta">Explore Realm →</span>
+          </div>
+        </div>
+      `).join('');
+        }
+
+        function openDomain(id) {
+            const idx = csDomains.findIndex(d => d.id === id);
+            if (idx === -1) return;
+            const d = csDomains[idx];
+
+            document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+            document.getElementById(`side-${d.id}`)?.classList.add('active');
+            btnDirectoryView.classList.remove('active');
+
+            directoryView.classList.add('hidden');
+            articleView.classList.remove('hidden');
+
+            articleContent.innerHTML = `
+        <header class="art-header">
+          <div class="art-meta-strip">
+            <span class="art-pill">REALM ${d.num} // ${d.category.toUpperCase()}</span>
+            <span class="art-pill">🎯 Roles: ${d.roles}</span>
+          </div>
+          <h1 class="art-title">${d.icon} ${d.title}</h1>
+          <p class="art-tagline">“${d.tagline}”</p>
+        </header>
+
+        <section class="art-block" id="dom-arch">
+          <h2 class="block-heading"><span>01</span> Realm Overview & System Pipeline</h2>
+          <div class="prose-paragraphs">
+            ${d.overview.map(p => `<p>${p}</p>`).join('')}
+          </div>
+          <figure class="diagram-container" style="margin-top:1.5rem;">
+            <div class="svg-wrapper">${d.svgDiagram}</div>
+            <figcaption>End-to-End Architecture Pipeline — ${d.title}</figcaption>
+          </figure>
+        </section>
+
+        <section class="art-block" id="dom-roadmap">
+          <h2 class="block-heading"><span>02</span> 4-Phase Engineering Mastery Roadmap</h2>
+          <div class="deepdive-list">
+            ${d.roadmap.map(r => `
+              <div class="deepdive-item">
+                <h3>🧭 ${r.stage}</h3>
+                <p>${r.items}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+
+        <section class="art-block" id="dom-math">
+          <h2 class="block-heading"><span>03</span> Core Mathematical Formulations</h2>
+          <div class="math-grid">
+            ${d.mathEquations.map(m => `
+              <div class="math-card">
+                <h4>📐 ${m.title}</h4>
+                <div class="formula-box">${m.eq}</div>
+                <p>${m.desc}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+
+        <section class="art-block" id="dom-projects">
+          <h2 class="block-heading"><span>04</span> Flagship Portfolio Projects to Build</h2>
+          <div class="deepdive-list">
+            ${d.projects.map(p => `
+              <div class="deepdive-item">
+                <p>🛠️ <strong>${p}</strong></p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+
+        <section class="art-block" id="dom-videos">
+          <h2 class="block-heading"><span>05</span> Curated Video Lectures</h2>
+          <div class="video-grid">
+            ${d.videos.map(v => `
+              <a href="${v.url}" target="_blank" rel="noopener noreferrer" class="video-card">
+                <div class="video-play-banner">
+                  <span class="yt-badge">▶ YOUTUBE MASTERCLASS</span>
+                  <span class="yt-duration">⏱️ ${v.duration}</span>
+                </div>
+                <div class="video-body">
+                  <h4>${v.title}</h4>
+                  <span class="yt-channel">🎙️ Channel: <strong>${v.channel}</strong></span>
+                  <span class="watch-link">Open Playlist on YouTube ↗</span>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+      `;
+
+            const prev = csDomains[idx - 1];
+            const next = csDomains[idx + 1];
+            articlePagination.innerHTML = `
+        <div>${prev ? `<button class="page-nav-btn" onclick="openDomain('${prev.id}')">← ${prev.title}</button>` : ''}</div>
+        <div>${next ? `<button class="page-nav-btn" onclick="openDomain('${next.id}')">${next.title} →</button>` : ''}</div>
+      `;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showDirectory() {
+            articleView.classList.add('hidden');
+            directoryView.classList.remove('hidden');
+            btnDirectoryView.classList.add('active');
+            document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+        }
+
+        function toggleEyeComfort() {
+            const html = document.documentElement;
+            const label = document.getElementById('themeLabel');
+            if (html.getAttribute('data-theme') === 'dark-comfort') {
+                html.setAttribute('data-theme', 'sepia-comfort');
+                label.innerText = 'Soft Dark Mode';
+            } else {
+                html.setAttribute('data-theme', 'dark-comfort');
+                label.innerText = 'Sepia Paper Mode';
+            }
+        }
+
+        initDomains();
+    </script>
+</body>
+
+</html>

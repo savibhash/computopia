@@ -1986,3 +1986,391 @@ body {
     border-color: #ef4444;
     color: #ffffff;
 }
+
+
+/* ==========================================
+   SAKUM PREMIUM FOOTER
+========================================== */
+
+.sakum-footer {
+    --footer-bg: #102c25;
+    --footer-panel: #183a31;
+    --footer-gold: #e4b66b;
+    --footer-text: #f4f5ef;
+    --footer-muted: #b4c5bd;
+
+    padding: 60px 28px 0;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    border-top: 1px solid rgba(228, 182, 107, 0.24);
+}
+
+.sakum-footer-main {
+    display: grid;
+    grid-template-columns:
+        minmax(180px, 1.05fr) minmax(145px, 0.8fr) minmax(160px, 0.9fr) minmax(260px, 1.3fr);
+
+    gap: 42px;
+
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+
+    padding-bottom: 48px;
+}
+
+.sakum-footer h2 {
+    margin: 0 0 17px;
+
+    color: var(--footer-gold);
+    font-size: 14px;
+    font-weight: 850;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.sakum-footer h3 {
+    margin: 24px 0 10px;
+
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.sakum-footer a {
+    color: var(--footer-muted);
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sakum-footer a:hover {
+    color: var(--footer-gold);
+}
+
+
+/* BRAND */
+
+.sakum-footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #ffffff !important;
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.sakum-footer-globe {
+    display: grid;
+    place-items: center;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 14px;
+
+    background: var(--footer-panel);
+
+    font-size: 25px;
+    letter-spacing: 0;
+}
+
+.sakum-footer-tagline {
+    margin: 21px 0 11px;
+
+    color: var(--footer-gold);
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 2px;
+}
+
+.sakum-footer-description {
+    max-width: 290px;
+
+    color: var(--footer-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.sakum-footer-note {
+    display: inline-block;
+    margin-top: 22px;
+
+    color: #d2ded7;
+    font-size: 12px;
+    font-style: italic;
+}
+
+
+/* LINK COLUMNS */
+
+.sakum-footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+
+    min-width: 0;
+}
+
+.sakum-footer-column a {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.sakum-footer-column a:hover {
+    transform: translateX(3px);
+}
+
+
+/* NEWSLETTER */
+
+.sakum-footer-community {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    min-width: 0;
+}
+
+.sakum-newsletter>p {
+    margin: -6px 0 16px;
+
+    color: var(--footer-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.sakum-name-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-bottom: 10px;
+}
+
+.sakum-footer input[type="text"],
+.sakum-footer input[type="email"] {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 43px;
+    padding: 0 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+
+    outline: none;
+    background: #f7f8f5;
+    color: #17201d;
+
+    font: inherit;
+    font-size: 12px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.sakum-footer input:focus {
+    border-color: var(--footer-gold);
+    box-shadow: 0 0 0 3px rgba(228, 182, 107, 0.17);
+}
+
+.sakum-email-field {
+    display: flex;
+    width: 100%;
+}
+
+.sakum-email-field input {
+    border-radius: 8px 0 0 8px !important;
+}
+
+.sakum-email-field button {
+    flex-shrink: 0;
+    width: 49px;
+
+    border: 0;
+    border-radius: 0 8px 8px 0;
+
+    background: var(--footer-gold);
+    color: #152820;
+
+    font-size: 24px;
+    font-weight: 800;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.sakum-email-field button:hover {
+    background: #f0cb8f;
+}
+
+.sakum-email-field button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.sakum-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+
+    color: var(--footer-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.sakum-consent input {
+    margin-top: 3px;
+    accent-color: var(--footer-gold);
+}
+
+.sakum-newsletter-disclaimer {
+    margin-top: 8px !important;
+    font-size: 11px !important;
+}
+
+.sakum-form-status {
+    margin: 10px 0 0;
+    color: #bde9c9;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* CONTACT */
+
+.sakum-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    overflow-wrap: anywhere;
+    font-size: 13px;
+}
+
+
+/* SOCIAL LINKS */
+
+.sakum-social-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.sakum-social-links a {
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+
+    background: var(--footer-panel);
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.sakum-social-links a:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--footer-gold);
+    background: #285246;
+    color: var(--footer-gold);
+}
+
+
+/* ACCESSIBILITY */
+
+.sakum-visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* BOTTOM BAR */
+
+.sakum-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 22px 0 24px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+
+    color: #a8bab1;
+    font-size: 11px;
+}
+
+.sakum-footer-bottom p {
+    margin: 0;
+}
+
+.sakum-footer-bottom a {
+    white-space: nowrap;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+    .sakum-footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 38px;
+    }
+}
+
+@media (max-width: 600px) {
+    .sakum-footer {
+        padding: 42px 20px 0;
+    }
+
+    .sakum-footer-main {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding-bottom: 35px;
+    }
+
+    .sakum-footer-description {
+        max-width: 100%;
+    }
+
+    .sakum-footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+    }
+}   
